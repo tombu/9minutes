@@ -3,6 +3,6 @@ db/*.sqlite3
 log/*.log
 tmp/
 
-/Icon
+Icon*
 .DS_Store
 Thumbs.db
