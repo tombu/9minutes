@@ -1,8 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.5'
-
-gem 'sqlite3'
 gem 'jquery-rails', '>= 0.2.6'
 
 # templating
@@ -15,11 +13,11 @@ gem 'httparty'
 gem 'hashie'
 
 # authentication, authorization, roles
-gem 'cream'
+#gem 'cream'
 
 group :development do
   # for html2haml
-  gem 'hpricot'
+  #gem 'hpricot'
   gem 'ruby_parser'
 end
 
@@ -28,7 +26,8 @@ end
 
 # Bundle the extra gems:
 # gem 'bj'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'sqlite3'
+gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
 # Bundle gems for the local environment. Make sure to
