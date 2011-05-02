@@ -5,12 +5,29 @@ gem 'rails', '3.0.5'
 gem 'sqlite3'
 gem 'jquery-rails', '>= 0.2.6'
 
+# templating
+gem 'haml-rails'
+
+# for using last.fm api
+gem 'httparty'
+
+# for converting json/xml to object
+gem 'hashie'
+
+# authentication, authorization, roles
+gem 'cream'
+
+group :development do
+  # for html2haml
+  gem 'hpricot'
+  gem 'ruby_parser'
+end
+
 # Deploy with Capistrano
 # gem 'capistrano'
 
 # Bundle the extra gems:
 # gem 'bj'
-# gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 

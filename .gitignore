@@ -2,3 +2,7 @@
 db/*.sqlite3
 log/*.log
 tmp/
+
+/Icon
+.DS_Store
+Thumbs.db

@@ -1,0 +1,13 @@
+%h1 Search results for "Justin Bieber"
+
+%p
+  %b= @resultsTracks["opensearch:totalResults"]
+  = "Ergebnisse insgesamt"
+%ul
+  - @resultsTracks.trackmatches.track.each do |track|
+    %li
+      = image_tag validate_img_url(track.image, :small)
+      %b
+        = track.name
+        = " - #{track.artist}"
+      = "(#{track.listeners} Hörer)"
