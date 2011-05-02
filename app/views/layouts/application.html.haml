@@ -3,7 +3,11 @@
   %head
     %title Nineminutes
     = stylesheet_link_tag :all
-    = javascript_include_tag :defaults
+    = javascript_include_tag :all
     = csrf_meta_tag
   %body
-    = yield
+    #site
+      #head
+        %h1= image_tag "9minutes.png"
+          = form_tag '', :remote => true, :id=>"search_form", :class=>"right"
+            = text_field_tag 'search', :class => "input"

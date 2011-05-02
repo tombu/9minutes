@@ -1,0 +1,163 @@
+﻿@charset "utf-8";
+
+/** FONTS **/
+@font-face{ 
+	font-family: AauxNextLight;
+	src: url('../fonts/aauxnext/aauxnext-lt-webfont.eot');
+	src: local('☺'),
+       url('../fonts/aauxnext/aauxnext-lt-webfont.ttf') format("truetype"),
+       url('../fonts/aauxnext/aauxnext-lt-webfont.otf') format("opentype"),
+       url('../fonts/aauxnext/aauxnext-lt-webfont.woff') format("woff"),
+	     url('../fonts/aauxnext/aauxnext-lt-webfont.svg#webfont') format("svg");
+}
+@font-face{ 
+	font-family: AauxNextMedium;
+	src: url('../fonts/aauxnext/aauxnext-md-webfont.eot');
+	src: local('☺'),
+       url('../fonts/aauxnext/aauxnext-md-webfont.ttf') format("truetype"),
+       url('../fonts/aauxnext/aauxnext-md-webfont.otf') format("opentype"),
+       url('../fonts/aauxnext/aauxnext-md-webfont.woff') format("woff"),
+	     url('../fonts/aauxnext/aauxnext-md-webfont.svg#webfont') format("svg");
+}
+@font-face{ 
+	font-family: AauxNextBold;
+	src: url('../fonts/aauxnext/aauxnext-bd-webfont.eot');
+	src: local('☺'),
+       url('../fonts/aauxnext/aauxnext-bd-webfont.ttf') format("truetype"),
+       url('../fonts/aauxnext/aauxnext-bd-webfont.otf') format("opentype"),
+       url('../fonts/aauxnext/aauxnext-bd-webfont.woff') format("woff"),
+	     url('../fonts/aauxnext/aauxnext-bd-webfont.svg#webfont') format("svg");
+}
+
+/** STANDARDS **/
+body
+{
+    background: #f6f9fb url('../images/bg/overall.png') repeat-x top;
+    /* background: white; */
+    font-size: 14px;
+    color: #7d8791;
+}
+* html body { text-align: center; }
+.clean { clear: both; }
+.left { float: left; }
+.right { float: right; }
+* { font-family: AauxNextMedium, "Segoe UI", Arial, sans-serif; }
+.light { font-family: AauxNextLight, "Segoe UI", Arial, sans-serif; }
+.medium { font-family: AauxNextMedium, "Segoe UI", Arial, sans-serif; }
+.bold, b, strong { font-family: AauxNextBold, "Segoe UI", Arial, sans-serif; }
+
+a { text-decoration: none; color: #7d8791; }
+
+/** SITE **/
+#site
+{
+  position: relative;
+  width: 950px;
+  margin: 0 auto;
+}
+#head { height: 140px; }
+#head h1 { padding-top: 60px; float: left; }
+#search_form .input
+{
+  width: 290px;
+  height: 28px;
+  margin-top: 60px;
+  border: 1px solid #bdc5ca;
+  border-radius: 14px;
+  -moz-border-radius: 14px;
+  -webkit-border-radius: 14px;
+  text-indent: 15px;
+}
+
+.headline
+{
+  color: #7d8791;
+  font-family: AauxNextLight, "Segoe UI", Arial, sans-serif;
+  font-size: 32px;
+}
+.headline.small
+{
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+.navigation { margin-bottom: 40px; height: 15px; line-height: 15px; }
+.navigation li
+{
+  float: left;
+  color: #7d8791;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.navigation li:hover { color: #5d666e; }
+.navigation .active { font-family: AauxNextBold, "Segoe UI", Arial, sans-serif; }
+
+.artists li
+{
+  width: 147px;
+  height: 143px;
+  background: url('../images/bg/fuse.png') 0 0;
+  float: left;
+  margin: 0 13px 20px 0;
+}
+.artists img { float: left; }
+.artists p
+{
+  color: White;
+  font-size: 12px;
+  height: 27px; line-height: 27px;
+  text-indent: 10px;
+  font-family: AauxNextBold, "Segoe UI", Arial, sans-serif; 
+  display: inline-block;
+  width: 100%;
+}
+.artists li:first-child { background-position: -147px 0; }
+
+#search_all
+{
+  overflow: hidden;
+}
+
+.songs li
+{
+  height: 32px; line-height: 32px;
+  border-bottom: 1px solid #e9edf0;
+  font-size: 12px;
+  width: 465px;
+}
+.songs.tab { overflow: hidden; }
+.songs.tab li { float: left; margin-right: 20px; }
+.songs li span 
+{ 
+  color: #2d3135; 
+  margin-left: 5px;
+}
+.songs li img { vertical-align: middle; }
+
+#search_all_songs { float: left; }
+#search_all_albums { float: right; width: 468px; }
+
+.albums li 
+{
+  float: left;
+  width: 233px;
+  margin-bottom: 15px;
+}
+.albums .img 
+{ 
+  background: url('../images/bg/fuse.png') -294px 0; 
+  width: 77px; height: 65px;
+  margin-right: 6px;
+  float: left;
+  margin-top: 3px;
+}
+.albums img { margin-left: 16px; }
+.albums span { color: #2e353c;}
+.albums sub { color: #99a4ad; font-size: 11px;}
+
+.more img
+{
+  margin: 0 auto;
+  display: block;
+}
+div[wheel] > div { display: none; opacity: 0.0; position: relative; }
+div[wheel] > div:first-child { opacity: 1.0; display: block; }
