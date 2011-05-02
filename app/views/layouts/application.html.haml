@@ -8,6 +8,8 @@
   %body
     #site
       #head
-        %h1= image_tag "9minutes.png"
-          = form_tag '', :remote => true, :id=>"search_form", :class=>"right"
-            = text_field_tag 'search', :class => "input"
+        %h1
+          = image_tag "9minutes.png"
+        - form_tag search_index_path, :method => 'get', :id => "search_form", :class => "right" do
+          = text_field_tag 'search_term', params[:search_term], :class => "input", :placeholder => "Search for"
+      = yield

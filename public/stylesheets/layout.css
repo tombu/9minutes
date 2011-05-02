@@ -99,7 +99,7 @@ a { text-decoration: none; color: #7d8791; }
   float: left;
   margin: 0 13px 20px 0;
 }
-.artists img { float: left; }
+.artists img { float: left; width: 147px; height: 94px; }
 .artists p
 {
   color: White;
@@ -150,7 +150,7 @@ a { text-decoration: none; color: #7d8791; }
   float: left;
   margin-top: 3px;
 }
-.albums img { margin-left: 16px; }
+.albums img { margin-left: 16px; width: 54px; height: 54px;}
 .albums span { color: #2e353c;}
 .albums sub { color: #99a4ad; font-size: 11px;}
 

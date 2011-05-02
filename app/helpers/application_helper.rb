@@ -14,4 +14,9 @@ module ApplicationHelper
         
   end
   
+  def get_album_info album, artist
+    @result = LastFM::Album.getInfo(album, artist)
+    @result.album
+  end
+  
 end
