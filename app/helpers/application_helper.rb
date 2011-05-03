@@ -1,14 +1,12 @@
 module ApplicationHelper
   
   def validate_img_url image, size
-
-    if image.nil?
-      "noImage"
-    else
-      image.each do |img|
-        if img["size"] == size.to_s
-          return img["#text"]
+    image.each do |img|
+      if img["size"] == size.to_s
+        if img["#text"].empty?
+           return "/images/placeholder/artist.png"
         end
+        return img["#text"]
       end
     end
         

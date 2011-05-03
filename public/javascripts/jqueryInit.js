@@ -1,7 +1,9 @@
-﻿$(window).load(function() {
+﻿$(function() {
   $(".artists li:nth-child(6n)").css("marginRight", 0);
   $(".songs.tab li:nth-child(2n)").css("marginRight", 0);
-  
+});
+
+$(window).load(function() {
   
   $("ul[steering] li").live("click", function(){
     $(this).parent().children().each(function(){
