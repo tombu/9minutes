@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module ApplicationHelper
   
   def validate_img_url image, size
@@ -15,6 +16,10 @@ module ApplicationHelper
   def get_album_info album, artist
     @result = LastFM::Album.getInfo(album, artist)
     @result.album
+  end
+
+  def trimString str, length
+    truncate str, :length => length.to_i, :omission => "…"
   end
   
 end
