@@ -10,11 +10,8 @@
   .active#search_all
     #search_all_artists
       %ul.artists
-        - count = 0
         - @resultsArtists.artistmatches.artist.each_with_index do |artist, i|
-          - break if (i >= 6 && count >= 6)
-          - next unless artist.listeners.to_i > 15
-          - count += 1
+          - break if i >= 6
           %li
             = link_to "LINK" do
               = image_tag validate_img_url(artist.image, :large)
@@ -25,7 +22,7 @@
       %h2.headline.small Songs
       %ul.songs
         - @resultsTracks.trackmatches.track.each_with_index do |track, i|
-          - break if i == 10
+          - break if i == 8
           %li
             = image_tag "ico/play.png", :class=>"play"
             = image_tag "ico/add.png", :class=>"add"
@@ -36,7 +33,7 @@
       %h2.headline.small Albums
       %ul.albums
         - @resultsAlbums.albummatches.album.each_with_index do |album, i|
-          - break if i == 8
+          - break if i == 6
           %li
             .img
               = image_tag validate_img_url(album.image, :medium)
@@ -48,12 +45,8 @@
             %sub
   #search_artists
     %ul.artists
-      - count = 0
       - @resultsArtists.artistmatches.artist.each_with_index do |artist, i|
-        - break if (i >= 18 && count >= 18)
-        - next unless artist.listeners.to_i > 15
-        - count += 1
-
+        - break if i >= 12
         %li
           = link_to "LINK" do
             = image_tag validate_img_url(artist.image, :large)
@@ -81,7 +74,7 @@
   #search_songs
     %ul.songs.tab
       - @resultsTracks.trackmatches.track.each_with_index do |track, i|
-        - break if i == 24
+        - break if i == 18
         %li
           = image_tag "ico/play.png", :class=>"play"
           = image_tag "ico/add.png", :class=>"add"
