@@ -10,6 +10,19 @@
       #head
         %h1
           = image_tag "9minutes.png"
-        - form_tag search_index_path, :method => 'get', :id => "search_form", :class => "right" do
-          = text_field_tag 'search_term', params[:search_term], :class => "input", :placeholder => "Search for"
+        = form_tag search_index_path, :method => 'get', :id => "search_form", :class => "right" do
+          .wrap
+            = text_field_tag 'search_term', params[:search_term], :class => "input", :placeholder => "Search for"
+            -# TODO: image_submit_tag
+            .selection{:dropping=>"true"}
+              %span ALL
+              .box
+                %span.arr
+                %ul
+                  %li All
+                  %li Artists
+                  %li Albums
+                  %li Songs
+              = hidden_field_tag 'category', 'all'
+            = submit_tag '', :class=>"submit"
       = yield
