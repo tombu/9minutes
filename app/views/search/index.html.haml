@@ -1,5 +1,5 @@
 %h2.headline
-  =raw "Search for &#132;#{params[:search_term]}&#147;"
+  =raw "Search for &#132;#{params[:q]}&#147;"
 %ul.navigation{:steering => "search"}
   %li.active ALL
   %li ARTISTS
@@ -11,7 +11,7 @@
     #search_all_artists
       %ul.artists
         - count = 0
-        - @resultsArtists.artistmatches.artist.each_with_index do |artist, i|
+        - @artists.artist.each_with_index do |artist, i|
           - break if (i >= 6 && count >= 6)
           - next unless artist.listeners.to_i > 15
           - count += 1
@@ -19,37 +19,38 @@
             = link_to "LINK" do
               = image_tag validate_img_url(artist.image, :large)
               %p
-                = artist.name
+                = trimString(artist.name, 22)
       %br.clean
     #search_all_songs
       %h2.headline.small Songs
       %ul.songs
-        - @resultsTracks.trackmatches.track.each_with_index do |track, i|
+        - @tracks.track.each_with_index do |track, i|
           - break if i == 10
           %li
             = image_tag "ico/play.png", :class=>"play"
             = image_tag "ico/add.png", :class=>"add"
             %span
               = track.name
-            =raw "&nbsp;by #{track.artist}"
+            =raw "&nbsp;"
+            = "by #{trimString(track.artist, 50)}"
     #search_all_albums
       %h2.headline.small Albums
       %ul.albums
-        - @resultsAlbums.albummatches.album.each_with_index do |album, i|
+        - @albums.album.each_with_index do |album, i|
           - break if i == 8
           %li
             .img
               = image_tag validate_img_url(album.image, :medium)
             %p
               %span
-                = album.name
+                = trimString(album.name, 38)
               %br
-                = album.artist
+                = trimString(album.artist, 22)
             %sub
   #search_artists
     %ul.artists
       - count = 0
-      - @resultsArtists.artistmatches.artist.each_with_index do |artist, i|
+      - @artists.artist.each_with_index do |artist, i|
         - break if (i >= 18 && count >= 18)
         - next unless artist.listeners.to_i > 15
         - count += 1
@@ -58,36 +59,37 @@
           = link_to "LINK" do
             = image_tag validate_img_url(artist.image, :large)
             %p
-              = artist.name
+              = trimString(artist.name, 22)
     %br.clean
     = link_to "NACHLADEN", :class => "more" do
       = image_tag "ico/more.png"
   #search_albums
     %ul.albums
-      - @resultsAlbums.albummatches.album.each_with_index do |album, i|
+      - @albums.album.each_with_index do |album, i|
         - break if i == 16
         %li
           .img
             = image_tag validate_img_url(album.image, :medium)
           %p
             %span
-              = album.name
+              = trimString(album.name, 38)
             %br
-              = album.artist
+              = trimString(album.artist, 22)
           %sub
     %br.clean
     = link_to "NACHLADEN", :class => "more" do
       = image_tag "ico/more.png"
   #search_songs
     %ul.songs.tab
-      - @resultsTracks.trackmatches.track.each_with_index do |track, i|
+      - @tracks.track.each_with_index do |track, i|
         - break if i == 24
         %li
           = image_tag "ico/play.png", :class=>"play"
           = image_tag "ico/add.png", :class=>"add"
           %span
             = track.name
-          =raw "&nbsp;by #{track.artist}"
+          =raw "&nbsp;"
+          = "by #{trimString(track.artist, 50)}"
     %br.clean
     %br
     = link_to "NACHLADEN", :class => "more" do

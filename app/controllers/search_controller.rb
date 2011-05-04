@@ -1,14 +1,14 @@
 class SearchController < ApplicationController
-  def index
 
-    if !params[:search_term].nil?
-      puts "TRACK SEARCH"
-      @results = LastFM::Artist.search(params[:search_term].to_s.lstrip)
-      @resultsArtists = @results["results"]
-      @results = LastFM::Track.search(params[:search_term].to_s.lstrip)
-      @resultsTracks = @results["results"]
-      @results = LastFM::Album.search(params[:search_term].to_s.lstrip)
-      @resultsAlbums = @results["results"]
+  def index
+    if params[:q].nil?
+      params[:q] = "foobar"
+    end
+    
+    if !params[:q].nil?
+      @artists = LastFM::Artist.search(params[:q].to_s.lstrip, 18)
+      @tracks = LastFM::Track.search(params[:q].to_s.lstrip, 24)
+      @albums = LastFM::Album.search(params[:q].to_s.lstrip, 16)
     end
 
   end
