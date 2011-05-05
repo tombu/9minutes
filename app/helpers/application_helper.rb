@@ -1,12 +1,13 @@
 # encoding: UTF-8
 module ApplicationHelper
   
-  def validate_img_url image, size
+  def validate_img_url image, type, size
     image.each do |img|
       if img["size"] == size.to_s
         if img["#text"].empty?
-           return "/images/placeholder/artist.png"
+          return "/images/placeholder/#{type.to_s}.png"
         end
+
         return img["#text"]
       end
     end

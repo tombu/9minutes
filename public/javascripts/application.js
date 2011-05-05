@@ -8,6 +8,7 @@ $(window).load(function() {
   initSearchDropdown(); // dropdown for the search input
   initNavigation(); // set positions and :active for navigation elements
   handleNavigation(); // handle animations and content switch
+	fitArtistImages(); // resize and resposition images (artists, album)
 });
 
 
@@ -18,7 +19,39 @@ $(window).load(function() {
 
 
 
+function fitArtistImages() {
+	$("ul.artists img").each(function() {
+		$(this).wrap("<div />");
+		divWidth = 147, divHeight = 94;
+		
+		// use this instead of $(this).width(); because .width() of hidden images is zero!
+		width = this.width;
+		height = this.height;
 
+		if( width < divWidth ) {
+			scaleRatio = width / divWidth;
+			width = divWidth;
+			height /= scaleRatio;
+		}
+		
+		if ( height < divHeight ) {
+			scaleRatio = height / divHeight;
+			height = divHeight;
+			width /= scaleRatio;
+		}
+				
+		posX = - (width - divWidth) / 2;
+		posY = - (height - divHeight) / 8;
+				
+		$(this).css({
+			"position" : "absolute",
+			"width" : width,
+			"height" : height,
+			"top" : posY,
+			"left" : posX
+		});
+	});
+}
 
 
 // search dropdown
