@@ -2,12 +2,16 @@
 
 $(document).ready(function(){
   fixLists(); // fix margins for displaying the lists correctly
+  
+  initNavigation(); // set positions and :active for navigation elements
+  handleNavigation(); // handle animations and content switch
+  orderNavigation(); // order if predefined category
+  
+  onImageError(); // replace broken image links with placeholders
 });
 
 $(window).load(function() {
   initSearchDropdown(); // dropdown for the search input
-  initNavigation(); // set positions and :active for navigation elements
-  handleNavigation(); // handle animations and content switch
 });
 
 
@@ -49,19 +53,46 @@ function fixLists()
 // set positions for navigation elements
 function initNavigation()
 {
-  // add positions
+  // add positions and hash control
   $(".navigation").each(function(){
     $i = 0;
     $(this).children().each(function(){
       $(this).attr("position", $i);
+      $(this).attr("hashcontrol", $(this).text().replace(" ","+").toLowerCase());
       $i++;
     });
   });
   
   // add actives
-  $('.navigation li:first-child').addClass('active');
-  $("div[wheel] > div:first-child").addClass('active');
+  $str = $.deparam.fragment(window.location.href);
+  $active = $(".navigation li[hashcontrol="+$str.category+"]");
+  if($active.text() == "" || $active == null) $id = 0;
+  else $id = $active.parent().children().index($active);
+  $('.navigation li:eq('+$id+')').addClass('active');
+  $('div[wheel] > div:eq('+$id+')').addClass('active').css("opacity", 1.0).show();
 }
+
+
+// order if predefined category
+function orderNavigation(){
+  $str = $.deparam.fragment(window.location.href);
+  $active = $(".navigation li[hashcontrol="+$str.category+"]");
+  if($active==null) return;
+  
+  $id = $active.parent().children().index($active);
+  $size = $(".navigation li").size();
+
+  for($i=0;$i<$id;$i++){
+    $element = $(".navigation li:eq("+$i+")");
+    $(".navigation").append("<li hashcontrol='"+$element.attr('hashcontrol')
+    +"' position='"+$element.attr('position')+"'>"+$element.text()+"</li>");
+  }
+  for($i=0;$i<$id;$i++){
+    $(".navigation li:first-child").remove();
+  }
+}
+
+
 
 // Overlay
 function overlay(id)
@@ -115,6 +146,10 @@ function handleNavigation()
     $settings['nav'].children().removeClass("active");
     $(this).addClass("active");
     
+    // change URL
+    $str = $.param.fragment(window.location.href, 'category='+$(this).text().toLowerCase());
+    window.location.href = $str;
+    
     // move navigation container
     $settings['nav'].animate({
       marginLeft: -$fadeOutWidth-5
@@ -148,5 +183,15 @@ function handleNavigation()
         left: 0, opacity: 1
       }, $speed);
     }).removeClass("active");
+  });
+}
+
+
+function onImageError(){
+  $("img").error(function () {
+    if($(this).width() < 60) $src = "/images/placeholder/album.png";
+    else $src = "/images/placeholder/artist.png"
+    
+    $(this).unbind("error").attr("src", $src);
   });
 }
