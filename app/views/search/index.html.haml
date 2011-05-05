@@ -14,7 +14,7 @@
           - break if i >= 6
           %li
             = link_to "LINK" do
-              = image_tag validate_img_url(artist.image, :large)
+              = image_tag validate_img_url(artist.image, :artist, :large), :alt => artist.name
               %p
                 = trimString(artist.name, 22)
       %br.clean
@@ -37,7 +37,7 @@
           - break if i == 6
           %li
             .img
-              = image_tag validate_img_url(album.image, :medium)
+              = image_tag validate_img_url(album.image, :album, :medium)
             %p
               %span
                 = trimString(album.name, 38)
@@ -50,7 +50,7 @@
         - break if i >= 12
         %li
           = link_to "LINK" do
-            = image_tag validate_img_url(artist.image, :large)
+            = image_tag validate_img_url(artist.image, :artist, :large)
             %p
               = trimString(artist.name, 22)
     %br.clean
@@ -62,7 +62,7 @@
         - break if i == 16
         %li
           .img
-            = image_tag validate_img_url(album.image, :medium)
+            = image_tag validate_img_url(album.image, :album, :medium)
           %p
             %span
               = trimString(album.name, 38)

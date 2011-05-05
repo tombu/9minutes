@@ -214,6 +214,7 @@ a { text-decoration: none; color: #7d8791; }
   float: left;
   margin: 0 13px 20px 0;
 }
+.artists div { position: relative; width: 147px; height: 94px; overflow: hidden; }
 .artists img { float: left; }
 .artists p
 {
