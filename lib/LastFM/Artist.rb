@@ -7,7 +7,7 @@ module LastFM
   
     # return: artist name, tags, similar artists, artist bio (summary / long), mbid, image urls ( different sizes )
     def self.getInfo artist
-      artist_request "getInfo", nil, artist
+      artist_request "getInfo", "artist", artist
     end
   
     # return: artists ( name, mbid, image urls ( different sizes ) )

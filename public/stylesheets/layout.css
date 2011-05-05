@@ -284,6 +284,7 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   height: 281px;
   background: url('../images/bg/fuse.png') -401px 160px no-repeat;
 }
+#artist .side .img img { width: 363px; height: 241px; }
 #artist .description { width: 363px; font-size: 12px; }
 #artist .description span { color: #2e353c; }
 #artist .main

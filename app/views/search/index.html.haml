@@ -1,6 +1,6 @@
 %h2.headline
   =raw "Search for &#132;#{params[:q]}&#147;"
-%ul.navigation{:steering => "search"}
+%ul.navigation.hash{:steering => "search"}
   %li.active ALL
   %li ARTISTS
   %li ALBUMS
@@ -13,10 +13,10 @@
         - @artists.artist.each_with_index do |artist, i|
           - break if i >= 6
           %li
-            = link_to "LINK" do
-              = image_tag validate_img_url(artist.image, :artist, :large), :alt => artist.name
-              %p
-                = trimString(artist.name, 22)
+            - puts artist.name
+            - link_to :controller=>"artists",:action=>"show",:id=>CGI.escape(artist.name) do
+              = image_tag validate_img_url(artist.image, "artist", :large)
+              %p= trimString(artist.name, 22)
       %br.clean
     #search_all_songs
       %h2.headline.small Songs
@@ -37,7 +37,7 @@
           - break if i == 6
           %li
             .img
-              = image_tag validate_img_url(album.image, :album, :medium)
+              = image_tag validate_img_url(album.image, "album", :medium)
             %p
               %span
                 = trimString(album.name, 38)
@@ -50,9 +50,8 @@
         - break if i >= 12
         %li
           = link_to "LINK" do
-            = image_tag validate_img_url(artist.image, :artist, :large)
-            %p
-              = trimString(artist.name, 22)
+            = image_tag validate_img_url(artist.image, "artist", :large)
+            %p= trimString(artist.name, 22)
     %br.clean
     = link_to "NACHLADEN", :class => "more" do
       = image_tag "ico/more.png"
@@ -62,7 +61,7 @@
         - break if i == 16
         %li
           .img
-            = image_tag validate_img_url(album.image, :album, :medium)
+            = image_tag validate_img_url(album.image, "album", :medium)
           %p
             %span
               = trimString(album.name, 38)

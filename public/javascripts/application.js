@@ -97,33 +97,110 @@ function initNavigation()
   });
   
   // add actives
-  $str = $.deparam.fragment(window.location.href);
-  $active = $(".navigation li[hashcontrol="+$str.category+"]");
-  if($active.text() == "" || $active == null) $id = 0;
-  else $id = $active.parent().children().index($active);
-  $('.navigation li:eq('+$id+')').addClass('active');
-  $('div[wheel] > div:eq('+$id+')').addClass('active').css("opacity", 1.0).show();
+  $i = 0;
+  $('.navigation').each(function(){
+    if($(this).hasClass("hash"))
+    {
+      $str = $.deparam.fragment(window.location.href);
+      $active = $(".navigation li[hashcontrol="+$str.category+"]");
+      if($active.text() == "" || $active == null) $id = 0;
+      else $id = $active.parent().children().index($active);
+    }
+    else $id = 0;
+    
+    $(this).children('li:eq('+$id+')').addClass('active');
+    $('div[wheel]:eq('+$i+') > div:eq('+$id+')').addClass('active').css("opacity", 1.0).show();
+    $i++;
+  });
 }
 
 
 // order if predefined category
 function orderNavigation(){
-  $str = $.deparam.fragment(window.location.href);
-  $active = $(".navigation li[hashcontrol="+$str.category+"]");
-  if($active==null) return;
+  $(".navigation.hash").each(function(){
+    $str = $.deparam.fragment(window.location.href);
+    $active = $(this).children("[hashcontrol="+$str.category+"]");
+    if($active.text() == "" || $active == null) return;
+    
+    $id = $active.parent().children().index($active);
+    $size = $(this).children().size();
   
-  $id = $active.parent().children().index($active);
-  $size = $(".navigation li").size();
-
-  for($i=0;$i<$id;$i++){
-    $element = $(".navigation li:eq("+$i+")");
-    $(".navigation").append("<li hashcontrol='"+$element.attr('hashcontrol')
-    +"' position='"+$element.attr('position')+"'>"+$element.text()+"</li>");
-  }
-  for($i=0;$i<$id;$i++){
-    $(".navigation li:first-child").remove();
-  }
+    for($i=0;$i<$id;$i++){
+      $element = $(this).children(":eq("+$i+")");
+      $(this).append("<li hashcontrol='"+$element.attr('hashcontrol')
+      +"' position='"+$element.attr('position')+"'>"+$element.text()+"</li>");
+    }
+    for($i=0;$i<$id;$i++){
+      $(this).children().first().remove();
+    }
+  });
 }
+
+// navigation handling
+function handleNavigation()
+{
+  $("ul[steering] li").live("click", function(){
+    if($(this).is('.active')) return;
+    
+    // VARS
+    $settings           = [];
+    $fadeOutWidth       = 0;
+    $settings['nav']    = $(this).parent();
+    $settings['newpos'] = $settings['nav'].children().index(this);
+    $settings['oldpos'] = $(this).attr("position");
+    $settings['wheel']  = $settings['nav'].attr("steering");
+    
+    // get the width of the navigation elements which will fade out
+    for(var i=0; i<$settings['newpos'];i++){ 
+      $fadeOutWidth += $settings['nav'].children("li:eq("+i+")").width(); 
+    }
+    
+    // change :active
+    $settings['nav'].children().removeClass("active");
+    $(this).addClass("active");
+    
+    // change URL
+    if(!$settings['nav'].hasClass('sub')){
+      $str = $.param.fragment(window.location.href, 'category='+$(this).attr("hashcontrol"));
+      window.location.href = $str;
+    }
+    
+    // move navigation container
+    $settings['nav'].animate({
+      marginLeft: -$fadeOutWidth-5
+    }, 300);
+
+    // move navigation elements
+    for(var i=0; i<$settings['newpos'];i++){
+      $element = $settings['nav'].children("li:eq("+i+")");
+      $element.animate({
+        opacity: 0
+      }, 300, function(){
+        $(this).remove();
+        $settings['nav'].css("marginLeft", 0);
+      });
+      
+      $settings['nav'].append("<li style='opacity:0;margin-left: 20px;' hashcontrol='"+$element.attr('hashcontrol')+"' position='"+$element.attr('position')+"'>"+$element.text()+"</li>");
+      $settings['nav'].children().last().animate({
+        opacity: 1, marginLeft: 0
+      }, 500);
+    }
+
+    $speed = 200;
+    $range = 200;
+    
+    // animation for content
+    $("div[wheel="+$settings['wheel']+"] > .active").css("left", 0).animate({
+      left: -$range, opacity: 0
+    }, $speed, function(){
+      $(this).hide();
+      $("div[wheel="+$settings['wheel']+"] > div:eq("+$settings['oldpos']+")").css("left", $range).show().addClass("active").animate({
+        left: 0, opacity: 1
+      }, $speed);
+    }).removeClass("active");
+  });
+}
+
 
 
 
@@ -156,68 +233,6 @@ function overlay(id)
     });
 }
 
-// navigation handling
-function handleNavigation()
-{
-  $("ul[steering] li").live("click", function(){
-    if($(this).is('.active')) return;
-    
-    // VARS
-    $settings           = [];
-    $fadeOutWidth       = 0;
-    $settings['nav']    = $(this).parent();
-    $settings['newpos'] = $settings['nav'].children().index(this);
-    $settings['oldpos'] = $(this).attr("position");
-    $settings['wheel']  = $settings['nav'].attr("steering");
-    
-    // get the width of the navigation elements which will fade out
-    for(var i=0; i<$settings['newpos'];i++){ 
-      $fadeOutWidth += $settings['nav'].children("li:eq("+i+")").width(); 
-    }
-    
-    // change :active
-    $settings['nav'].children().removeClass("active");
-    $(this).addClass("active");
-    
-    // change URL
-    $str = $.param.fragment(window.location.href, 'category='+$(this).text().toLowerCase());
-    window.location.href = $str;
-    
-    // move navigation container
-    $settings['nav'].animate({
-      marginLeft: -$fadeOutWidth-5
-    }, 300);
-
-    // move navigation elements
-    for(var i=0; i<$settings['newpos'];i++){
-      $element = $settings['nav'].children("li:eq("+i+")");
-      $element.animate({
-        opacity: 0
-      }, 300, function(){
-        $(this).remove();
-        $settings['nav'].css("marginLeft", 0);
-      });
-      
-      $settings['nav'].append("<li style='opacity:0;margin-left: 20px;' position='"+$element.attr('position')+"'>"+$element.text()+"</li>");
-      $settings['nav'].children().last().animate({
-        opacity: 1, marginLeft: 0
-      }, 500);
-    }
-
-    $speed = 200;
-    $range = 200;
-    
-    // animation for content
-    $("div[wheel="+$settings['wheel']+"] > .active").css("left", 0).animate({
-      left: -$range, opacity: 0
-    }, $speed, function(){
-      $(this).hide();
-      $("div[wheel="+$settings['wheel']+"] > div:eq("+$settings['oldpos']+")").css("left", $range).show().addClass("active").animate({
-        left: 0, opacity: 1
-      }, $speed);
-    }).removeClass("active");
-  });
-}
 
 
 function onImageError(){
