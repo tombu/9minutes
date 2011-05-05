@@ -26,24 +26,20 @@
           %li
             = image_tag "ico/play.png", :class=>"play"
             = image_tag "ico/add.png", :class=>"add"
-            %span
-              = track.name
-            =raw "&nbsp;"
-            = "by #{trimString(track.artist, 50)}"
+            %span= track.name
+            =raw "&nbsp;by "
+            = link_to trimString(track.artist, 50), :controller=>"artists",:action=>"show",:id=>CGI.escape(track.artist)
     #search_all_albums
       %h2.headline.small Albums
       %ul.albums
         - @albums.album.each_with_index do |album, i|
           - break if i == 6
           %li
-            .img
-              = image_tag validate_img_url(album.image, "album", :medium)
-            %p
-              %span
-                = trimString(album.name, 38)
-              %br
-                = trimString(album.artist, 22)
-            %sub
+            .img= image_tag validate_img_url(album.image, "album", :medium)
+            %p<
+              %span= trimString(album.name, 38)
+              %br>
+              = link_to trimString(album.artist, 22), :controller=>"artists",:action=>"show",:id=>CGI.escape(album.artist)
   #search_artists
     %ul.artists
       - @artists.artist.each_with_index do |artist, i|

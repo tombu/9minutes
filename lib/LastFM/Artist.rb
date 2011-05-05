@@ -29,6 +29,10 @@ module LastFM
     def self.getTopAlbums artist, limit = nil, page = nil
       artist_request "getTopAlbums", "topalbums", artist, limit, page
     end
+    
+    def self.getImages artist, limit = nil
+      artist_request "getImages", "images", artist, limit
+    end
   
   end
 

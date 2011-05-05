@@ -81,6 +81,7 @@ a { text-decoration: none; color: #7d8791; }
   -moz-border-radius: 14px;
   -webkit-border-radius: 14px;
   padding-left: 15px;
+  cursor: text;
 }
 #search_form .input:focus { outline: 0!important;}
 #search_form .submit
@@ -248,6 +249,8 @@ a { text-decoration: none; color: #7d8791; }
   margin-left: 5px;
 }
 .songs li img { vertical-align: middle; }
+.songs a:hover, .albums a:hover { color: #505861;}
+
 
 #search_all_songs { float: left; }
 #search_all_albums { float: right; width: 468px; }
@@ -299,9 +302,23 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   margin-left: 20px;
 }
 
+#artist .gallery img
+{
+  padding: 7px;
+  border: 1px solid #e9edf0;
+  display: inline;
+  vertical-align: middle;
+  margin-bottom: 10px;
+}
+#artist .gallery a
+{
+  margin-right: 5px;
+  vertical-align: bottom;
+}
+
 .overlay
 {
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.6);
   padding: 7px;
   border-radius: 14px;
   -moz-border-radius: 14px;
@@ -311,7 +328,6 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   box-shadow: 0 0 3px 3px rgba(0,0,0,0.1);
   width: 488px;
 	display: none;
-	margin-left: -244px;
 }
 .overlay > div
 {
@@ -319,8 +335,10 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   border-radius: 8px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
-  min-height: 170px;
-  overflow: hidden;
+}
+.overlay .content 
+{
+  padding: 10px;
 }
 .overlay .close
 {
@@ -329,6 +347,26 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   cursor: pointer;
   z-index: 9999;
 }
+
+#overlayGallery .close { right: 241px;}
+#overlayGallery
+{
+  width: 272px;
+	display: none;
+	margin-left: -136px;
+}
+#overlayGallery .content img { float: left; }
+#overlayGallery .content { 
+  overflow: hidden;
+  width: 252px;
+  background: #0d1213 url('../images/placeholder/gallery.png') no-repeat center;
+}
+
+
+
+
+
+
 .overlay.album .side
 {
   background: #0d1213;
@@ -371,5 +409,3 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
 .overlay.album .mid li span { color: White; font-family: AauxNextMedium, "Segoe UI", Arial, sans-serif;}
 .overlay.album .mid li:first-child { border-top: 0; }
 .overlay.album .mid li:last-child { border-bottom: 0; }
-
-

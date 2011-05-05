@@ -7,7 +7,7 @@ module LastFM
   
     # return: album name, artist, (top)tags, tracks ( name, duration (in sec) ) mbid (album), release date, image urls ( different sizes )
     def self.getInfo album, artist
-      album_request "getInfo", nil, album, artist
+      album_request "getInfo", "album", album, artist
     end
   
     # return: tags ( name, tag´s last.fm-url ) ordered by popularity

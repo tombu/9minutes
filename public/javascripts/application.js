@@ -7,16 +7,36 @@ $(document).ready(function(){
   handleNavigation(); // handle animations and content switch
   orderNavigation(); // order if predefined category
   
+  fitArtistImages(); // resize and resposition images (artists, album)
   onImageError(); // replace broken image links with placeholders
+
+  initPictureOverlay();
 });
 
 $(window).load(function() {
   initSearchDropdown(); // dropdown for the search input
-	fitArtistImages(); // resize and resposition images (artists, album)
 });
 
 
+function initPictureOverlay(){
+  $('#artist .gallery a').live("click", function(){
+    $src = $(this).attr("picture");
+    $('#overlayGallery .content img').hide().attr('src', $src).show();
+  });
+  $('#overlayGallery .close').click(function(){
+    setTimeout(
+      "$('#overlayGallery .content img').attr('src', '/images/placeholder/gallery.png');"
+    , 450);
+  });
+}
 
+
+function ajj(){
+/*
+  $('#myajax').load('/artists', function() {
+    $(this).prepend("<b color='green'>FERTIG</b>");
+  });*/
+}
 
 
 
@@ -67,7 +87,7 @@ function initSearchDropdown()
     $(this).children(".box").fadeOut(300);
   });
   $("div[dropping] .box").live("click", function(){
-    $(this).children(".box").fadeOut(300);
+    $(this).fadeOut(300);
   });
   
   $("div[dropping] .box li").live("click", function(){
@@ -81,6 +101,7 @@ function fixLists()
 {
   $(".artists li:nth-child(6n)").css("marginRight", 0);
   $(".songs.tab li:nth-child(2n)").css("marginRight", 0);
+  $("#artist .gallery a:nth-child(6n)").css("marginRight", 0);
 }
 
 // set positions for navigation elements
@@ -208,24 +229,10 @@ function handleNavigation()
 function overlay(id)
 {
     $.blockUI({ 
-    	css: {
-    		cursor: 'default'
-    	},
-    	overlayCSS:  { 
-    		opacity: 0,
-    		cursor: 'default'
-  		}, 
-  		themedCSS: {
-			width:	'388px',
-			top:	'17%',
-			left:	'50%'
-		},
-        theme:     true, 
-        message:   $(id), 
-        timeout:   0,
-	    fadeIn:    400, 
-	    fadeOut:   300,
-	    focusInput: false
+      message:   $(id), 
+      timeout:   0,
+	    fadeIn:    200, 
+	    fadeOut:   300
     });     
     $(id+" .close").click(function() {
         $.unblockUI(); 

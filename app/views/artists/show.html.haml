@@ -10,6 +10,9 @@
       %br
       %br
       =raw @artist.bio.summary
+      %br
+      =link_to "CLICK", "javascript:ajj();"
+      #myajax
   .main
     %h2.headline.blue= @artist.name
     %ul.navigation.hash{:steering=>"artist"}
@@ -48,4 +51,15 @@
             = link_to "NACHLADEN", :class => "more" do
               = image_tag "ico/more.png"
       %div Related
-      %div Pics
+      .gallery
+        - @images.image.each_with_index do |img, i|
+          - @bigPicture = validate_img_url(img.sizes["size"], "gallery", :extralarge)
+          = link_to "javascript:void(0);", :picture=>@bigPicture, :onClick=>"javascript:overlay('#overlayGallery');" do
+            =image_tag validate_img_url(img.sizes["size"], "gallery", :medium)
+
+
+#overlayGallery.overlay
+  %span.close<
+    = image_tag "ico/close.png"
+  .content
+    = image_tag "placeholder/gallery.png"

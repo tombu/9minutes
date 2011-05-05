@@ -4,11 +4,11 @@
 
 /*!
  * jQuery blockUI plugin
- * Version 2.33 (29-MAR-2010)
+ * Version 2.38 (29-MAR-2011)
  * @requires jQuery v1.2.3 or later
  *
  * Examples at: http://malsup.com/jquery/block/
- * Copyright (c) 2007-2008 M. Alsup
+ * Copyright (c) 2007-2010 M. Alsup
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
@@ -69,7 +69,7 @@ $.fn.unblock = function(opts) {
 	});
 };
 
-$.blockUI.version = 2.33; // 2nd generation blocking at no extra cost!
+$.blockUI.version = 2.38; // 2nd generation blocking at no extra cost!
 
 // override these in your code to change the default behavior and style
 $.blockUI.defaults = {
@@ -79,7 +79,7 @@ $.blockUI.defaults = {
 	title: null,	  // title string; only used when theme == true
 	draggable: true,  // only used when theme == true (requires jquery-ui.js to be loaded)
 	
-	theme: false, // set to true to use with jQuery UI themes
+	theme: true, // set to true to use with jQuery UI themes
 	
 	// styles for the message when blocking; if you wish to disable
 	// these and use an external stylesheet then do this in your code:
@@ -87,35 +87,35 @@ $.blockUI.defaults = {
 	css: {
 		padding:	0,
 		margin:		0,
-		width:		'30%',
-		top:		'40%',
-		left:		'35%',
+		width:	'388px',
+		top:	'17%',
+		left:	'50%',
 		textAlign:	'center',
 		color:		'#000',
 		border:		'3px solid #aaa',
 		backgroundColor:'#fff',
-		cursor:		'wait'
+		cursor:		'default'
 	},
 	
 	// minimal style set used when themes are used
 	themedCSS: {
-		width:	'30%',
-		top:	'40%',
-		left:	'35%'
+		width:	'388px',
+		top:	'17%',
+		left:	'50%',
 	},
 
 	// styles for the overlay
 	overlayCSS:  {
 		backgroundColor: '#000',
 		opacity:	  	 0.6,
-		cursor:		  	 'wait'
+		cursor:		  	 'default'
 	},
 
 	// styles applied when using $.growlUI
 	growlCSS: {
-		width:  	'350px',
-		top:		'10px',
-		left:   	'',
+		width:	'388px',
+		top:	'17%',
+		left:	'50%',
 		right:  	'10px',
 		border: 	'none',
 		padding:	'5px',
@@ -157,7 +157,7 @@ $.blockUI.defaults = {
 	fadeIn:  200,
 
 	// fadeOut time in millis; set to 0 to disable fadeOut on unblock
-	fadeOut:  300,
+	fadeOut:  400,
 
 	// time in millis to wait before auto-unblocking; set to 0 to disable auto-unblock
 	timeout: 0,
@@ -182,7 +182,10 @@ $.blockUI.defaults = {
 	onUnblock: null,
 
 	// don't ask; if you really must know: http://groups.google.com/group/jquery-en/browse_thread/thread/36640a8730503595/2f6a79a77a78e493#2f6a79a77a78e493
-	quirksmodeOffsetHack: 4
+	quirksmodeOffsetHack: 4,
+
+	// class name of the message block
+	blockMsgClass: 'blockMsg'
 };
 
 // private data and functions follow...
@@ -228,26 +231,29 @@ function install(el, opts) {
 	var lyr1 = ($.browser.msie || opts.forceIframe) 
 		? $('<iframe class="blockUI" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;position:absolute;width:100%;height:100%;top:0;left:0" src="'+opts.iframeSrc+'"></iframe>')
 		: $('<div class="blockUI" style="display:none"></div>');
-	var lyr2 = $('<div class="blockUI blockOverlay" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;width:100%;height:100%;top:0;left:0"></div>');
 	
+	var lyr2 = opts.theme 
+	 	? $('<div class="blockUI blockOverlay ui-widget-overlay" style="z-index:'+ (z++) +';display:none"></div>')
+	 	: $('<div class="blockUI blockOverlay" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;width:100%;height:100%;top:0;left:0"></div>');
+
 	var lyr3, s;
 	if (opts.theme && full) {
-		s = '<div class="blockUI blockMsg blockPage ui-dialog ui-widget ui-corner-all" style="z-index:'+z+';display:none;position:fixed">' +
-				'<div class="ui-widget-header ui-dialog-titlebar blockTitle">'+(opts.title || '&nbsp;')+'</div>' +
+		s = '<div class="blockUI ' + opts.blockMsgClass + ' blockPage ui-dialog ui-widget ui-corner-all" style="z-index:'+z+';display:none;position:fixed">' +
+				'<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">'+(opts.title || '&nbsp;')+'</div>' +
 				'<div class="ui-widget-content ui-dialog-content"></div>' +
 			'</div>';
 	}
 	else if (opts.theme) {
-		s = '<div class="blockUI blockMsg blockElement ui-dialog ui-widget ui-corner-all" style="z-index:'+z+';display:none;position:absolute">' +
-				'<div class="ui-widget-header ui-dialog-titlebar blockTitle">'+(opts.title || '&nbsp;')+'</div>' +
+		s = '<div class="blockUI ' + opts.blockMsgClass + ' blockElement ui-dialog ui-widget ui-corner-all" style="z-index:'+z+';display:none;position:absolute">' +
+				'<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">'+(opts.title || '&nbsp;')+'</div>' +
 				'<div class="ui-widget-content ui-dialog-content"></div>' +
 			'</div>';
 	}
 	else if (full) {
-		s = '<div class="blockUI blockMsg blockPage" style="z-index:'+z+';display:none;position:fixed"></div>';
+		s = '<div class="blockUI ' + opts.blockMsgClass + ' blockPage" style="z-index:'+z+';display:none;position:fixed"></div>';
 	}			
 	else {
-		s = '<div class="blockUI blockMsg blockElement" style="z-index:'+z+';display:none;position:absolute"></div>';
+		s = '<div class="blockUI ' + opts.blockMsgClass + ' blockElement" style="z-index:'+z+';display:none;position:absolute"></div>';
 	}
 	lyr3 = $(s);
 
@@ -262,7 +268,7 @@ function install(el, opts) {
 	}
 
 	// style the overlay
-	if (!opts.applyPlatformOpacityRules || !($.browser.mozilla && /Linux/.test(navigator.platform)))
+	if (!opts.theme && (!opts.applyPlatformOpacityRules || !($.browser.mozilla && /Linux/.test(navigator.platform))))
 		lyr2.css(opts.overlayCSS);
 	lyr2.css('position', full ? 'fixed' : 'absolute');
 
@@ -451,16 +457,17 @@ function handler(e) {
 	if (e.keyCode && e.keyCode == 9) {
 		if (pageBlock && e.data.constrainTabKey) {
 			var els = pageBlockEls;
-			var fwd = !e.shiftKey && e.target == els[els.length-1];
-			var back = e.shiftKey && e.target == els[0];
+			var fwd = !e.shiftKey && e.target === els[els.length-1];
+			var back = e.shiftKey && e.target === els[0];
 			if (fwd || back) {
 				setTimeout(function(){focus(back)},10);
 				return false;
 			}
 		}
 	}
+	var opts = e.data;
 	// allow events within the message content
-	if ($(e.target).parents('div.blockMsg').length > 0)
+	if ($(e.target).parents('div.' + opts.blockMsgClass).length > 0)
 		return true;
 
 	// allow events for content that is not being blocked
