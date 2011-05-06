@@ -5,7 +5,8 @@
       %span
         %b Tags:
         - @artist.tags.tag.each_with_index do |tag, i|
-          = (i!=0) ? ", "+tag.name : tag.name
+          - @tag = link_to tag.name, search_index_path(:q=>tag.name)
+          =raw (i!=0) ? ", "+@tag:@tag
 
       %br
       %br
@@ -50,11 +51,22 @@
             %br.clean
             = link_to "NACHLADEN", :class => "more" do
               = image_tag "ico/more.png"
-      %div Related
+      .related
+        %ul.artists
+          - @artist.similar.artist.each_with_index do |artist, i|
+            - break if i >= 4
+            %li
+              - link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
+                = image_tag validate_img_url(artist.image, "artist", :large)
+                %p= trimString(artist.name, 18)
+        %br.clean
+        = link_to "NACHLADEN", :class => "more" do
+          = image_tag "ico/more.png"
       .gallery
         - @images.image.each_with_index do |img, i|
           - @bigPicture = validate_img_url(img.sizes["size"], "gallery", :extralarge)
-          = link_to "javascript:void(0);", :picture=>@bigPicture, :onClick=>"javascript:overlay('#overlayGallery');" do
+          - @orignalPicture = validate_img_url(img.sizes["size"], "gallery", :original)
+          = link_to "javascript:void(0);", :picture=>@bigPicture, :original=>@orignalPicture, :onClick=>"javascript:overlay('#overlayGallery');" do
             =image_tag validate_img_url(img.sizes["size"], "gallery", :medium)
 
 
@@ -62,4 +74,6 @@
   %span.close<
     = image_tag "ico/close.png"
   .content
-    = image_tag "placeholder/gallery.png"
+    = image_tag "placeholder/gallery.png", :class=>"galleryimage"
+    = link_to "#", :class => "original" do
+      = image_tag "ico/gallery-fullscreen.png"

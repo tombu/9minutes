@@ -6,11 +6,11 @@ $(document).ready(function(){
   initNavigation(); // set positions and :active for navigation elements
   handleNavigation(); // handle animations and content switch
   orderNavigation(); // order if predefined category
-  
-  fitArtistImages(); // resize and resposition images (artists, album)
   onImageError(); // replace broken image links with placeholders
-
   initPictureOverlay();
+  
+  fitImages(".artists img"); // resize and resposition images (artists, album)
+  fitImages("#artist .side .img img");
 });
 
 $(window).load(function() {
@@ -21,11 +21,18 @@ $(window).load(function() {
 function initPictureOverlay(){
   $('#artist .gallery a').live("click", function(){
     $src = $(this).attr("picture");
-    $('#overlayGallery .content img').hide().attr('src', $src).show();
+    $original = $(this).attr("original");
+    $('#overlayGallery .original').hide().attr('href', $original);
+    $('#overlayGallery .content .galleryimage').hide().attr('src', $src)
+      .bind("load", function() {    
+        $(this).fadeIn(300, function(){
+          $('#overlayGallery .original').fadeIn(300);
+        });
+    });   
   });
   $('#overlayGallery .close').click(function(){
     setTimeout(
-      "$('#overlayGallery .content img').attr('src', '/images/placeholder/gallery.png');"
+      "$('#overlayGallery .content .galleryimage').attr('src', '/images/placeholder/gallery.png');"
     , 450);
   });
 }
@@ -43,21 +50,29 @@ function ajj(){
 
 
 
-function fitArtistImages() {
-	$("ul.artists img").each(function() {
+function fitImages(selector) {
+  switch(selector)
+  {
+    case ".artists img": divWidth = 126, divHeight = 81; break;
+    case "#artist .side .img img": divWidth = 363, divHeight = 241; break;
+  }
+	$(selector).each(function() {
 		$(this).wrap("<div />");
-		divWidth = 147, divHeight = 94;
 		
 		// use this instead of $(this).width(); because .width() of hidden images is zero!
 		width = this.width;
 		height = this.height;
-
 		if( width < divWidth ) {
 			scaleRatio = width / divWidth;
 			width = divWidth;
 			height /= scaleRatio;
 		}
-		
+    else {
+      scaleRatio = width / divWidth;
+			width = divWidth;
+			height /= scaleRatio;
+    }
+    
 		if ( height < divHeight ) {
 			scaleRatio = height / divHeight;
 			height = divHeight;
@@ -99,7 +114,7 @@ function initSearchDropdown()
 // list fixes
 function fixLists()
 {
-  $(".artists li:nth-child(6n)").css("marginRight", 0);
+  $(".artists li:nth-child(7n)").css("marginRight", 0);
   $(".songs.tab li:nth-child(2n)").css("marginRight", 0);
   $("#artist .gallery a:nth-child(6n)").css("marginRight", 0);
 }

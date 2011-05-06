@@ -209,25 +209,28 @@ a { text-decoration: none; color: #7d8791; }
 
 .artists li
 {
-  width: 147px;
-  height: 143px;
+  width: 126px;
+  height: 123px;
   background: url('../images/bg/fuse.png') 0 0;
   float: left;
-  margin: 0 13px 20px 0;
+  margin: 0 11px 20px 0;
 }
-.artists div { position: relative; width: 147px; height: 94px; overflow: hidden; }
+.artists div { position: relative; width: 126px; height: 81px; overflow: hidden; }
 .artists img { float: left; }
 .artists p
 {
   color: White;
   font-size: 12px;
-  height: 27px; line-height: 27px;
+  height: 23px; line-height: 23px;
   text-indent: 10px;
   font-family: AauxNextBold, "Segoe UI", Arial, sans-serif; 
   display: inline-block;
   width: 100%;
 }
-.artists li:first-child { background-position: -147px 0; }
+.artists li:first-child { background-position: -126px 0; }
+
+.related .artists li { margin-right: 6px; }
+.related .artists li:first-child { background-position: 0 0; }
 
 #search_all
 {
@@ -286,10 +289,18 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   width: 439px;
   height: 281px;
   background: url('../images/bg/fuse.png') -401px 160px no-repeat;
+  overflow: hidden;
 }
-#artist .side .img img { width: 363px; height: 241px; }
+#artist .side .img div
+{
+  width: 363px;
+  height: 241px;
+  position: relative;
+  overflow: hidden;
+}
 #artist .description { width: 363px; font-size: 12px; }
-#artist .description span { color: #2e353c; }
+#artist .description a {text-decoration: underline; }
+#artist .description span, #artist .description span a { color: #2e353c; text-decoration: none;}
 #artist .main
 {
   float: right;
@@ -307,7 +318,7 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   padding: 7px;
   border: 1px solid #e9edf0;
   display: inline;
-  vertical-align: middle;
+  vertical-align: bottom;
   margin-bottom: 10px;
 }
 #artist .gallery a
@@ -356,12 +367,68 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
 	margin-left: -136px;
 }
 #overlayGallery .content img { float: left; }
-#overlayGallery .content { 
+#overlayGallery .content 
+{ 
   overflow: hidden;
   width: 252px;
+  min-height: 150px;
+  background: #0d1213 url('../images/placeholder/gallery.png') no-repeat center;
+}
+#overlayGallery .original 
+{
+  position: absolute;
+  bottom: 25px; margin-left: -48px;
+  display: none;
+}
+/*
+.overlay
+{
+  background: rgba(255,255,255,0.6);
+  padding: 7px;
+  border-radius: 14px;
+  -moz-border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-box-shadow: 0 0 5px 5px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0 0 10px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 3px 3px rgba(0,0,0,0.1);
+  width: 488px;
+	display: none;
+}
+.overlay > div
+{
+  background: #1a1c1f;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+}
+.overlay .content 
+{
+  padding: 10px;
+}
+.overlay .close
+{
+	position: absolute;
+	right: 134px; top: 20px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#overlayGallery .close { right: 76px;}
+#overlayGallery
+{
+  width: 600px;
+	display: none;
+	margin-left: -300px;
+}
+#overlayGallery .content img { float: left; }
+#overlayGallery .content { 
+  overflow: hidden;
+  width: 580px;
+  min-height: 150px;
   background: #0d1213 url('../images/placeholder/gallery.png') no-repeat center;
 }
 
+*/
 
 
 

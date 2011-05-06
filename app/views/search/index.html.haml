@@ -11,12 +11,12 @@
     #search_all_artists
       %ul.artists
         - @artists.artist.each_with_index do |artist, i|
-          - break if i >= 6
+          - break if i >= 7
           %li
             - puts artist.name
-            - link_to :controller=>"artists",:action=>"show",:id=>CGI.escape(artist.name) do
+            - link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
               = image_tag validate_img_url(artist.image, "artist", :large)
-              %p= trimString(artist.name, 22)
+              %p= trimString(artist.name, 18)
       %br.clean
     #search_all_songs
       %h2.headline.small Songs
@@ -43,11 +43,11 @@
   #search_artists
     %ul.artists
       - @artists.artist.each_with_index do |artist, i|
-        - break if i >= 12
+        - break if i >= 14
         %li
-          = link_to "LINK" do
+          - link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
             = image_tag validate_img_url(artist.image, "artist", :large)
-            %p= trimString(artist.name, 22)
+            %p= trimString(artist.name, 18)
     %br.clean
     = link_to "NACHLADEN", :class => "more" do
       = image_tag "ico/more.png"
