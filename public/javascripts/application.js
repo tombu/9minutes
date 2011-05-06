@@ -9,6 +9,8 @@ $(document).ready(function(){
   onImageError(); // replace broken image links with placeholders
   initPictureOverlay();
   
+  initArtistDescription();
+  
   fitImages(".artists img"); // resize and resposition images (artists, album)
   fitImages("#artist .side .img img");
 });
@@ -29,6 +31,12 @@ function initPictureOverlay(){
           $('#overlayGallery .original').fadeIn(300);
         });
     });   
+  }).hover(function(){
+    $(this).append('<img src="/images/ico/gallery-fullscreen.png" class="fscreen" />');
+    $posy = $(this).children("img").height() / 2 - $(this).children('.fscreen').height() / 2 + 8;
+    $(this).children('.fscreen').css('top', $posy).fadeTo(400, 0.8);
+  }, function(){
+    $(this).children('.fscreen').remove();
   });
   $('#overlayGallery .close').click(function(){
     setTimeout(
@@ -46,6 +54,13 @@ function ajj(){
 }
 
 
+
+function initArtistDescription(){
+  $("#artist .description .text a").each(function(){
+    $text = $(this).html();
+    $(this).after($text).remove();
+  });
+}
 
 
 
@@ -138,7 +153,7 @@ function initNavigation()
     if($(this).hasClass("hash"))
     {
       $str = $.deparam.fragment(window.location.href);
-      $active = $(".navigation li[hashcontrol="+$str.category+"]");
+      $active = $(".navigation li[hashcontrol="+$str.tab+"]");
       if($active.text() == "" || $active == null) $id = 0;
       else $id = $active.parent().children().index($active);
     }
@@ -155,7 +170,7 @@ function initNavigation()
 function orderNavigation(){
   $(".navigation.hash").each(function(){
     $str = $.deparam.fragment(window.location.href);
-    $active = $(this).children("[hashcontrol="+$str.category+"]");
+    $active = $(this).children("[hashcontrol="+$str.tab+"]");
     if($active.text() == "" || $active == null) return;
     
     $id = $active.parent().children().index($active);
@@ -197,7 +212,7 @@ function handleNavigation()
     
     // change URL
     if(!$settings['nav'].hasClass('sub')){
-      $str = $.param.fragment(window.location.href, 'category='+$(this).attr("hashcontrol"));
+      $str = $.param.fragment(window.location.href, 'tab='+$(this).attr("hashcontrol"));
       window.location.href = $str;
     }
     
