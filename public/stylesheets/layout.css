@@ -1,5 +1,6 @@
 ﻿@charset "utf-8";
 /** FONTS **/
+
 @font-face{ 
 	font-family: AauxNextLight;
 	src: url('../fonts/aauxnext/aauxnext-lt-webfont.eot');
@@ -28,10 +29,11 @@
 	     url('../fonts/aauxnext/aauxnext-bd-webfont.svg#webfont') format("svg");
 }
 
+
 /** STANDARDS **/
 body
 {
-    background: #f6f9fb url('../images/bg/overall.png') repeat-x top;
+    background: #f6f9fb url('../images/bg/overall2.png') repeat-y top center;
     /* background: white; */
     font-size: 14px;
     color: #7d8791;
@@ -168,12 +170,16 @@ a { text-decoration: none; color: #7d8791; }
 	-moz-border-radius-bottomright: 8px;
 	border-bottom-right-radius: 8px;
 }
+#predefinedTab { display: none; }
 
 .headline
 {
   color: #7d8791;
-  font-family: AauxNextLight, "Segoe UI", Arial, sans-serif;
   font-size: 32px;
+}
+.headline, .headline span
+{
+  font-family: AauxNextLight, "Segoe UI", Arial, sans-serif!important;
 }
 .headline.small
 {
@@ -207,27 +213,61 @@ a { text-decoration: none; color: #7d8791; }
 .navigation.sub li:hover { color: #68727c; }
 .navigation.sub .active { color: #7d8791; font-family: AauxNextLight, "Segoe UI", Arial, sans-serif; }
 
+.artists { overflow: hidden; }
 .artists li
 {
-  width: 126px;
-  height: 123px;
-  background: url('../images/bg/fuse.png') 0 0;
+  width: 252px;
+  height: 166px;
+  /*background: url('../images/bg/fuse.png') -401px 160px no-repeat;*/
+  overflow: hidden;
   float: left;
-  margin: 0 11px 20px 0;
+  position: relative;
+  margin-right: 10px;
 }
-.artists div { position: relative; width: 126px; height: 81px; overflow: hidden; }
-.artists img { float: left; }
+.artists li:last-child { margin-right: 0;}
+.artists div
+{
+  width: 252px;
+  height: 166px;
+  position: relative;
+  overflow: hidden;
+}
+
+.artists.small li, .artists.small li div
+{
+  width: 230px;
+  height: 152px;
+}
+.artists.ultrasmall li, .artists.ultrasmall li div
+{
+  width: 170px;
+  height: 112px;
+}
+.artists img { position: absolute; float: left;}
+
 .artists p
 {
+  background: url('../images/bg/artist-balken.png') repeat-x;
   color: White;
-  font-size: 12px;
-  height: 23px; line-height: 23px;
-  text-indent: 10px;
+  font-size: 16px;
+  height: 38px;
+  padding: 8px 10px 0 10px;
+  line-height: 14px;
   font-family: AauxNextBold, "Segoe UI", Arial, sans-serif; 
   display: inline-block;
-  width: 100%;
+  width: 232px;
+  position: absolute;
+  bottom: 0;
 }
-.artists li:first-child { background-position: -126px 0; }
+.artists.small li, .artists.ultrasmall li { margin-bottom: 15px; }
+.artists.small p { width: 210px; }
+.artists.ultrasmall p { width: 150px;}
+.artists p span
+{
+  font-size: 11px;
+  font-weight: normal;
+  color: #c5ced4;
+}
 
 .related .artists li { margin-right: 6px; }
 .related .artists li:first-child { background-position: 0 0; }
@@ -244,19 +284,22 @@ a { text-decoration: none; color: #7d8791; }
   font-size: 12px;
   width: 465px;
 }
+.songs.short li { width: 395px; }
+.songs.long li { width: 530px; }
 .songs.tab { overflow: hidden; }
 .songs.tab li { float: left; margin-right: 20px; }
 .songs li span 
 { 
   color: #2d3135; 
-  margin-left: 5px;
+  margin-left: 10px;
 }
+.songs.long li span { color: #027bbf;}
 .songs li img { vertical-align: middle; }
 .songs a:hover, .albums a:hover { color: #505861;}
 
-
-#search_all_songs { float: left; }
-#search_all_albums { float: right; width: 468px; }
+#search_all_artists { float: left; }
+#search_all_songs { float: right; }
+#search_all_albums { float: left; width: 514px; }
 
 .albums li 
 {
@@ -264,6 +307,7 @@ a { text-decoration: none; color: #7d8791; }
   width: 233px;
   margin-bottom: 15px;
 }
+.albums.wide li { width: 257px; }
 .albums .img 
 { 
   background: url('../images/bg/fuse.png') -294px 0 no-repeat; 
@@ -365,17 +409,16 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
 .overlay .close
 {
 	position: absolute;
-	right: 134px; top: 20px;
+	right: 134px; top: 21px;
   cursor: pointer;
   z-index: 9999;
 }
 
-#overlayGallery .close { right: 241px;}
+#overlayGallery .close { right: 106px;}
 #overlayGallery
 {
   width: 272px;
 	display: none;
-	margin-left: -136px;
 }
 #overlayGallery .content img { float: left; }
 #overlayGallery .content 
@@ -391,6 +434,7 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   bottom: 25px; margin-left: -48px;
   display: none;
 }
+.blockUI.blockMsg.blockPage { margin-left: -136px;}
 /*
 .overlay
 {

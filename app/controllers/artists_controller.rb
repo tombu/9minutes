@@ -6,6 +6,7 @@ class ArtistsController < ApplicationController
     @tracks = LastFM::Artist.getTopTracks @artist.name, 10
     @albums = LastFM::Artist.getTopAlbums @artist.name, 8
     @images = LastFM::Artist.getImages @artist.name, 18
+    @related= LastFM::Artist.getSimilar @artist.name, 6
   end
 
   def index

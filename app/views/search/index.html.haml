@@ -1,6 +1,7 @@
+#predefinedTab= params[:tab]
 %h2.headline
-  =raw "Search for &#132;#{params[:q]}&#147;"
-%ul.navigation.hash{:steering => "search"}
+  =raw "Search for <span class='blue'>#{params[:q]}</span>"
+%ul.navigation.hash.main{:steering => "search"}
   %li.active ALL
   %li ARTISTS
   %li ALBUMS
@@ -9,20 +10,24 @@
 %div{:wheel => "search"}
   .active#search_all
     #search_all_artists
+      -#%h2.headline.small Artists
       %ul.artists
         - @artists.artist.each_with_index do |artist, i|
-          - break if i >= 7
+          - break if i == 2
           %li
-            - puts artist.name
             - link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
-              = image_tag validate_img_url(artist.image, "artist", :large)
-              %p= trimString(artist.name, 18)
+              = image_tag validate_img_url(artist.image, "artist", :extralarge)
+              %p
+                = trimString(artist.name, 30)
+                %br><
+                =raw "<span>#{artist.listeners} Listeners</span>"
       %br.clean
+      %br
     #search_all_songs
-      %h2.headline.small Songs
-      %ul.songs
+      -#%h2.headline.small Songs
+      %ul.songs.short
         - @tracks.track.each_with_index do |track, i|
-          - break if i == 8
+          - break if i == 13
           %li
             = image_tag "ico/play.png", :class=>"play"
             = image_tag "ico/add.png", :class=>"add"
@@ -30,8 +35,8 @@
             =raw "&nbsp;by "
             = link_to trimString(track.artist, 50), :controller=>"artists",:action=>"show",:id=>CGI.escape(track.artist)
     #search_all_albums
-      %h2.headline.small Albums
-      %ul.albums
+      -#%h2.headline.small Albums
+      %ul.albums.wide
         - @albums.album.each_with_index do |album, i|
           - break if i == 6
           %li
@@ -41,13 +46,16 @@
               %br>
               = link_to trimString(album.artist, 22), :controller=>"artists",:action=>"show",:id=>CGI.escape(album.artist)
   #search_artists
-    %ul.artists
+    %ul.artists.small
       - @artists.artist.each_with_index do |artist, i|
-        - break if i >= 14
+        - break if i >= 8
         %li
           - link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
-            = image_tag validate_img_url(artist.image, "artist", :large)
-            %p= trimString(artist.name, 18)
+            = image_tag validate_img_url(artist.image, "artist", :extralarge)
+            %p
+              = trimString(artist.name, 26)
+              %br><
+              =raw "<span>#{artist.listeners} Listeners</span>"
     %br.clean
     = link_to "NACHLADEN", :class => "more" do
       = image_tag "ico/more.png"

@@ -6,10 +6,11 @@ class SearchController < ApplicationController
     end
     
     if !params[:q].nil?
-      @artists = LastFM::Artist.search(params[:q].to_s.lstrip, 14)
+      @artists = LastFM::Artist.search(params[:q].to_s.lstrip, 8)
       @tracks = LastFM::Track.search(params[:q].to_s.lstrip, 24)
       @albums = LastFM::Album.search(params[:q].to_s.lstrip, 16)
     end
+    puts params
 
   end
 

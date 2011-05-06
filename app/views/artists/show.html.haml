@@ -24,19 +24,18 @@
           %li Top Albums
         %div{:wheel=>"music"}
           %div
-            %ul.songs
+            %ul.songs.long
               - @tracks.track.each do |track|
                 %li
                   = image_tag "ico/play.png", :class=>"play"
                   = image_tag "ico/add.png", :class=>"add"
                   %span= track.name
-                  =raw "&nbsp;"
                   = "by #{trimString(track.artist.name, 50)}"
             %br.clean
               = link_to "NACHLADEN", :class => "more" do
                 = image_tag "ico/more.png"
           %div
-            %ul.albums
+            %ul.albums.wide
               - @albums.album.each do |album|
                 %li
                   .img= image_tag validate_img_url(album.image, "album", :medium)
@@ -49,13 +48,15 @@
             = link_to "NACHLADEN", :class => "more" do
               = image_tag "ico/more.png"
       .related
-        %ul.artists
-          - @artist.similar.artist.each_with_index do |artist, i|
-            - break if i >= 4
+        %ul.artists.ultrasmall
+          - @related.artist.each do |artist|
             %li
               - link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
-                = image_tag validate_img_url(artist.image, "artist", :large)
-                %p= trimString(artist.name, 18)
+                = image_tag validate_img_url(artist.image, "artist", :extralarge)
+                %p
+                  = trimString(artist.name, 19)
+                  %br><
+                  =raw "<span>#{'%.2f' % artist.match}% match</span>"
         %br.clean
         = link_to "NACHLADEN", :class => "more" do
           = image_tag "ico/more.png"

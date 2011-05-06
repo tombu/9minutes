@@ -10,13 +10,15 @@ $(document).ready(function(){
   initPictureOverlay();
   
   initArtistDescription();
-  
-  fitImages(".artists img"); // resize and resposition images (artists, album)
-  fitImages("#artist .side .img img");
 });
 
 $(window).load(function() {
   initSearchDropdown(); // dropdown for the search input
+    
+  fitImages(".artists img"); // resize and resposition images (artists, album)
+  fitImages(".artists.small img"); 
+  fitImages(".artists.ultrasmall img"); 
+  fitImages("#artist .side .img img");
 });
 
 
@@ -68,15 +70,17 @@ function initArtistDescription(){
 function fitImages(selector) {
   switch(selector)
   {
-    case ".artists img": divWidth = 126, divHeight = 81; break;
+    case ".artists img": divWidth = 252, divHeight = 166; break;
+    case ".artists.small img": divWidth = 230, divHeight = 152; break;
+    case ".artists.ultrasmall img": divWidth = 170, divHeight = 112; break;
     case "#artist .side .img img": divWidth = 363, divHeight = 241; break;
   }
 	$(selector).each(function() {
 		$(this).wrap("<div />");
-		
 		// use this instead of $(this).width(); because .width() of hidden images is zero!
 		width = this.width;
 		height = this.height;
+    
 		if( width < divWidth ) {
 			scaleRatio = width / divWidth;
 			width = divWidth;
@@ -122,14 +126,15 @@ function initSearchDropdown()
   
   $("div[dropping] .box li").live("click", function(){
     $("div[dropping] > span").html($(this).html());
-    $("div[dropping] #category").attr("value", $(this).html().toLowerCase());
+    $("div[dropping] #tab").attr("value", $(this).html().toLowerCase());
   });
 }
 
 // list fixes
 function fixLists()
 {
-  $(".artists li:nth-child(7n)").css("marginRight", 0);
+  $(".artists.small li:nth-child(4n)").css("marginRight", 0);
+  $(".artists.ultrasmall li:nth-child(3n)").css("marginRight", 0);
   $(".songs.tab li:nth-child(2n)").css("marginRight", 0);
   $("#artist .gallery a:nth-child(6n)").css("marginRight", 0);
 }
@@ -137,6 +142,13 @@ function fixLists()
 // set positions for navigation elements
 function initNavigation()
 {
+  // set hash if submitted by search form
+  $searchTab = $("#predefinedTab").text();
+  if($searchTab != "")
+  {
+    $("#search_form #tab").attr("value", $searchTab);
+    $("#search_form .selection > span").text($searchTab);
+  }
   // add positions and hash control
   $(".navigation").each(function(){
     $i = 0;
@@ -152,8 +164,18 @@ function initNavigation()
   $('.navigation').each(function(){
     if($(this).hasClass("hash"))
     {
-      $str = $.deparam.fragment(window.location.href);
-      $active = $(".navigation li[hashcontrol="+$str.tab+"]");
+      $searchTab = $("#predefinedTab").text();
+      if($(this).hasClass("main") && $searchTab != "")
+      {
+        $str = $searchTab;
+        $("#search_form .selection > span").text($searchTab);
+      }
+      else 
+      {
+        $str = $.deparam.fragment(window.location.href);
+        $str = $str.tab;
+      }
+      $active = $(".navigation li[hashcontrol="+$str+"]");
       if($active.text() == "" || $active == null) $id = 0;
       else $id = $active.parent().children().index($active);
     }
@@ -200,8 +222,16 @@ function handleNavigation()
     $settings['newpos'] = $settings['nav'].children().index(this);
     $settings['oldpos'] = $(this).attr("position");
     $settings['wheel']  = $settings['nav'].attr("steering");
+    $settings['hash']   = $(this).attr("hashcontrol");
     $settings['speed']  = 300;
     $settings['range']  = 50;
+    
+    // for search bar
+    if($(this).parent().hasClass("main"))
+    {
+      $("#search_form .selection > span").text($settings['hash']);
+      $("#search_form #tab").attr("value", $settings['hash']);
+    }
     
     // get the width of the navigation elements which will fade out
     for(var i=0; i<$settings['newpos'];i++){ 
