@@ -283,7 +283,7 @@ a { text-decoration: none; color: #7d8791; }
 }
 div[wheel] > div { display: none; opacity: 0.0; position: relative; }
 
-#artist .side { float: left; width: 400px;}
+#artist .side { float: left; width: 400px; z-index: 99;}
 #artist .side .img
 {
   width: 439px;
@@ -298,6 +298,7 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   position: relative;
   overflow: hidden;
 }
+#artist .side .img img { z-index: 100; position: absolute;}
 #artist .description{ width: 363px; font-size: 12px; }
 #artist .description a {text-decoration: underline; }
 #artist .description .tags, #artist .description .tags a { color: #2e353c; text-decoration: none;}
@@ -307,6 +308,7 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   width: 550px;
   position: relative;
   top: -8px;
+  z-index: 88;
 }
 #artist .main_content
 {

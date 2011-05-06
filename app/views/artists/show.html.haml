@@ -60,7 +60,7 @@
         = link_to "NACHLADEN", :class => "more" do
           = image_tag "ico/more.png"
       .gallery
-        - @images.image.each_with_index do |img, i|
+        - @images.image.each do |img|
           - @bigPicture = validate_img_url(img.sizes["size"], "gallery", :extralarge)
           - @orignalPicture = validate_img_url(img.sizes["size"], "gallery", :original)
           = link_to "javascript:void(0);", :picture=>@bigPicture, :original=>@orignalPicture, :onClick=>"javascript:overlay('#overlayGallery');" do
