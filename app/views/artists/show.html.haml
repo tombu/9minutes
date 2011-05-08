@@ -1,6 +1,7 @@
 #artist
   .side
     .img= image_tag validate_img_url(@artist.image, "artist", :mega)
+    %br
     %p.description
       %span.tags
         %b Tags:
@@ -51,7 +52,7 @@
         %ul.artists.ultrasmall
           - @related.artist.each do |artist|
             %li
-              - link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
+              = link_to :controller=>:artists,:action=>:show, :id=>CGI.escape(artist.name) do
                 = image_tag validate_img_url(artist.image, "artist", :extralarge)
                 %p
                   = trimString(artist.name, 19)

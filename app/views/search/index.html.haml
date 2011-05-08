@@ -11,11 +11,11 @@
   .active#search_all
     #search_all_artists
       -#%h2.headline.small Artists
-      %ul.artists
+      %ul.artists.big
         - @artists.artist.each_with_index do |artist, i|
           - break if i == 2
           %li
-            - link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
+            = link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
               = image_tag validate_img_url(artist.image, "artist", :extralarge)
               %p
                 = trimString(artist.name, 30)
@@ -50,7 +50,7 @@
       - @artists.artist.each_with_index do |artist, i|
         - break if i >= 8
         %li
-          - link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
+          = link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
             = image_tag validate_img_url(artist.image, "artist", :extralarge)
             %p
               = trimString(artist.name, 26)

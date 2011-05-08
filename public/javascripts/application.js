@@ -15,7 +15,7 @@ $(document).ready(function(){
 $(window).load(function() {
   initSearchDropdown(); // dropdown for the search input
     
-  fitImages(".artists img"); // resize and resposition images (artists, album)
+  fitImages(".artists.big img"); // resize and resposition images (artists, album)
   fitImages(".artists.small img"); 
   fitImages(".artists.ultrasmall img"); 
   fitImages("#artist .side .img img");
@@ -70,9 +70,9 @@ function initArtistDescription(){
 function fitImages(selector) {
   switch(selector)
   {
-    case ".artists img": divWidth = 252, divHeight = 166; break;
-    case ".artists.small img": divWidth = 230, divHeight = 152; break;
-    case ".artists.ultrasmall img": divWidth = 170, divHeight = 112; break;
+    case ".artists.big img": divWidth = 252, divHeight = 166; $x=true; break;
+    case ".artists.small img": divWidth = 230, divHeight = 152; $x=true; break;
+    case ".artists.ultrasmall img": divWidth = 170, divHeight = 112; $x=true; break;
     case "#artist .side .img img": divWidth = 363, divHeight = 241; break;
   }
 	$(selector).each(function() {
@@ -108,6 +108,16 @@ function fitImages(selector) {
 			"top" : posY,
 			"left" : posX
 		});
+    
+
+      $(this).parent().parent().append('<div class="borderwrap"></div>');
+      $(this).parent().parent().find(".borderwrap").css({
+        "position" : "absolute",
+        "width" : divWidth,
+        "height" : divHeight,
+        "top" : 0,
+        "left" : 0
+      });
 	});
 }
 
