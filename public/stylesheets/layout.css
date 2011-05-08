@@ -66,13 +66,13 @@ a { text-decoration: none; color: #7d8791; }
   margin: 0 auto;
 }
 #head { height: 140px; }
-#head h1 { padding-top: 60px; float: left; }
+#head h1 { padding-top: 55px; float: left; }
 #search_form { position: relative; }
 #search_form .wrap
 {
   width: 400px; /* 300 + 28*/
   height: 38px;
-  margin-top: 60px;
+  margin-top: 50px;
   border: 1px solid #dfe4e8;
   border-radius: 7px;
   -moz-border-radius: 7px;
@@ -108,7 +108,7 @@ a { text-decoration: none; color: #7d8791; }
 #search_form .selection
 {
   position: absolute;
-  right: 50px; top: 65px;
+  right: 50px; top: 55px;
   font-family: AauxNextBold, "Segoe UI", Arial, sans-serif;
   font-size: 14px;
   color: #868f98;
@@ -119,6 +119,7 @@ a { text-decoration: none; color: #7d8791; }
   width: 65px;
   height: 29px; line-height: 29px;
   display: block;
+  opacity: 0.85;
 }
 #search_form .selection > span { text-transform: uppercase;}
 #search_form .box
@@ -182,8 +183,10 @@ a { text-decoration: none; color: #7d8791; }
 
 .headline
 {
-  color: #7d8791;
+  color: #363d3f;
   font-size: 32px;
+  overflow: hidden;
+  vertical-align: middle;
 }
 .headline, .headline span
 {
@@ -540,3 +543,51 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
 .overlay.album .mid li span { color: White; font-family: AauxNextMedium, "Segoe UI", Arial, sans-serif;}
 .overlay.album .mid li:first-child { border-top: 0; }
 .overlay.album .mid li:last-child { border-bottom: 0; }
+
+
+
+
+
+
+
+
+.navigate
+{
+  width: 44px;
+  height: 20px;
+  float: left;
+  margin-top: 5px;
+  padding-left: 10px;
+}
+.navigate .left, .navigate .right
+{
+  width: 20px;
+  height: 20px;
+  background: url('../images/ico/navigate.png') 0 0;
+  cursor: pointer;
+}
+.navigate .right { background-position: -24px 0;}
+.blocked
+{
+  opacity: 0.5;
+  cursor: default!important;
+}
+
+#home .bottom hr
+{
+  margin-top: 40px;
+  background: White;
+  height: 1px;
+  border: 0;
+}
+#home .bottom { font-size: 12px; }
+#home .bottom a
+{
+  margin-left: 10px;
+  color: #cbd3d9;
+}
+#home .bottom a:first-child { margin-left: 20px;}
+#home .bottom a:hover
+{
+  color: #40474c;
+}

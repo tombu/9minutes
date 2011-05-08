@@ -45,6 +45,10 @@ module LastFM
     def self.track_request method, node, q, artist = nil, limit = nil, page = nil
       prepare_result method, node, get('/', :query => { :method => "track.#{method.to_s}", :track => q, :artist => artist, :limit => limit, :page => page })
     end
+    
+    def self.chart_request method, node, limit = nil, page = nil
+      prepare_result method, node, get('/', :query => { :method => "chart.#{method.to_s}", :limit => limit, :page => page })
+    end
 
     private
 

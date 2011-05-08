@@ -10,6 +10,9 @@ $(document).ready(function(){
   initPictureOverlay();
   
   initArtistDescription();
+  
+  initTopMusic();
+  navigateTopMusic();
 });
 
 $(window).load(function() {
@@ -47,6 +50,38 @@ function initPictureOverlay(){
   });
 }
 
+
+function initTopMusic(){
+  $('#home .songs li').each(function(){
+    if($(this).parent().children().index(this)>=5) $(this).hide();
+  });
+  $('#home .artists li').each(function(){
+    if($(this).parent().children().index(this)>=2) $(this).hide();
+  });
+}
+
+function navigateTopMusic(){
+  $('#home .navigate a').live('click', function(){
+    $selector = $(this).closest("h2").next("ul");
+    $id = $selector.children("li:visible").first();
+    $start = $id.parent().children().index($id);
+    $count = parseInt($selector.attr("count"));
+    $size = $selector.children().size();
+    
+    if($(this).hasClass("left")) {
+      $start -= $count;
+      if($start < 0) return;
+    }
+    else {
+      $start += $count;
+      if($start >= $size) return;
+    }
+    
+    $selector.children().hide();
+    for($i=$start;$i<$start+$count;$i++)
+      $selector.children("li:eq("+$i+")").show();
+  });
+}
 
 function ajj(){
 /*
