@@ -64,6 +64,7 @@ a { text-decoration: none; color: #7d8791; }
   position: relative;
   width: 950px;
   margin: 0 auto;
+  padding-bottom: 70px;
 }
 #head { height: 140px; }
 #head h1 { padding-top: 55px; float: left; }
@@ -590,4 +591,131 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
 #home .bottom a:hover
 {
   color: #40474c;
+}
+
+
+
+
+/*********** PLAYER ***********/
+#player
+{
+  width: 860px;
+  height: 56px;
+  background: transparent url('../images/bg/player.png');
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  margin-left: -475px;
+  padding: 81px 45px 0 45px;
+}
+#player #song
+{
+  width: 230px;
+  padding: 0 15px;
+  color: #fff;
+  font-size: 12px;
+  margin-top: 12px;
+  height: 44px;
+  float: left;
+}
+#player #song:first-line { font-size: 14px;}
+#player #song span { color: #424e54; }
+#player #controls, #player #controls a { float: left; }
+#player #controls { margin-top: 7px; }
+#player .backward, #player .forward, #player .play
+{
+  text-indent: -9999px;
+  width: 32px; height: 32px;
+  display: inline-block;
+  background: url('../images/ico/player-controls.png') 0 0;
+  margin-top: 5px;
+}
+#player .forward { background-position: -32px 0;}
+#player .backward:active { background-position: 0 -32px;}
+#player .forward:active { background-position: -32px -32px;}
+#player .play
+{
+  width: 41px; height: 41px;
+  background-position: -64px 0;
+  margin-top: 0;
+}
+#player .play.pause { background-position: -64px -41px; }
+
+
+
+
+
+
+
+
+
+
+/* slider root element */
+#scrubbar .slider, #volume .slider
+{ 
+	background: url('../images/bg/progress-bar.png');
+	position: relative; 
+	cursor: pointer;
+	width: 216px; height: 15px; 
+	float: left; 
+	clear: right;
+	margin: 21px 0 20px 40px;
+}
+
+/* progress bar (enabled with progress: true) */
+#scrubbar .progress, #volume .progress {
+	height: 15px; width: 216px; 
+	background: url('../images/bg/progress-bar-overlay.png'); 
+	position: absolute;
+}
+
+/* drag handle */
+#scrubbar .handle, #volume .handle { 
+	background: url('../images/ico/drag-handle.png');
+	width: 16px; height: 18px;
+	position:absolute; 
+	display:block; 
+	cursor: pointer;
+}
+
+/* the input field */
+#scrubbar .range, #volume .range { display: none; }
+
+#scrubbar .time
+{
+  float: left;
+  color: White;
+  font-size: 11px;
+  position: relative;
+  margin: 21px 0 0 7px;
+}
+
+#volume
+{
+  position: absolute;
+  right: 163px;
+  top: 70px;
+  display: none;
+}
+#volume .handle { margin-left: -1px;}
+#volume .slider
+{
+  height: 70px; width: 15px;
+  background: url('../images/bg/volume-bar.png');
+  margin: 0;
+  margin-top: -50px;
+}
+#volume .progress
+{
+  height: 70px; width: 15px;
+  background: url('../images/bg/volume-bar-overlay.png');
+  bottom: 1px;
+}
+
+#icons { float: right;}
+#icons a
+{
+  float: left;
+  margin-left: 20px;
+  height: 56px; line-height: 58px;
 }

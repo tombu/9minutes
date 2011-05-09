@@ -1,10 +1,10 @@
 #home
-  = image_tag "cnt/9minutes-is-a-mashup-of-lastfm-and-youtube.png", :class=>"right"
-  = link_to image_tag("cnt/sign-up.png", :class=>"left"), '#'
+  = image_tag "cnt/9minutes-is-a-mashup-of-lastfm-and-youtube.png", :class=>"left"
+  = link_to image_tag("cnt/sign-up.png", :class=>"right"), '#'
   %br.clean
   %br
   %br
-  .right
+  .left
     %h2.headline.small
       %span.left Top Tracks
       .navigate
@@ -20,7 +20,7 @@
             = track.name
           =raw "&nbsp;by "
           = link_to trimString(track.artist.name, 50), :controller=>"artists",:action=>"show",:id=>CGI.escape(track.artist.name)
-  .left
+  .right
     %h2.headline.small
       %span.left Top Artists
       .navigate

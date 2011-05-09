@@ -26,3 +26,24 @@
               = hidden_field_tag 'tab', 'all'
             = submit_tag '', :class=>"submit"
       = yield
+    #player
+      %p#song
+        = "White Noise (PureVolume House)"
+        %br
+        %b=raw "<span>Artist: </span>Clock Opera"
+      #controls
+        = link_to "", "javascript:void(0);", :class=>"backward"
+        = link_to "", "javascript:void(0);", :class=>"play"
+        = link_to "", "javascript:void(0);", :class=>"forward"
+      #scrubbar
+        =raw '<input type="range" id="progress" name="range1" min="0" max="214" step="1" value="100" />'
+        %span.time
+          %span.now 0:00 /
+          %span.max 3:00
+      #volume
+        =raw '<input type="range" id="progress" name="range2" min="0" max="100" step="1" value="50" />'
+      #icons
+        = link_to image_tag("ico/player-volume.png"), "javascript:void(0);", :class=>"volume"
+        = link_to image_tag("ico/player-repeat.png"), "javascript:void(0);", :class=>"repeat"
+        = link_to image_tag("ico/player-playlist.png"), "javascript:void(0);", :class=>"playlist"
+      

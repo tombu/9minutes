@@ -13,6 +13,8 @@ $(document).ready(function(){
   
   initTopMusic();
   navigateTopMusic();
+  
+  initPlayer();
 });
 
 $(window).load(function() {
@@ -20,7 +22,7 @@ $(window).load(function() {
     
   fitImages(".artists.big img"); // resize and resposition images (artists, album)
   fitImages(".artists.small img"); 
-  fitImages(".artists.ultrasmall img"); 
+  fitImages(".artists.ultrasmall img");
   fitImages("#artist .side .img img");
 });
 
@@ -47,6 +49,28 @@ function initPictureOverlay(){
     setTimeout(
       "$('#overlayGallery .content .galleryimage').attr('src', '/images/placeholder/gallery.png');"
     , 450);
+  });
+}
+
+
+function initPlayer(){
+  $('#player #progress').rangeinput({
+    progress: true,
+    value: 10,
+    speed: 200
+  });
+  $('#player #volume').rangeinput({
+    progress: true,
+    value: 50,
+    speed: 200
+  });
+  
+  $('#player .play').live('click', function(){
+    $(this).toggleClass('pause');
+  });
+  
+  $('#icons .volume').live('click', function(){
+    $('#player #volume').fadeToggle(300);
   });
 }
 
@@ -160,15 +184,18 @@ function fitImages(selector) {
 // search dropdown
 function initSearchDropdown()
 {
+  // hover and out
   $("div[dropping]").hoverIntent(function(){
     $(this).children(".box").fadeIn(500);
   }, function(){
     $(this).children(".box").fadeOut(300);
   });
+  
+  // fade out if selected
   $("div[dropping] .box").live("click", function(){
     $(this).fadeOut(300);
   });
-  
+
   $("div[dropping] .box li").live("click", function(){
     $("div[dropping] > span").html($(this).html());
     $("div[dropping] #tab").attr("value", $(this).html().toLowerCase());
@@ -182,6 +209,7 @@ function fixLists()
   $(".artists.ultrasmall li:nth-child(3n)").css("marginRight", 0);
   $(".songs.tab li:nth-child(2n)").css("marginRight", 0);
   $("#artist .gallery a:nth-child(6n)").css("marginRight", 0);
+  $("#home .artists li:nth-child(2n)").css("marginRight", 0);
 }
 
 // set positions for navigation elements
