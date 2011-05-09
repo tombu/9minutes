@@ -64,8 +64,10 @@ a { text-decoration: none; color: #7d8791; }
   position: absolute;
   top: 10px;
   right: 10px;
-  min-width: 270px;
-  min-height: 400px;
+  min-width: 275px;
+  max-width: 275px;
+  min-height: 50px;
+  max-height: 400px;
   background-color: white;
   border: 1px solid #dfe4e8;
   border-radius: 7px;
@@ -79,11 +81,14 @@ a { text-decoration: none; color: #7d8791; }
 #playlist li
 {
   position: relative;
-  height: 24px; line-height: 24px;
+  height: 26px; line-height: 26px;
   border-bottom: 1px dotted #dce2e6;
   font-size: 11px;
   padding: 0 3px;
+  overflow: hidden;
 }
+
+#playlist li:last-child { border-bottom: 0; }
 
 #playlist .delete-handle
 { 
@@ -97,8 +102,10 @@ a { text-decoration: none; color: #7d8791; }
 #playlist .drag-handle
 { 
   position: absolute;
-  right: 2px;
-  top: 7px;
+  right: 0;
+  top: 0;
+  padding: 8px 0;
+  vertical-align: middle;
   padding-left: 3px;
   cursor: move!important;
   background-color: white;

@@ -31,18 +31,41 @@ $(window).load(function() {
 
 function initPlaylist() {
 
-// TODO: reload Playlist form localStorage
+  // TODO: reload Playlist form localStorage
+  storage = $.store.get("9minutesPlaylist");
+  if(storage !== undefined) {
+    size = storage.length;
+    for(i = 0; i < size; i++) {
+      $('#playlist').append('<li><span>'+ storage[i].title + '</span> by <a href="#">' + storage[i].artist + '</a></li>');
+      $listElement = $('#playlist li:eq('+i+')');
+      $listElement.prepend('<img class="delete-handle" src="/images/ico/delete.png" />');
+      $listElement.append('<img class="drag-handle" src="/images/ico/drag.png" />');
+    }
+  }
 
   $('ul#playlist').dragsort({
       dragSelector: '.drag-handle',
       dragEnd: savePlaylist,
-      placeHolderTemplate: '<li class="placeholder">'
+      placeHolderTemplate: '<li class="placeholder">',
+      scrollContainer: '#playlist-container'
   });
   
   $('#playlist .delete-handle').live("click", onRemoveSongFromPlaylist);
 }
 
 function savePlaylist() {
+  var songs = [];
+  $('ul#playlist li').each(function(i) {
+    songs[i] = {
+      title     : $(this).children('span').text(),
+      artist    : $(this).children('a').text(),
+      videoid   : "GAItz89a3na1"
+    }
+  });
+  
+  console.log(songs);
+
+  $.store.set("9minutesPlaylist", songs);
   console.log("playlist saved ;)");
 }
 
@@ -58,8 +81,9 @@ function onAddSongToPlaylist(event) {
   $listElement.append('<img class="drag-handle" src="/images/ico/drag.png" />');
   $listElement.appendTo('#playlist');
   $listElement.hide(0, function() {
-    $(this).slideDown();
-  })
+    $(this).slideDown(500);
+  });
+  savePlaylist();
   
   // TODO: prevent double entries
   // TODO: get video-id from youtube
@@ -70,6 +94,7 @@ function onRemoveSongFromPlaylist(event) {
   $listElement.fadeTo(300, 0.1, function() {
     $(this).hide("blind", function() { 
       $(this).remove();
+      savePlaylist();
     });
   });
 }
