@@ -11,6 +11,9 @@ $(document).ready(function(){
   
   initArtistDescription();
   
+  initPlaylist();
+  makeSongsAddable(); // bind click-event to "add" button (for each song)
+  
   initTopMusic();
   navigateTopMusic();
   
@@ -26,6 +29,50 @@ $(window).load(function() {
   fitImages("#artist .side .img img");
 });
 
+function initPlaylist() {
+
+// TODO: reload Playlist form localStorage
+
+  $('ul#playlist').dragsort({
+      dragSelector: '.drag-handle',
+      dragEnd: savePlaylist,
+      placeHolderTemplate: '<li class="placeholder">'
+  });
+  
+  $('#playlist .delete-handle').live("click", onRemoveSongFromPlaylist);
+}
+
+function savePlaylist() {
+  console.log("playlist saved ;)");
+}
+
+function makeSongsAddable() {
+  $('.songs li .add').live("click", onAddSongToPlaylist);
+}
+
+function onAddSongToPlaylist(event) {
+  $listElement = $(event.target).parents('li').clone();
+  $listElement.children('img').remove();
+  $listElement.attr('data-itemidx', 0); // important for dragsort plugin
+  $listElement.prepend('<img class="delete-handle" src="/images/ico/delete.png" />');
+  $listElement.append('<img class="drag-handle" src="/images/ico/drag.png" />');
+  $listElement.appendTo('#playlist');
+  $listElement.hide(0, function() {
+    $(this).slideDown();
+  })
+  
+  // TODO: prevent double entries
+  // TODO: get video-id from youtube
+}
+
+function onRemoveSongFromPlaylist(event) {
+  $listElement = $(event.target).parent();
+  $listElement.fadeTo(300, 0.1, function() {
+    $(this).hide("blind", function() { 
+      $(this).remove();
+    });
+  });
+}
 
 function initPictureOverlay(){
   $('#artist .gallery a').live("click", function(){
