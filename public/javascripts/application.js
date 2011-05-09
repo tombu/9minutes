@@ -99,20 +99,29 @@ function initPictureOverlay(){
   });
 }
 
+function sliderValueUpdate(b, u){
+  if(b.parent().find("input").hasClass("vol"))
+  {
+    setVideoVolume(u.val());
+    stopDraggingTime();
+  }
+  else seek(u.val());
+}
 
 function initPlayer(){
-  $('#player #progress').rangeinput({
+  $('#scrubbar input').rangeinput({
     progress: true,
-    value: 10,
     speed: 200
   });
-  $('#player #volume').rangeinput({
+  $('#volume input').rangeinput({
     progress: true,
-    value: 50,
     speed: 200
   });
   
   $('#player .play').live('click', function(){
+    if($(this).hasClass('pause')) pauseVideo();
+    else playVideo();
+    
     $(this).toggleClass('pause');
   });
   
@@ -121,6 +130,14 @@ function initPlayer(){
   });
 }
 
+
+function getTimeFromInt(number) {
+  var t = parseInt(number, 10);
+  t %= 3600;
+  var m = Math.floor(t / 60);
+  var s = Math.floor(t % 60);
+  return ((m >= 10) ? '' : '0') + m + ":" + ((s >= 10) ? '' : '0') + s;
+}
 
 function initTopMusic(){
   $('#home .songs li').each(function(){

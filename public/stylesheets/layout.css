@@ -653,18 +653,19 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
 /*********** PLAYER ***********/
 #player
 {
-  width: 860px;
+  width: 880px;
   height: 56px;
   background: transparent url('../images/bg/player.png');
   position: fixed;
   bottom: 0;
   left: 50%;
   margin-left: -475px;
-  padding: 81px 45px 0 45px;
+  padding: 81px 35px 0 35px;
+  z-index: 800;
 }
 #player #song
 {
-  width: 230px;
+  width: 200px;
   padding: 0 15px;
   color: #fff;
   font-size: 12px;
@@ -747,7 +748,7 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
 #volume
 {
   position: absolute;
-  right: 163px;
+  right: 153px;
   top: 70px;
   display: none;
 }
@@ -773,3 +774,10 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   margin-left: 20px;
   height: 56px; line-height: 58px;
 }
+
+#videoDiv, #ytPlayer
+{
+  float: left;
+  width: 50px; height: 28px;
+}
+#ytPlayer { margin-top: 15px;}

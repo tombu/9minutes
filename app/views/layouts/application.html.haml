@@ -3,7 +3,9 @@
   %head
     %title Nineminutes
     = stylesheet_link_tag :all
+    = javascript_include_tag "http://www.google.com/jsapi"
     = javascript_include_tag :defaults
+    
     = csrf_meta_tag
   %body
     #playlist-container
@@ -30,23 +32,26 @@
             = submit_tag '', :class=>"submit"
       = yield
     #player
+      #videoDiv Loading
       %p#song
-        = "White Noise (PureVolume House)"
+        = "Hometown Glory"
         %br
-        %b=raw "<span>Artist: </span>Clock Opera"
+        %b=raw "<span>Artist: </span>Adele"
       #controls
-        = link_to "", "javascript:void(0);", :class=>"backward"
+        = link_to "", "javascript:void(0);", :onclick=>"", :class=>"backward"
         = link_to "", "javascript:void(0);", :class=>"play"
-        = link_to "", "javascript:void(0);", :class=>"forward"
+        = link_to "", "javascript:void(0);", :onclick=>"", :class=>"forward"
       #scrubbar
-        =raw '<input type="range" id="progress" name="range1" min="0" max="214" step="1" value="100" />'
+        =raw '<input type="range" id="progress" name="range1" min="0" max="100" step="1" value="0" />'
         %span.time
-          %span.now 0:00 /
-          %span.max 3:00
+          %span#currentTime.now 0:00
+          = "/"
+          %span#duration.max 3:00
       #volume
-        =raw '<input type="range" id="progress" name="range2" min="0" max="100" step="1" value="50" />'
+        =raw '<input type="range" class="vol" id="progress" name="range2" min="0" max="100" step="1" value="50" />'
       #icons
         = link_to image_tag("ico/player-volume.png"), "javascript:void(0);", :class=>"volume"
         = link_to image_tag("ico/player-repeat.png"), "javascript:void(0);", :class=>"repeat"
         = link_to image_tag("ico/player-playlist.png"), "javascript:void(0);", :class=>"playlist"
+
       
