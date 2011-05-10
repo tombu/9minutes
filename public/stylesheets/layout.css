@@ -1,5 +1,5 @@
 ﻿@charset "utf-8";
-/** FONTS **/
+/**FONTS */
 
 @font-face{ 
 	font-family: AauxNextLight;
@@ -182,6 +182,7 @@ a { text-decoration: none; color: #7d8791; }
   height: 29px; line-height: 29px;
   display: block;
   opacity: 0.85;
+  z-index: 800;
 }
 #search_form .selection > span { text-transform: uppercase;}
 #search_form .box

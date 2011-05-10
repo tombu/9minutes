@@ -11,7 +11,6 @@ class SearchController < ApplicationController
       @albums = LastFM::Album.search(params[:q].to_s.lstrip, 16)
     end
     puts params
-
   end
 
 end

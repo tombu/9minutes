@@ -36,6 +36,9 @@
 		  updateHTML("startBytes", ytplayer.getVideoStartBytes());
 		  updateHTML("bytesLoaded", ytplayer.getVideoBytesLoaded());*/
       
+      if(ytplayer.getPlayerState() == 1) $('#player .play').addClass('pause');
+      else $('#player .play').removeClass('pause');
+      
       if(!dragging)
       {
         var api = $("#scrubbar input").data("rangeinput");
@@ -113,18 +116,19 @@
       clearInterval(updateInterval);
     }
 	  // Loads the selected video into the player.
-function loadVideo(vid) {
-  var videoID = vid;
-  if(ytplayer) {
-	ytplayer.loadVideoById(videoID);
-  }
-  active = videoID;
-  $li = activeVid();
-  $('#playlist li').each(function(){
-	$(this).removeClass("active");
-  });
-  $li.addClass("active");
-}
+    function loadVideo(vid) {
+      var videoID = vid;
+      if(ytplayer) {
+      ytplayer.loadVideoById(videoID);
+      ytplayer.setPlaybackQuality("medium");
+      }
+      active = videoID;
+      $li = activeVid();
+      $('#playlist li').each(function(){
+      $(this).removeClass("active");
+      });
+      $li.addClass("active");
+    }
 
 	  // This function is automatically called by the player once it loads
 	  function onYouTubePlayerReady(playerId) {
@@ -137,6 +141,7 @@ function loadVideo(vid) {
       ytplayer.addEventListener("onError", "onPlayerError");
       //Load an initial video into the player
       ytplayer.cueVideoById("sCziT0ZWBDQ");
+      ytplayer.setPlaybackQuality("medium");
 	  }
 
 	  // The "main method" of this sample. Called when someone clicks "Run".
