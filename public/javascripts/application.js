@@ -18,6 +18,8 @@ $(document).ready(function(){
   navigateTopMusic();
   
   initPlayer();
+  
+  playSong();
 });
 
 $(window).load(function() {
@@ -28,6 +30,15 @@ $(window).load(function() {
   fitImages(".artists.ultrasmall img");
   fitImages("#artist .side .img img");
 });
+
+
+function playSong(){
+  $('.songs .play').live('click',function(){
+    $id = $(this).attr("videoid");
+    ytplayer.loadVideoById($id);
+  });
+}
+
 
 function initPlaylist() {
 
@@ -420,9 +431,9 @@ function handleNavigation()
       $element = $settings['nav'].children("li:eq("+i+")");
       $element.animate({
         opacity: 0
-      }, $settings["speed"]*1.25, function(){
-        $(this).remove();
+      }, $settings["speed"]*1.5, function(){
         $settings['nav'].css("marginLeft", 0);
+        $(this).remove();
       });
       
       $settings['nav'].append("<li style='opacity:0;margin-left: 20px;' hashcontrol='"+$element.attr('hashcontrol')+"' position='"+$element.attr('position')+"'>"+$element.text()+"</li>");

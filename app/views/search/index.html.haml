@@ -27,8 +27,9 @@
       %ul.songs.short
         - @tracks.track.each_with_index do |track, i|
           - break if i == 13
+          - id = @youtube_client.videos_by(:query => "#{track.name} #{track.artist} official", :page => 1, :per_page => 1, :order_by => "relevance")
           %li
-            = image_tag "ico/play.png", :class=>"play"
+            = image_tag "ico/play.png", :class=>"play", :videoid=>id.videos.first.unique_id
             = image_tag "ico/add.png", :class=>"add"
             %span= track.name
             =raw "&nbsp;by "

@@ -15,6 +15,9 @@ gem 'hashie'
 # authentication, authorization, roles
 #gem 'cream'
 
+# youtube search
+gem 'youtube_it'
+
 group :development do
   # for html2haml
   #gem 'hpricot'

@@ -368,6 +368,8 @@ a { text-decoration: none; color: #7d8791; }
 .songs.long li span { color: #027bbf; }
 .songs li img { vertical-align: middle; }
 .songs a:hover, .albums a:hover { color: #505861;}
+.songs .play, .songs .add { cursor: pointer; }
+
 
 #search_all_artists { float: left; }
 #search_all_songs { float: right; }

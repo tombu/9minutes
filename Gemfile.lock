@@ -52,6 +52,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    oauth (0.4.4)
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.14)
@@ -83,6 +84,9 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
+    youtube_it (1.4.2)
+      builder
+      oauth (>= 0.4.4)
 
 PLATFORMS
   ruby
@@ -97,3 +101,4 @@ DEPENDENCIES
   ruby_parser
   sqlite3
   sqlite3-ruby
+  youtube_it
