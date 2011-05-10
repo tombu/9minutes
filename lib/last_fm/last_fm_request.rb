@@ -10,7 +10,7 @@ module LastFM
     base_uri "ws.audioscrobbler.com/2.0/"
     parser Proc.new { |data| Hashie::Mash.new(ActiveSupport::JSON.decode(data)) }
     default_params :format => 'json', :autocorrect => '1'
-    debug_output $>
+    #debug_output $>
     format :json
 
     def self.api_key=(key)
