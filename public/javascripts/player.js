@@ -118,17 +118,23 @@
 	  // Loads the selected video into the player.
     function loadVideo(vid) {
       var videoID = vid;
-      if(ytplayer) {
       ytplayer.loadVideoById(videoID);
-      ytplayer.setPlaybackQuality("medium");
-      }
       active = videoID;
       $li = activeVid();
       $('#playlist li').each(function(){
       $(this).removeClass("active");
       });
       $li.addClass("active");
+      
+      $('#song .artist').text($li.children('a').text());
+      $('#song .song').text($li.children('span').text());
     }
+    
+    $(document).ready(function(){
+      $('#playlist span').live('click',function(){
+        loadVideo($(this).parent().attr('videoid'));
+      });
+    });
 
 	  // This function is automatically called by the player once it loads
 	  function onYouTubePlayerReady(playerId) {
@@ -140,8 +146,8 @@
       ytplayer.addEventListener("onStateChange", "onPlayerStateChange");
       ytplayer.addEventListener("onError", "onPlayerError");
       //Load an initial video into the player
-      ytplayer.cueVideoById("sCziT0ZWBDQ");
-      ytplayer.setPlaybackQuality("medium");
+      //ytplayer.cueVideoById("sCziT0ZWBDQ");
+      //active = "sCziT0ZWBDQ";
 	  }
 
 	  // The "main method" of this sample. Called when someone clicks "Run".
@@ -159,57 +165,36 @@
 	  }
 	  google.setOnLoadCallback(_run);
 
-	function addVideo(vid, name) 
-	{
-		$('#playlist').append('<li vid="'+vid+'"><a href="javascript:void(0);" onclick="loadVideo(\''+vid+'\');">'
-		+name+'</a> <a class="del" onclick="deleteVid(\''+vid+'\');">(X)</a></li>');
-	}
-
 	function nextVideo()
 	{
 		$e = activeVid();
 		$next = $e.next('li');
-		if($next != null) 
-		{
-			loadVideo($next.attr('vid'));
-		}
-		//$(this).parent().children().index(this);
+		if($next.html() != null) 
+			loadVideo($next.attr('videoid'));
+    else loadVideo($('#playlist li:first-child').attr('videoid'));
 	}
 	function prevVideo()
 	{
 		$e = activeVid();
 		$prev = $e.prev('li');
-		if($prev != null) 
-		{
-			loadVideo($prev.attr('vid'));
-		}
+		if($prev.html() != null) 
+			loadVideo($prev.attr('videoid'));
+    else loadVideo($('#playlist li:last-child').attr('videoid'));
 		//$(this).parent().children().index(this);
 	}
 
 	function activeVid()
 	{
-		return $('#playlist [vid='+active+']');
+		$x = $('#playlist [videoid='+active+']');
+    console.log($('#playlist').html());
+    return ($x==null) ? '' : $x;
 	}
-	
-	function deleteVid(vid)
-	{
-		$('#playlist [vid='+vid+']').remove();
-	}
-	
-	function changeSize()
-	{
-		//$('object').width($('object').width()+40);
-		//$('object').height($('object').height()+30);
-		$extend = 100;
-		$extendy = 100;
-		
-		$('#ytplayer').width($('ytplayer').width()+40);
-		$('#ytplayer').height($('ytplayer').height()+40);
-	
-	}
-	
-	$(document).ready(function(){
-		$("#changesize").live("click", function(){
-			changeSize();
-		});
-	});
+    
+  $('document').ready(function(){
+    $('#player .forward').live('click', function(){
+      nextVideo();
+    });
+    $('#player .backward').live('click', function(){
+      prevVideo();
+    });
+  });

@@ -10,13 +10,6 @@
     
     = csrf_meta_tag
   %body
-    #playlist-container
-      #playlist-navigation
-        .edit Editieren
-        .clear Leeren
-        .shuffle Shuffle
-      %br.clean
-      %ul#playlist
     #site
       #head
         %h1
@@ -38,11 +31,18 @@
         #predefinedTab
       = yield
     #player
+      #playlist-container
+        #playlist-navigation
+          .edit Editieren
+          .clear Leeren
+          .shuffle Shuffle
+        %br.clean
+        %ul#playlist
       #videoDiv Loading
       %p#song
-        = "Hometown Glory"
+        =raw "<span class='song'>Thomas, du olle Sau!</span>"
         %br
-        %b=raw "<span>Artist: </span>Adele"
+        %b=raw "<span class='otherstyle'>Artist: </span><span class='artist'>Tobi Wan Kenobi</span>"
       #controls
         = link_to "", "javascript:void(0);", :onclick=>"", :class=>"backward"
         = link_to "", "javascript:void(0);", :class=>"play"

@@ -20,22 +20,26 @@ $(document).ready(function(){
   initPlayer();
   
   playSong();
-});
-
-$(window).load(function() {
-  initSearchDropdown(); // dropdown for the search input
-    
+  
   fitImages(".artists.big img"); // resize and resposition images (artists, album)
   fitImages(".artists.small img"); 
   fitImages(".artists.ultrasmall img");
   fitImages("#artist .side .img img");
 });
 
+$(window).load(function() {
+  initSearchDropdown(); // dropdown for the search input
+    
+
+});
+
 
 function playSong(){
   $('.songs .play').live('click',function(){
     $id = $(this).attr("videoid");
-    ytplayer.loadVideoById($id);
+    loadVideo($id);
+    $('#song .artist').text($(this).parents('li').children('a').text());
+    $('#song .song').text($(this).parents('li').children('span').text());
   });
 }
 
@@ -47,7 +51,7 @@ function initPlaylist() {
   if(storage !== undefined) {
     size = storage.length;
     for(i = 0; i < size; i++) {
-      $('#playlist').append('<li><span>'+ storage[i].title + '</span> by <a href="#">' + storage[i].artist + '</a></li>');
+      $('#playlist').append('<li videoid="'+ storage[i].videoid + '"><span>'+ storage[i].title + '</span> by <a href="#">' + storage[i].artist + '</a></li>');
       $listElement = $('#playlist li:eq('+i+')');
       $listElement.prepend('<img class="delete-handle" src="/images/ico/delete.png" />');
       $listElement.append('<img class="drag-handle" src="/images/ico/drag.png" />');
@@ -62,6 +66,15 @@ function initPlaylist() {
   });
   
   $('#playlist .delete-handle').live("click", onRemoveSongFromPlaylist);
+  
+  $('#player #icons .playlist').live("click", function(){
+    $('#playlist-container').toggle();
+  });
+  
+  $('#playlist-navigation .clear').live('click', function(){
+    $('#playlist li').remove();
+    $.store.clear();
+  });
 }
 
 function savePlaylist() {
@@ -70,14 +83,13 @@ function savePlaylist() {
     songs[i] = {
       title     : $(this).children('span').text(),
       artist    : $(this).children('a').text(),
-      videoid   : "GAItz89a3na1"
+      videoid   : $(this).attr('videoid')
     }
   });
   
-  console.log(songs);
-
+  //console.log(songs);
   $.store.set("9minutesPlaylist", songs);
-  console.log("playlist saved ;)");
+  //console.log("playlist saved ;)");
 }
 
 function makeSongsAddable() {
@@ -85,9 +97,23 @@ function makeSongsAddable() {
 }
 
 function onAddSongToPlaylist(event) {
+  // if already in playlist
+  
+  
+  
   $listElement = $(event.target).parents('li').clone();
+  $vuid = $listElement.children('.play').attr('videoid');
+
+  
+  if ($('#playlist li[videoid='+$vuid+']').html() != null)
+  {
+    alert("Already in playlist!");
+    return;
+  }
+  
   $listElement.children('img').remove();
   $listElement.attr('data-itemidx', 0); // important for dragsort plugin
+  $listElement.attr('videoid', $vuid);
   $listElement.prepend('<img class="delete-handle" src="/images/ico/delete.png" />');
   $listElement.append('<img class="drag-handle" src="/images/ico/drag.png" />');
   $listElement.appendTo('#playlist');
@@ -160,6 +186,7 @@ function initPlayer(){
     
     $(this).toggleClass('pause');
   });
+  
   
   $('#icons .volume').live('click', function(){
     $('#player #volume').fadeToggle(300);
