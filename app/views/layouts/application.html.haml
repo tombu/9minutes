@@ -39,10 +39,12 @@
         %br.clean
         %ul#playlist
       #videoDiv Loading
-      %p#song
-        =raw "<span class='song'>Thomas, du olle Sau!</span>"
+      %p#track
+        %span.track= "Thomas, du olle Sau!"
         %br
-        %b=raw "<span class='otherstyle'>Artist: </span><span class='artist'>Tobi Wan Kenobi</span>"
+        %b
+          %span.otherstyle= "Artist:"
+          %span.artist= "Tobi Wan Kenobi"
       #controls
         = link_to "", "javascript:void(0);", :onclick=>"", :class=>"backward"
         = link_to "", "javascript:void(0);", :class=>"play"

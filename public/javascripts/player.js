@@ -126,8 +126,8 @@
       });
       $li.addClass("active");
       
-      $('#song .artist').text($li.children('a').text());
-      $('#song .song').text($li.children('span').text());
+      $('#track .artist').text($li.children('a').text());
+      $('#track .track').text($li.children('span').text());
     }
     
     $(document).ready(function(){
@@ -186,7 +186,7 @@
 	function activeVid()
 	{
 		$x = $('#playlist [videoid='+active+']');
-    console.log($('#playlist').html());
+    //console.log($('#playlist').html());
     return ($x==null) ? '' : $x;
 	}
     

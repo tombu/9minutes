@@ -65,7 +65,7 @@ function initPlaylist() {
       scrollContainer: '#playlist-container'
   });
   
-  $('#playlist .delete-handle').live("click", onRemoveSongFromPlaylist);
+  $('#playlist .delete-handle').live("click", onRemoveTrackFromPlaylist);
   
   $('#player #icons .playlist').live("click", function(){
     $('#playlist-container').toggle();
