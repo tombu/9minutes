@@ -286,7 +286,7 @@ function initSearchDropdown()
 {
   // hover and out
   $("div[dropping]").hoverIntent(function(){
-    $(this).children(".box").fadeIn(500);
+    $(this).children(".box").fadeIn(300);
   }, function(){
     $(this).children(".box").fadeOut(300);
   });
@@ -295,11 +295,14 @@ function initSearchDropdown()
   $("div[dropping] .box").live("click", function(){
     $(this).fadeOut(300);
   });
-
+  
+  $fm = $("#search_form").attr("action");
+  $fm = $fm.split("#",1);
   $("div[dropping] .box li").live("click", function(){
     $("div[dropping] > span").html($(this).html());
-    $("div[dropping] #tab").attr("value", $(this).html().toLowerCase());
+    $("#search_form").attr("action", $fm+"#tab="+$(this).html().toLowerCase());
   });
+
 }
 
 // list fixes
@@ -316,11 +319,15 @@ function fixLists()
 function initNavigation()
 {
   // set hash if submitted by search form
+  $str = $.deparam.fragment(window.location.href);
+  $("#predefinedTab").text($str.tab);
   $searchTab = $("#predefinedTab").text();
   if($searchTab != "")
   {
-    $("#search_form #tab").attr("value", $searchTab);
-    $("#search_form .selection > span").text($searchTab);
+    $fm = $("#search_form").attr("action");
+    $fm = $fm.split("#",1);
+    $("#search_form .selection .selected").text($searchTab);
+    $("#search_form").attr("action", $fm+"#tab="+$searchTab.toLowerCase());
   }
   // add positions and hash control
   $(".navigation").each(function(){
@@ -341,7 +348,7 @@ function initNavigation()
       if($(this).hasClass("main") && $searchTab != "")
       {
         $str = $searchTab;
-        $("#search_form .selection > span").text($searchTab);
+        $("#search_form .selection .selected").text($searchTab);
       }
       else 
       {
@@ -402,8 +409,10 @@ function handleNavigation()
     // for search bar
     if($(this).parent().hasClass("main"))
     {
+      $fm = $("#search_form").attr("action");
+      $fm = $fm.split("#",1);
       $("#search_form .selection > span").text($settings['hash']);
-      $("#search_form #tab").attr("value", $settings['hash']);
+      $("#search_form").attr("action", $fm+"#tab="+$(this).html().toLowerCase());
     }
     
     // get the width of the navigation elements which will fade out

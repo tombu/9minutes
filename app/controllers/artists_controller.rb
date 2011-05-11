@@ -13,7 +13,7 @@ class ArtistsController < ApplicationController
     @albums = LastFM::Artist.getTopAlbums @artist.name, 8
     @images = LastFM::Artist.getImages @artist.name, 18
     @related= LastFM::Artist.getSimilar @artist.name, 6
-    #puts @albums.to_yaml
+    puts @artist.to_yaml
   end
 
 end

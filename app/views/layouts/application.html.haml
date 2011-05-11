@@ -11,18 +11,22 @@
     = csrf_meta_tag
   %body
     #playlist-container
+      #playlist-navigation
+        .edit Editieren
+        .clear Leeren
+        .shuffle Shuffle
+      %br.clean
       %ul#playlist
-      
     #site
       #head
         %h1
           = link_to image_tag("9minutes.png"), "/"
-        = form_tag search_index_path, :method => 'get', :id => "search_form", :class => "right" do
+        = form_tag '/search', :method => 'get', :id => "search_form", :class => "right" do
           .wrap
             = text_field_tag 'q', params[:q], :class => "input", :placeholder => "Search for"
             -# TODO: image_submit_tag
             .selection{:dropping=>"true"}
-              %span ALL
+              %span.selected ALL
               .box
                 %span.arr
                 %ul
@@ -30,8 +34,8 @@
                   %li Artists
                   %li Albums
                   %li Songs
-              = hidden_field_tag 'tab', 'all'
-            = submit_tag '', :class=>"submit"
+            = submit_tag '', :class=>"submit", :name => nil
+        #predefinedTab
       = yield
     #player
       #videoDiv Loading

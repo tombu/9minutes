@@ -636,3 +636,17 @@ jQuery.store = (function(){
 
 	return api
 })();
+
+
+/*
+
+$.fn.hilight = function(option) {
+  var opts = $.extend({}, $.fn.hilight.defaults, options);
+  
+  $fn.hilight.defaults = {
+    foreground: 'red',
+    background: 'yellow'
+  };
+};
+
+*/
