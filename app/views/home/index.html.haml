@@ -10,17 +10,15 @@
       .navigate
         %a.left
         %a.right
-    %ul.songs.short{:count=>"5"}
+    %ul.tracks.short{:count=>"5"}
       - @tracks.track.each_with_index do |track, i|
         - id = @youtube_client.videos_by(:query => "#{track.name} #{track.artist.name} official", :page => 1, :per_page => 1, :order_by => "relevance")
         %li
           = image_tag "ico/play.png", :class=>"play", :videoid=>id.videos.first.unique_id
           = image_tag "ico/add.png", :class=>"add"
           %span
-            %span= (i+1).to_s+"."
             = track.name
-          =raw "&nbsp;by "
-          = link_to trimString(track.artist.name, 50), :controller=>"artists",:action=>"show",:id=>CGI.escape(track.artist.name)
+          = link_to trimString(track.artist.name, 50), artist_path(CGI.escape(track.artist.name))
   .right
     %h2.headline.small
       %span.left Top Artists
@@ -30,12 +28,12 @@
     %ul.artists.big{:count=>"2"}
       - @artists.artist.each do |artist|
         %li
-          = link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
+          = link_to artist_path(CGI.escape(artist.name)) do
             = image_tag validate_img_url(artist.image, "artist", :extralarge)
             %p
               = trimString(artist.name, 30)
               %br><
-              =raw "<span>#{artist.listeners} Listeners, #{artist.playcount} Plays</span>"
+              %span= "#{artist.listeners} Listeners, #{artist.playcount} Plays"
   %br.clean
   .bottom
     %hr

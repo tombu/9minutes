@@ -290,30 +290,30 @@ a { text-decoration: none; color: #7d8791; }
   overflow: hidden;
 }
 
-.songs li
+.tracks li
 {
   height: 32px; line-height: 32px;
   border-bottom: 1px dotted #dce2e6;
   font-size: 12px;
   width: 465px;
 }
-.songs.short li { width: 395px; }
-.songs.long li { width: 530px; }
-.songs.tab { overflow: hidden; }
-.songs.tab li { float: left; margin-right: 20px; }
-.songs li span 
+.tracks.short li { width: 395px; }
+.tracks.long li { width: 530px; }
+.tracks.tab { overflow: hidden; }
+.tracks.tab li { float: left; margin-right: 20px; }
+.tracks li span 
 { 
   color: #2d3135; 
   margin-left: 10px;
 }
-.songs.long li span { color: #027bbf; }
-.songs li img { vertical-align: middle; }
-.songs a:hover, .albums a:hover { color: #505861;}
-.songs .play, .songs .add { cursor: pointer; }
+.tracks.long li span { color: #027bbf; }
+.tracks li img { vertical-align: middle; }
+.tracks a:hover, .albums a:hover { color: #505861;}
+.tracks .play, .tracks .add { cursor: pointer; }
 
 
 #search_all_artists { float: left; }
-#search_all_songs { float: right; }
+#search_all_tracks { float: right; }
 #search_all_albums { float: left; width: 514px; }
 
 .albums li 

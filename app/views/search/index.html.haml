@@ -21,18 +21,9 @@
                 =raw "<span>#{artist.listeners} Listeners</span>"
       %br.clean
       %br
-    #search_all_songs
+    #search_all_tracks
       -#%h2.headline.small Songs
-      %ul.songs.short
-        - @tracks.track.each_with_index do |track, i|
-          - break if i == 13
-          - id = @youtube_client.videos_by(:query => "#{track.name} #{track.artist} official", :page => 1, :per_page => 1, :order_by => "relevance")
-          %li
-            = image_tag "ico/play.png", :class=>"play", :videoid=>id.videos.first.unique_id
-            = image_tag "ico/add.png", :class=>"add"
-            %span= track.name
-            =raw "&nbsp;by "
-            = link_to trimString(track.artist, 50), :controller=>"artists",:action=>"show",:id=>CGI.escape(track.artist)
+      = render :partial => "tracks/list", :locals => { :tracks => @tracks, :additional_class => "short", :count => 13 }
     #search_all_albums
       -#%h2.headline.small Albums
       %ul.albums.wide
@@ -49,7 +40,7 @@
       - @artists.artist.each_with_index do |artist, i|
         - break if i >= 8
         %li
-          = link_to :controller=>:artists,:action=>:show,:id=>CGI.escape(artist.name) do
+          = link_to artist_path(CGI.escape(artist.name)) do
             = image_tag validate_img_url(artist.image, "artist", :extralarge)
             %p
               = trimString(artist.name, 26)
@@ -74,17 +65,8 @@
     %br.clean
     = link_to "NACHLADEN", :class => "more" do
       = image_tag "ico/more.png"
-  #search_songs
-    %ul.songs.tab
-      - @tracks.track.each_with_index do |track, i|
-        - break if i == 18
-        - id = @youtube_client.videos_by(:query => "#{track.name} #{track.artist} official", :page => 1, :per_page => 1, :order_by => "relevance")
-        %li
-          = image_tag "ico/play.png", :class=>"play", :videoid=>id.videos.first.unique_id
-          = image_tag "ico/add.png", :class=>"add"
-          %span= track.name
-          =raw "&nbsp;by "
-          = link_to trimString(track.artist, 50), :controller=>"artists",:action=>"show",:id=>CGI.escape(track.artist)
+  #search_tracks
+    = render :partial => "tracks/list", :locals => { :tracks => @tracks, :additional_class => "tab", :count => 26 }
     %br.clean
     %br
     = link_to "NACHLADEN", :class => "more" do

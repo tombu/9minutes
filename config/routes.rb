@@ -1,5 +1,7 @@
 Nineminutes::Application.routes.draw do
 
+  get "tracks/index"
+
   resources :artists, :constraints => { :id => /.*/ }
   resources :search
   resources :home

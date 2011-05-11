@@ -12,14 +12,14 @@ $(document).ready(function(){
   initArtistDescription();
   
   initPlaylist();
-  makeSongsAddable(); // bind click-event to "add" button (for each song)
+  makeTracksAddable(); // bind click-event to "add" button (for each track)
   
-  initTopMusic();
+  initTrackAndArtistLists();
   navigateTopMusic();
   
   initPlayer();
   
-  playSong();
+  playTrack();
   
   fitImages(".artists.big img"); // resize and resposition images (artists, album)
   fitImages(".artists.small img"); 
@@ -34,12 +34,12 @@ $(window).load(function() {
 });
 
 
-function playSong(){
-  $('.songs .play').live('click',function(){
+function playTrack(){
+  $('.tracks .play').live('click',function(){
     $id = $(this).attr("videoid");
     loadVideo($id);
-    $('#song .artist').text($(this).parents('li').children('a').text());
-    $('#song .song').text($(this).parents('li').children('span').text());
+    $('#track .artist').text($(this).parents('li').children('a').text());
+    $('#track .track').text($(this).parents('li').children('span').text());
   });
 }
 
@@ -78,29 +78,26 @@ function initPlaylist() {
 }
 
 function savePlaylist() {
-  var songs = [];
+  var tracks = [];
   $('ul#playlist li').each(function(i) {
-    songs[i] = {
+    tracks[i] = {
       title     : $(this).children('span').text(),
       artist    : $(this).children('a').text(),
       videoid   : $(this).attr('videoid')
     }
   });
   
-  //console.log(songs);
-  $.store.set("9minutesPlaylist", songs);
+  //console.log(tracks);
+  $.store.set("9minutesPlaylist", tracks);
   //console.log("playlist saved ;)");
 }
 
-function makeSongsAddable() {
-  $('.songs li .add').live("click", onAddSongToPlaylist);
+function makeTracksAddable() {
+  $('.tracks li .add').live("click", onAddTrackToPlaylist);
 }
 
-function onAddSongToPlaylist(event) {
+function onAddTrackToPlaylist(event) {
   // if already in playlist
-  
-  
-  
   $listElement = $(event.target).parents('li').clone();
   $vuid = $listElement.children('.play').attr('videoid');
 
@@ -121,12 +118,9 @@ function onAddSongToPlaylist(event) {
     $(this).slideDown(500);
   });
   savePlaylist();
-  
-  // TODO: prevent double entries
-  // TODO: get video-id from youtube
 }
 
-function onRemoveSongFromPlaylist(event) {
+function onRemoveTrackFromPlaylist(event) {
   $listElement = $(event.target).parent();
   $listElement.fadeTo(300, 0.1, function() {
     $(this).hide("blind", function() { 
@@ -202,12 +196,14 @@ function getTimeFromInt(number) {
   return ((m >= 10) ? '' : '0') + m + ":" + ((s >= 10) ? '' : '0') + s;
 }
 
-function initTopMusic(){
-  $('#home .songs li').each(function(){
-    if($(this).parent().children().index(this)>=5) $(this).hide();
+function initTrackAndArtistLists(){
+  $('.tracks li').each(function() {
+    $count = parseInt($(this).parent().attr("count"));
+    if($(this).parent().children().index(this)>=$count) $(this).hide();
   });
-  $('#home .artists li').each(function(){
-    if($(this).parent().children().index(this)>=2) $(this).hide();
+  $('#home .artists li').each(function() {
+    $count = parseInt($(this).parent().attr("count"));
+    if($(this).parent().children().index(this)>=$count) $(this).hide();
   });
 }
 
@@ -218,7 +214,7 @@ function navigateTopMusic(){
     $start = $id.parent().children().index($id);
     $count = parseInt($selector.attr("count"));
     $size = $selector.children().size();
-    
+        
     if($(this).hasClass("left")) {
       $start -= $count;
       if($start < 0) return;
@@ -242,15 +238,12 @@ function ajj(){
 }
 
 
-
 function initArtistDescription(){
   $("#artist .description .text a").each(function(){
     $text = $(this).html();
     $(this).after($text).remove();
   });
 }
-
-
 
 
 function fitImages(selector) {
@@ -337,7 +330,7 @@ function fixLists()
 {
   $(".artists.small li:nth-child(4n)").css("marginRight", 0);
   $(".artists.ultrasmall li:nth-child(3n)").css("marginRight", 0);
-  $(".songs.tab li:nth-child(2n)").css("marginRight", 0);
+  $(".tracks.tab li:nth-child(2n)").css("marginRight", 0);
   $("#artist .gallery a:nth-child(6n)").css("marginRight", 0);
   $("#home .artists li:nth-child(2n)").css("marginRight", 0);
 }
