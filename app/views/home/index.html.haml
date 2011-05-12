@@ -16,8 +16,7 @@
         %li
           = image_tag "ico/play.png", :class=>"play", :videoid=>id.videos.first.unique_id
           = image_tag "ico/add.png", :class=>"add"
-          %span
-            = track.name
+          %span= track.name
           = link_to trimString(track.artist.name, 50), artist_path(CGI.escape(track.artist.name))
   .right
     %h2.headline.small

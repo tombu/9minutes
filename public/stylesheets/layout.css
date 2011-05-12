@@ -787,7 +787,7 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   height: 26px; line-height: 26px;
   border-bottom: 1px dotted #dce2e6;
   font-size: 11px;
-  padding: 0 3px;
+  padding: 0 4px;
   overflow: hidden;
 }
 
@@ -799,11 +799,16 @@ div[wheel] > div { display: none; opacity: 0.0; position: relative; }
   font-family: AauxNextBold, "Segoe UI", Arial, sans-serif!important;
 }
 
+#playlist li span { margin-left: 18px; }
+
 #playlist .delete-handle
 { 
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 5px 0 4px;
   width: 18px;
   height: 18px;
-  margin: 1px 0 6px -4px;
   vertical-align: middle;
   cursor: pointer;
 }
