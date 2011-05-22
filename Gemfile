@@ -8,8 +8,10 @@ gem 'haml-rails'
 
 # for using last.fm api
 gem 'httparty'
+gem 'typhoeus'
 
 # for converting json/xml to object
+gem 'json'
 gem 'hashie'
 
 # authentication, authorization, roles

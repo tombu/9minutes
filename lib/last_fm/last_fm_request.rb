@@ -1,37 +1,28 @@
 require 'httparty'
-require 'active_support'
+require 'json'
 require 'hashie'
 
 module LastFM
 
   class LastFMRequest
     include HTTParty
-  
-    base_uri "ws.audioscrobbler.com/2.0/"
-    parser Proc.new { |data| Hashie::Mash.new(ActiveSupport::JSON.decode(data)) }
+    
+    base_uri 'http://ws.audioscrobbler.com/2.0//'
+    parser Proc.new { |data| Hashie::Mash.new(JSON.parse(data)) }
+    @@hydra = Typhoeus::Hydra.new
     default_params :format => 'json', :autocorrect => '1'
     #debug_output $>
     format :json
-
+    
     def self.api_key=(key)
       @@api_key = key
       default_params :api_key => key
     end
-
-    def self.limit=(limit)
-      @limit = limit
-    end
-
-    def self.limit
-      @limit
-    end
-
-    def self.page=(page)
-      @page = page
-    end
-
-    def self.page
-      @page
+    
+    def self.run
+      puts "<< ----------- hydra run ----------"
+      @@hydra.run
+      puts "<< ----------- hydra finished ----------"
     end
 
     def self.artist_request method, node, q, limit = nil, page = nil
@@ -47,16 +38,54 @@ module LastFM
     end
     
     def self.chart_request method, node, limit = nil, page = nil
-      prepare_result method, node, get('/', :query => { :method => "chart.#{method.to_s}", :limit => limit, :page => page })
+      # hydra = Typhoeus::Hydra.new
+      request = Typhoeus::Request.new(base_uri, :params => default_params.merge(:method => "chart.#{method.to_s}", :limit => limit, :page => page))
+      
+      # handle_response method, node, request
+      puts '----------------------'
+      puts request.url
+      puts '----------------------'
+      
+      request.on_complete do |response|
+        if response.success?
+          puts "---- '#{method.to_s}' -- TIME: #{response.time.to_s} ----"
+          
+          hash = Hashie::Mash.new(JSON.parse(response.body)) 
+          hash = method.to_s == "search" ? hash.results.send(node.to_sym) : hash.send(node.to_sym)
+        elsif response.timed_out?
+          puts ">> -- '#{method.to_s}' -- TIMED OUT -- <<"
+        end
+      end
+      
+      request.on_complete
+      puts "---- '#{method.to_s}' request is queued ----" if @@hydra.queue request
+      # hydra.queue request
+      
+      # hydra.run
+      # prepare_result method, node, get('/', :query => { :method => "chart.#{method.to_s}", :limit => limit, :page => page })
     end
 
     private
-
-    def self.prepare_result method, node, response_hash
-      if method.to_s == "search"
-        response_hash = response_hash.results
+    
+    def self.handle_response method, node, request
+      puts '----------------------'
+      puts request.url
+      puts '----------------------'
+      request.on_complete do |response|
+        if response.success?
+          puts "---- '#{method.to_s}' -- TIME: #{response.time.to_s} ----"
+          
+          hash = Hashie::Mash.new(JSON.parse(response.body)) 
+          method.to_s == "search" ? hash.results.send(node.to_sym) : hash.send(node.to_sym)
+          puts hash
+        elsif response.timed_out?
+          puts ">> -- '#{method.to_s}' -- TIMED OUT -- <<"
+        end
       end
-      response_hash.send(node.to_sym)
+    end
+    
+    def self.prepare_result method, node, response_hash
+      method.to_s == "search" ? hash.results.send(node.to_sym) : hash.send(node.to_sym)
     end
 
   end
