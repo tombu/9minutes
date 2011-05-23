@@ -13,10 +13,15 @@ module LastFM
     default_params :format => 'json', :autocorrect => '1'
     #debug_output $>
     format :json
+    @@results = Array.new()
     
     def self.api_key=(key)
       @@api_key = key
       default_params :api_key => key
+    end
+
+    def self.results
+      return @@results
     end
     
     def self.run
@@ -38,10 +43,8 @@ module LastFM
     end
     
     def self.chart_request method, node, limit = nil, page = nil
-      # hydra = Typhoeus::Hydra.new
       request = Typhoeus::Request.new(base_uri, :params => default_params.merge(:method => "chart.#{method.to_s}", :limit => limit, :page => page))
       
-      # handle_response method, node, request
       puts '----------------------'
       puts request.url
       puts '----------------------'
@@ -52,17 +55,13 @@ module LastFM
           
           hash = Hashie::Mash.new(JSON.parse(response.body)) 
           hash = method.to_s == "search" ? hash.results.send(node.to_sym) : hash.send(node.to_sym)
+          @@results.push(hash)
         elsif response.timed_out?
           puts ">> -- '#{method.to_s}' -- TIMED OUT -- <<"
         end
       end
-      
-      request.on_complete
+
       puts "---- '#{method.to_s}' request is queued ----" if @@hydra.queue request
-      # hydra.queue request
-      
-      # hydra.run
-      # prepare_result method, node, get('/', :query => { :method => "chart.#{method.to_s}", :limit => limit, :page => page })
     end
 
     private
