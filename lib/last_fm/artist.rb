@@ -27,11 +27,11 @@ module LastFM
   
     # return: albums ( name, mbid, album url, image urls ( different sizes ) ) ordered by popularity
     def self.getTopAlbums artist, limit = nil, page = nil
-      @albums = artist_request "getTopAlbums", "topalbums", artist, limit, page
-      if @albums["@attr"].total.to_i == 1
-        @albums.album = [@albums.album] # wrap with Array
+      artist_request "getTopAlbums", "topalbums", artist, limit, page do |albums|
+        if albums["@attr"].total.to_i == 1
+          albums.album = [albums.album] # wrap with Array
+        end
       end
-      @albums
     end
     
     def self.getImages artist, limit = nil
