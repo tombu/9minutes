@@ -5,7 +5,7 @@ module ApplicationHelper
     @attr = (type=="gallery") ? "name" : "size"
     image.each do |img|
       if img[@attr] == size.to_s
-        if img["#text"].empty?
+        if img["#text"].blank?
           return "/images/placeholder/#{type.to_s}.png"
         end
         return img["#text"]
