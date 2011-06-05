@@ -20,17 +20,17 @@ $(document).ready(function(){
   initPlayer();
   
   playTrack();
-  
-  fitImages(".artists.big img"); // resize and resposition images (artists, album)
-  fitImages(".artists.small img"); 
-  fitImages(".artists.ultrasmall img");
-  fitImages("#artist .side .img img");
+
 });
 
 $(window).load(function() {
   initSearchDropdown(); // dropdown for the search input
     
-
+  
+  fitImages(".artists.big img"); // resize and resposition images (artists, album)
+  fitImages(".artists.small img"); 
+  fitImages(".artists.ultrasmall img");
+  fitImages("#artist .side .img img");
 });
 
 

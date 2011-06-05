@@ -1,10 +1,5 @@
 source 'http://rubygems.org'
 
-# alternative servers (because openID URIs are too long for WEBRick)
-gem 'mongrel', '1.2.0.pre2'
-# gem 'thin'
-
-
 gem 'rake', '0.8.7'
 
 gem 'rails', '3.0.5'
@@ -14,16 +9,17 @@ gem 'jquery-rails', '>= 0.2.6'
 gem 'haml-rails'
 
 # for using last.fm api
-gem 'httparty'
+gem 'typhoeus'
+# gem 'httparty'
 
 # for converting json/xml to object
+gem 'json'
 gem 'hashie'
 
 # authentication, authorization, roles
 gem 'devise'
 gem 'oa-oauth', :require => 'omniauth/oauth'
 gem 'oa-openid', :require => 'omniauth/openid'
-# gem 'cream'
 
 # for file upload ( -> avatar )
 gem 'paperclip',  '~> 2.3'
@@ -31,10 +27,15 @@ gem 'paperclip',  '~> 2.3'
 # youtube search
 gem 'youtube_it'
 
-group :development do
+group :development, :test do
   # for html2haml
-  #gem 'hpricot'
+  # gem 'hpricot'
   gem 'ruby_parser'
+  
+  # alternative servers (because openID URIs are too long for WEBRick)
+  gem 'mongrel', '1.2.0.pre2'
+  # gem 'thin'
+  
 end
 
 # Deploy with Capistrano

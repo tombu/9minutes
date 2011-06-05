@@ -2,7 +2,11 @@ module LastFM
   
   class Track < LastFMRequest
     def self.search query, limit = nil, page = nil
-      track_request "search", "trackmatches", query, nil, limit, page
+      track_request "search", "trackmatches", query, nil, limit, page do |result|
+        result = LastFM::Validator.validate_mash result
+        result = Hashie::Mash.new({ :track => [] }) if result.blank?
+        update_results "#{current_class_name}_#{__method__}", result
+      end
     end
   
     # return: track name, id, (top)tags, artist, duration (in msec), album ( artist, title, image urls ( different sizes) ), mbid
