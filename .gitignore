@@ -6,3 +6,5 @@ tmp/
 Icon*
 .DS_Store
 Thumbs.db
+
+/config/config.yml

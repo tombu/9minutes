@@ -188,7 +188,7 @@ Devise.setup do |config|
   #      {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
   
   if Rails.env =~ /development/
-    config.omniauth :facebook, 'DEV_APP_ID', 'DEV_APP_SECRET'
+    config.omniauth :facebook, APP_CONFIG['facebook']['app_id'], APP_CONFIG['facebook']['secret']
   else
     config.omniauth :facebook, 'APP_ID', 'APP_SECRET'
   end

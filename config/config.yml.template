@@ -1,0 +1,5 @@
+secret_token: ""
+lastfm_api_key: ""
+facebook:
+  app_id: ""
+  secret: ""
