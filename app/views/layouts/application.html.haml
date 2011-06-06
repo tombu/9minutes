@@ -2,14 +2,15 @@
 %html
   %head
     %title Nineminutes
-    = favicon_link_tag 'favicon.ico'
-    = favicon_link_tag 'favicon.png', :rel=>'icon'
-    = stylesheet_link_tag :all
+    = stylesheet_link_tag "9minutes"
     = javascript_include_tag "http://www.google.com/jsapi"
     = javascript_include_tag :defaults
     
     = csrf_meta_tag
   %body
+    %pre{:id=>"cnt",:style=>"color:white;position:fixed;top:0;left:0;z-index:1000"} 0
+    #loading Loading
+    #bg_stripe
     #site
       - if user_signed_in?
         %span.bold= "YEAH! ICH BIN DRIN!"
@@ -18,54 +19,25 @@
         =link_to "Sign Up", new_user_registration_path
       =link_to "Sign Out", destroy_user_session_path
       #head
-        %h1
-          = link_to image_tag("9minutes.png"), "/"
-        = form_tag '/search', :method => 'get', :id => "search_form", :class => "right" do
-          .wrap
-            = text_field_tag 'q', params[:q], :class => "input", :placeholder => "Search for"
-            -# TODO: image_submit_tag
-            .selection{:dropping=>"true"}
-              %span.selected ALL
-              .box
-                %span.arr
-                %ul
-                  %li All
-                  %li Artists
-                  %li Albums
-                  %li Songs
+        %h1= link_to image_tag("nine-minutes.png"), "/"
+      #navigation
+        %li.active= link_to "home", "#"
+        %li= link_to "charts", "#"
+        %li= link_to "about", "#"
+        %li= link_to "register", "#"
+        %li.search
+          = form_tag '/search', :method => 'get', :id => "search_form" do
+            = text_field_tag 'q', params[:q], :class => "text", :placeholder => "Search here ..."
+            = link_to image_tag("icons/search-navi.png", :class=>"button"), "javascript:void(0);", :onclick=>"submit_redirect(this);"
             = submit_tag '', :class=>"submit", :name => nil
-        #predefinedTab
-      = yield
-    #player
-      #playlist-container
-        #playlist-navigation
-          .edit Editieren
-          .clear Leeren
-          .shuffle Shuffle
-        %br.clean
-        %ul#playlist
-      #videoDiv Loading
-      %p#track
-        %span.track= "Thomas, du olle Sau!"
-        %br
-        %b
-          %span.otherstyle= "Artist:"
-          %span.artist= "Tobi Wan Kenobi"
-      #controls
-        = link_to "", "javascript:void(0);", :onclick=>"", :class=>"backward"
-        = link_to "", "javascript:void(0);", :class=>"play"
-        = link_to "", "javascript:void(0);", :onclick=>"", :class=>"forward"
-      #scrubbar
-        =raw '<input type="range" id="progress" name="range1" min="0" max="100" step="1" value="0" />'
-        %span.time
-          %span#currentTime.now 0:00
-          = "/"
-          %span#duration.max 3:00
-      #volume
-        =raw '<input type="range" class="vol" id="progress" name="range2" min="0" max="100" step="1" value="50" />'
-      #icons
-        = link_to image_tag("ico/player-volume.png"), "javascript:void(0);", :class=>"volume"
-        = link_to image_tag("ico/player-repeat.png"), "javascript:void(0);", :class=>"repeat"
-        = link_to image_tag("ico/player-playlist.png"), "javascript:void(0);", :class=>"playlist"
-
-      
+      %br.clean
+      #content
+        = yield
+      %br.clean
+      #foot
+        - date = DateTime.now
+        %h6 Copyright &copy; #{date.year} by nineminutes
+        %ul
+          %li= link_to "About", "#"
+          %li= link_to "Legal", "#"
+          %li= link_to "Faq", "#"

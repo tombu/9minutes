@@ -1,0 +1,28 @@
+﻿/** FONTS **/
+@font-face{ 
+	font-family: AauxNextLight;
+	src: url('../fonts/aauxnext/aauxnext-lt-webfont.eot');
+	src: local('☺'),
+       url('../fonts/aauxnext/aauxnext-lt-webfont.ttf') format("truetype"),
+       url('../fonts/aauxnext/aauxnext-lt-webfont.otf') format("opentype"),
+       url('../fonts/aauxnext/aauxnext-lt-webfont.woff') format("woff"),
+	     url('../fonts/aauxnext/aauxnext-lt-webfont.svg#webfont') format("svg");
+}
+@font-face{ 
+	font-family: AauxNextMedium;
+	src: url('../fonts/aauxnext/aauxnext-md-webfont.eot');
+	src: local('☺'),
+       url('../fonts/aauxnext/aauxnext-md-webfont.ttf') format("truetype"),
+       url('../fonts/aauxnext/aauxnext-md-webfont.otf') format("opentype"),
+       url('../fonts/aauxnext/aauxnext-md-webfont.woff') format("woff"),
+	     url('../fonts/aauxnext/aauxnext-md-webfont.svg#webfont') format("svg");
+}
+@font-face{ 
+	font-family: AauxNextBold;
+	src: url('../fonts/aauxnext/aauxnext-bd-webfont.eot');
+	src: local('☺'),
+       url('../fonts/aauxnext/aauxnext-bd-webfont.ttf') format("truetype"),
+       url('../fonts/aauxnext/aauxnext-bd-webfont.otf') format("opentype"),
+       url('../fonts/aauxnext/aauxnext-bd-webfont.woff') format("woff"),
+	     url('../fonts/aauxnext/aauxnext-bd-webfont.svg#webfont') format("svg");
+}

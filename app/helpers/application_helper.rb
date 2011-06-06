@@ -23,4 +23,9 @@ module ApplicationHelper
     truncate str, :length => length.to_i, :omission => "…"
   end
   
+  def camelCaseString phrase
+  phrase.gsub!(/^[a-z]|\s+[a-z]/) { |a| a.upcase }
+  return phrase
+end
+  
 end

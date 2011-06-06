@@ -1,0 +1,7 @@
+- albums.album.each do |album|
+  %li
+    .img= image_tag validate_img_url(album.image, "album", :medium), :class=>"cover"
+    %p.name< 
+      = trimString(album.name, 48)
+      %br<>
+      %span.artist>= trimString(album.artist.name, 22)

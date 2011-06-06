@@ -1,0 +1,43 @@
+﻿/*********************************/
+/************ LAYOUT *************/
+/*********************************/
+
+@mixin set-width-for-user-left($w){
+  width: $w;
+  h1 { width: $w }
+  .information { width: $w }
+}
+
+#user_left {
+  $padding: 28px;
+  float: left;
+  @include set-width-for-user-left(200px);
+  .picture {
+    float: left;
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+  h1 {
+    font-size: 18px;
+    $height: 44px;
+    line-height: $height;
+    height: $height;
+  }
+  .nav li {
+    background: url('#{$ico-url}/artist-information-active-arrow.png') no-repeat right 10px;
+    cursor: default;
+    &:last-child { margin-bottom: 0 }
+  }
+  .con { 
+    margin-left: 80px;
+    li {
+      $height: 25px;
+      height: $height;
+      margin-bottom: 13px;
+      color: White;
+      line-height: $height;
+      &:last-child { margin-bottom: 0 }
+    }
+  }
+}

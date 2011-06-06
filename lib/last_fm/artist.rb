@@ -18,7 +18,7 @@ module LastFM
     end
   
     # return: artists ( name, mbid, image urls ( different sizes ) )
-    def self.getSimilar artist, limit = nil
+    def self.getSimilar artist, limit = nil, page = nil
       artist_request "getSimilar", "similarartists", artist, limit
     end
   

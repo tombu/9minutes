@@ -1,0 +1,59 @@
+#artist_left
+  #slider
+    = image_tag validate_img_url(@artist.image, "artist", :mega)
+  .tabs_js.information
+    %h1 
+      = @artist.name
+      = link_to "", "#", :class=>"heart"
+    %ul.nav
+      %li= image_tag "icons/artist-info.png"
+      %li= image_tag "icons/artist-links.png"
+      %li= image_tag "icons/artist-tags.png"
+    .content
+      #artist_info
+        %h2 About
+        =raw @artist.bio.summary
+      #artist_links
+        %ul
+        = image_tag "bing.png", :class=>"bing"
+      #artist_tags
+        %h2 Tags
+        %ul
+        - @artist.tags.tag.each do |tag|
+          %li #{camelCaseString tag.name}
+.tabs.tabs_js.w01
+  %ul.nav
+    %li songs
+    %li albums
+    %li related
+  .content{:artist=>"#{CGI.escape(@artist.name)}"}
+    %div
+      %ul.list.songs.andmore{:tile=>"tracks"}
+        - @tracks.track.each do |track|
+          %li
+            = track.name
+            %span by
+            = link_to trimString(track.artist.name, 50), "#!/#{CGI.escape(track.artist.name)}"
+    %div
+      %ul.list.albums.andmore{:tile=>"albums"}
+        - @albums.album.each do |album|
+          %li
+            .img= image_tag validate_img_url(album.image, "album", :medium), :class=>"cover"
+            %p.name< 
+              = trimString(album.name, 48)
+              %br<>
+              %span.artist>= trimString(album.artist.name, 22)
+    %div
+      %ul.list.related
+        - @related.artist.each do |artist|
+          %li<
+            = link_to "#!/#{CGI.escape(artist.name)}" do
+              %h5
+                = trimString(artist.name, 16)
+                %span= "#{(artist.match.to_f*100).to_i}"
+              .img
+                = image_tag validate_img_url(artist.image, "artist", :extralarge), :alt=>artist.name, :title=>artist.name
+:javascript
+  $(document).ready(function(){
+    bing_search("#{CGI.escape(@artist.name)}");
+  });

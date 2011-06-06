@@ -6,8 +6,14 @@ Nineminutes::Application.routes.draw do
   end
 
   get "tracks/index"
+  get "artists/get_artists", :as => "get_artists"
+  match "/artists/:artist", :to => "artists#show"
+  match "/artists_more_tracks", :to => "artists#more_tracks"
+  match "/artists_more_albums", :to => "artists#more_albums"
+  match "/artists_more_similar", :to => "artists#more_similar"
+  get "artists/", :to => "artists#index"
 
-  resources :artists, :constraints => { :id => /.*/ }
+  #resources :artists, :constraints => { :id => /.*/ }
   resources :search
   resources :home
   resources :users

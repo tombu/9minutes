@@ -1,0 +1,289 @@
+﻿/*********************************/
+/*********** SETTINGS ************/
+/*********************************/
+
+/* SIZES */
+$site-width: 950px;
+
+/* COLORS */
+$dark-blue: #2f3a40;
+$content-black: #15191d;
+$blue: #0086cc;
+$light-blue: #a3adb5;
+$red: #ee0000;
+
+/* URLS */
+$base-url: "/images";
+$bg-url: "#{$base-url}/backgrounds";
+$ico-url: "#{$base-url}/icons";
+
+/* FUNCTIONS */
+@mixin center() {
+  position: relative;
+  margin: 0 auto;
+}
+@mixin stripe-bg() {
+  background: transparent url('#{$bg-url}/stripe.png') repeat;
+}
+@mixin stripe-dark-bg() {
+  background: transparent url('#{$bg-url}/stripe-dark.png') repeat;
+}
+
+/* SHORTCUTS */
+.clean { clear: both; }
+
+/* FONTS */
+@mixin medium-font() { font-family: Corbel, "Segoe UI", Arial, sans-serif; }
+@mixin light-font() { font-family: Corbel, "Segoe UI", Arial, sans-serif; font-weight: 100; }
+@mixin bold-font() { font-family: Corbel, "Segoe UI", Arial, sans-serif; font-weight: bold; }
+@mixin std-font() { font-family: Corbel, "Segoe UI", Arial, sans-serif; }
+b, strong { @include medium-font();}
+
+/* DEFAULTS */
+a { cursor: pointer; }
+
+
+/*********************************/
+/************ LAYOUT *************/
+/*********************************/
+
+/* OVERALL */
+body { 
+  background: #010203 url('#{$bg-url}/overall.png') no-repeat center top;
+  color: $content-black;
+  font-size: 12px;
+  @include medium-font()
+}
+#bg_stripe {
+  height: 228px;
+  width: 100%;
+  position: absolute;
+  top: 136px;
+  @include stripe-bg();
+}
+#site {
+  width: $site-width;
+  @include center();
+}
+
+/* HEAD */
+#head {
+  height: 115px;
+
+  h1 {
+    margin: 36px 0 0 94px;
+    float: left;
+  }
+}
+
+/* NAVIGATION */
+#navigation {
+  $height: 79px;
+  $width: 141px;
+  float: right;
+  overflow: hidden;
+
+  li {
+    float: left;
+    &.active { background: url('#{$bg-url}/navi-hover.png') }
+    &.search {
+      $top: 21px;
+      width: 200px;
+      font-size: 17px;
+      color: #ffffff;
+      line-height: $height - $top;
+      display: inline-block;
+      @include stripe-bg();
+      margin-top: $top;
+      height: $height - $top;
+      padding-left: 20px;
+      margin-left: 20px;
+      img {
+        vertical-align: middle;
+        margin-left: 10px;
+      }
+      .text {
+        width: 150px;
+        height: 45px;
+        border: 0; 
+        background: 0;
+        color: #fff;
+      }
+      .submit { display: none;}
+    }
+    > a {
+      font-size: 17px;
+      color: #ffffff;
+      height: $height;
+      line-height: $height + 18;
+      width: $width;
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+      @include bold-font();
+    }
+  }
+}
+
+
+/* FOOT */
+#foot {
+  $font-size: 11px;
+  $height: 20px;
+  clear: both;
+  padding-top: 15px;
+
+  h6 {
+    color: #243037;
+    font-size: $font-size;
+    float: left;
+    height: $height;
+    line-height: $height + 2;
+  }
+  ul {
+    float: left;
+    height: $height;
+    line-height: $height;
+  }
+  li {
+    float: left;
+    margin-left: 33px;
+  }
+  a {
+    color: #ffffff;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: $font-size;
+    background: url('#{$ico-url}/arrow-foot.png') left 3px no-repeat;
+    padding-left: 22px;
+    display: inline-block;
+    height: $height;
+    line-height: $height;
+  }
+}
+
+@mixin set-width-for-tabs($w, $p){
+  .nav { width: $w }
+  .content { 
+    width: $w - 2*$p;
+    > div { width: $w - 2*$p; }
+    .more { 
+      width: $w; 
+      margin: 0 0 - $p -48px 0 - $p;
+    }
+  }
+}
+
+/* TABS */
+.tabs_js .nav li { cursor: pointer }
+.tabs {
+  float: right;
+  $padding-width: 37px;
+  .content {
+    background: #fff;
+    > div { display: none; }
+    padding: 48px $padding-width;
+  }
+  .more {
+    background: #f4f6f9;
+    border-top: 1px solid #e5e9ef;
+    height: 40px;
+    display: block;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    &.disabled {
+      opacity: 0.5;
+      cursor: default;
+      
+    }
+  }
+  &.w01 { @include set-width-for-tabs(564px, $padding-width) }
+  &.w02 { @include set-width-for-tabs(750px, $padding-width) }
+  .nav {
+    color: #fff;
+    overflow: hidden;
+    @include stripe-dark-bg();
+
+    li {
+      $height: 54px;
+      width: 120px;
+      height: $height;
+      line-height: $height;
+      float: left;
+      text-align: center;
+      text-transform: lowercase;
+      font-size: 16px;
+
+      &.active { 
+        background: #fff;
+        color: $dark-blue;
+      }
+    }
+  }
+}
+
+
+
+
+$padding: 22px;
+
+#content {
+  h1 {
+    color: #fff;
+    font-size: 30px;
+    $height: 74px;
+    height: $height;
+    line-height: $height - 4;
+    text-indent: $padding;
+    margin-bottom: 23px;
+    @include stripe-bg();
+  }
+  .information {
+    overflow: hidden;
+    padding-bottom: 22px;
+    @include stripe-bg();
+    .content {
+      > div { display: none; }
+    }
+    .nav {
+      margin-left: $padding;
+      float: left;
+      li {
+        width: 37px;
+        height: 25px;
+        margin-bottom: 13px;
+
+        &.active { 
+          background: url('#{$ico-url}/artist-information-active-arrow.png') no-repeat right 10px;
+          cursor: default;
+        }
+      }
+    }
+    .content {
+      float: right;
+      width: 280px;
+      margin-right: $padding;
+      color: #fff;
+    }
+  }
+}
+
+
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  background: $blue;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: none;
+  z-index: 999;
+  &.error { background: $red; }
+}
+

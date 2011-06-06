@@ -1,0 +1,27 @@
+﻿/*********************************/
+/************ LAYOUT *************/
+/*********************************/
+
+#top_artist {
+  position: relative;
+  width: 500px;
+  height: 270px;
+  background: url('#{$ico-url}/loading.gif') no-repeat 50% 50%;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+  }
+  .nivo-controlNav {
+    position:absolute;
+    bottom:-70px; /* Put the nav below the slider */
+  }
+ .nivo-controlNav img {
+    display:inline; /* Unhide the thumbnails */
+    position:relative;
+    margin-right:10px;
+  }
+}
