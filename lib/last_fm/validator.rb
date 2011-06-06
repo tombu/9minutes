@@ -1,6 +1,6 @@
 module LastFM
   
-  class Validator
+  module Validator
     
     def self.validate_mash mash, *args
       args.flatten!

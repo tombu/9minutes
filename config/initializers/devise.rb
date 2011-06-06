@@ -193,7 +193,7 @@ Devise.setup do |config|
     config.omniauth :facebook, 'APP_ID', 'APP_SECRET'
   end
   config.omniauth :open_id, OpenID::Store::Filesystem.new('/tmp')
-  # config.omniauth :open_id, OpenID::Store::Filesystem.new('/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
+  # config.omniauth :google_apps, OpenID::Store::Filesystem.new('/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
   # config.omniauth :twitter, 'CONSUMER_KEY', 'CONSUMER_SECRET'
 
   # ==> Warden configuration
