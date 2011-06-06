@@ -79,7 +79,6 @@ module LastFM
           puts "<< ---- '#{current_class_name}.#{method.to_s}' -- TIME: #{response.time.to_s} ----"
           
           hash = Hashie::Mash.new(JSON.parse(response.body))
-          puts hash
           hash = method.to_s == "search" ? hash.results.send(node.to_sym) : hash.send(node.to_sym)
           
           update_results "#{current_class_name}_#{method}", hash unless hash.blank?

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  playlist: 
+  track: 
+  youtube_id: MyString
+  position: 1
+
+two:
+  playlist: 
+  track: 
+  youtube_id: MyString
+  position: 1

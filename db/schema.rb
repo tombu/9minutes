@@ -10,7 +10,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110530191034) do
+ActiveRecord::Schema.define(:version => 20110606000240) do
+
+  create_table "artists", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "artists_users", :force => true do |t|
+    t.integer "user_id"
+    t.integer "artist_id"
+  end
+
+  create_table "playlists", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "playlists_tracks", :force => true do |t|
+    t.integer  "playlist_id"
+    t.integer  "track_id"
+    t.string   "youtube_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tracks", :force => true do |t|
+    t.string   "title"
+    t.integer  "artist_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username"
@@ -36,5 +70,13 @@ ActiveRecord::Schema.define(:version => 20110530191034) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "youtube_video_ratings", :force => true do |t|
+    t.string   "search_query"
+    t.string   "video_id"
+    t.integer  "rating",       :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
