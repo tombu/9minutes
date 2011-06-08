@@ -1,11 +1,11 @@
 module LastFM
   
-  class Track < LastFMRequest
+  class Track < Request
     def self.search query, limit = nil, page = nil
       track_request "search", "trackmatches", query, nil, limit, page do |result|
         result = LastFM::Validator.validate_mash result
         result = Hashie::Mash.new({ :track => [] }) if result.blank?
-        update_results "#{current_class_name}_#{__method__}", result
+        update_results [current_class_name, __method__], result
       end
     end
   

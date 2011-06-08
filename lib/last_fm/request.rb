@@ -3,7 +3,7 @@ require 'hashie'
 
 module LastFM
 
-  class LastFMRequest
+  class Request
 
     @@base_uri = 'http://ws.audioscrobbler.com/2.0/'
     @@default_params = { :format => 'json', :autocorrect => '1' }
@@ -16,15 +16,16 @@ module LastFM
     end
 
     def self.base_uri
-      return @@base_uri
+      @@base_uri
     end
 
     def self.default_params
-      return @@default_params
+      @@default_params
     end
 
-    def self.results
-      return @@results
+    def self.results keys = nil
+      return @@results if keys.nil?
+      @@results[("#{keys[0]}_#{keys[1]}".to_sym)]
     end
 
     def self.run_queue!
@@ -34,29 +35,30 @@ module LastFM
     end
 
     def self.artist_request method, node, q, limit = nil, page = nil, &block
-      request_params = default_params.merge( :method => "#{current_class_name}.#{method.to_s}", :artist => q, :limit => limit, :page => page )
+      request_params = default_params.merge( :method => "#{current_class_name}.#{method}", :artist => q, :limit => limit, :page => page )
       create_and_queue_request method, node, block, request_params
     end
 
     def self.album_request method, node, q, artist = nil, limit = nil, page = nil, &block
-      request_params = default_params.merge( :method => "#{current_class_name}.#{method.to_s}", :album => q, :artist => artist, :limit => limit, :page => page )
+      request_params = default_params.merge( :method => "#{current_class_name}.#{method}", :album => q, :artist => artist, :limit => limit, :page => page )
       create_and_queue_request method, node, block, request_params
     end
 
     def self.track_request method, node, q, artist = nil, limit = nil, page = nil, &block
-      request_params = default_params.merge( :method => "#{current_class_name}.#{method.to_s}", :track => q, :artist => artist, :limit => limit, :page => page )
+      request_params = default_params.merge( :method => "#{current_class_name}.#{method}", :track => q, :artist => artist, :limit => limit, :page => page )
       create_and_queue_request method, node, block, request_params
     end
 
     def self.chart_request method, node, limit = nil, page = nil, &block
-      request_params = default_params.merge( :method => "#{current_class_name}.#{method.to_s}", :limit => limit, :page => page )
+      request_params = default_params.merge( :method => "#{current_class_name}.#{method}", :limit => limit, :page => page )
       create_and_queue_request method, node, block, request_params
     end
 
     protected
 
-    def self.update_results key, hash
-      @@results[(key.to_sym)].update hash
+    def self.update_results keys, hash
+      puts "updated"
+      @@results[("#{keys[0]}_#{keys[1]}".to_sym)].update hash
     end
 
     def self.current_class_name
@@ -69,23 +71,23 @@ module LastFM
       request = Typhoeus::Request.new(base_uri, :params => request_params) # :timeout => APP_CONFIG["request_timeout"],
       handle_response request, method, node, block
       
-      puts ">> ---- '#{current_class_name}.#{method.to_s}' request is queued ----" if @@hydra.queue request
-      @@results[(current_class_name + "_" + method).to_sym] = Hashie::Mash.new
+      puts ">> ---- '#{current_class_name}.#{method}' request is queued ----" if @@hydra.queue request
+      @@results["#{current_class_name}_#{method}".to_sym] = Hashie::Mash.new
     end
 
     def self.handle_response request, method, node, block
       request.on_complete do |response|
         if response.success?
-          puts "<< ---- '#{current_class_name}.#{method.to_s}' -- TIME: #{response.time.to_s} ----"
+          puts "<< ---- '#{current_class_name}.#{method}' -- TIME: #{response.time} ----"
           
           hash = Hashie::Mash.new(JSON.parse(response.body))
           hash = method.to_s == "search" ? hash.results.send(node.to_sym) : hash.send(node.to_sym)
           
-          update_results "#{current_class_name}_#{method}", hash unless hash.blank?
+          update_results [current_class_name, method], hash if hash.present? and block.nil?
+          block.call( hash ) unless block.nil?
           
-          block.call(@@results[("#{current_class_name}_#{method}").to_sym]) unless block.nil?
         elsif response.timed_out?
-          puts ">> -- '#{current_class_name}.#{method.to_s}' -- TIMED OUT -- <<"
+          puts ">> -- '#{current_class_name}.#{method}' -- TIMED OUT -- <<"
         end
       end
     end

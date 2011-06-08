@@ -12,7 +12,7 @@ class ArtistsController < ApplicationController
     @albums = LastFM::Artist.getTopAlbums artist, @@limit[:albums]
     @related= LastFM::Artist.getSimilar artist, @@limit[:similar]
 
-    LastFM::LastFMRequest.run_queue!
+    LastFM::Request.run_queue!
     
     render :partial=>"show", :locals=>{
       :artist=>@artist,
@@ -30,7 +30,7 @@ class ArtistsController < ApplicationController
   def more_tracks
     more params
     @tracks = LastFM::Artist.getTopTracks params[:artist], @@limit[:tracks], (params[:size] / @@limit[:tracks] + 1)
-    LastFM::LastFMRequest.run_queue!
+    LastFM::Request.run_queue!
    
     render :partial=>"more_tracks", :locals=>{:tracks=>@tracks}
   end
@@ -38,7 +38,7 @@ class ArtistsController < ApplicationController
   def more_albums
     more params
     @albums = LastFM::Artist.getTopAlbums params[:artist], @@limit[:albums], (params[:size] / @@limit[:albums] + 1)
-    LastFM::LastFMRequest.run_queue!
+    LastFM::Request.run_queue!
 
     render :partial=>"more_albums", :locals=>{:albums=>@albums}
   end

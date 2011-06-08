@@ -5,7 +5,7 @@ class SearchController < ApplicationController
     @tracks = LastFM::Track.search(params[:q].to_s.lstrip, 24)
     @albums = LastFM::Album.search(params[:q].to_s.lstrip, 16)
       
-    LastFM::LastFMRequest.run_queue!
+    LastFM::Request.run_queue!
   end
 
 end

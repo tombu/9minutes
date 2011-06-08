@@ -1,19 +1,20 @@
 module LastFM
   
-  class Artist < LastFMRequest
+  class Artist < Request
     
     def self.search query, limit = nil, page = nil
       artist_request "search", "artistmatches", query, limit, page do |result|
         result = LastFM::Validator.validate_mash result
         result = Hashie::Mash.new({ :artist => [] }) if result.blank?
-        update_results "#{current_class_name}_#{__method__}", result
+        update_results [current_class_name, __method__], result
       end
     end
   
     # return: artist name, tags, similar artists, artist bio (summary / long), mbid, image urls ( different sizes )
     def self.getInfo artist
       artist_request "getInfo", "artist", artist do |info|
-        LastFM::Validator.validate_mash info, "tag", "image"
+        info = LastFM::Validator.validate_mash info, "tag", "image"
+        update_results [current_class_name, __method__], info
       end
     end
   
@@ -37,7 +38,7 @@ module LastFM
       artist_request "getTopAlbums", "topalbums", artist, limit, page do |albums|
         albums = LastFM::Validator.validate_mash albums, "album"
         albums = Hashie::Mash.new({ :album => [] }) if albums.total == "0"
-        update_results "#{current_class_name}_#{__method__}", albums
+        update_results [current_class_name, __method__], albums
       end
     end
     
@@ -45,7 +46,7 @@ module LastFM
       artist_request "getImages", "images", artist, limit do |images|
         images = LastFM::Validator.validate_mash images, "image"
         images = Hashie::Mash.new({ :image => [] }) if images.total == "0"
-        update_results "#{current_class_name}_#{__method__}", images
+        update_results [current_class_name, __method__], images
       end
     end
   

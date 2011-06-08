@@ -1,6 +1,6 @@
 module LastFM
 
-  class Chart < LastFMRequest
+  class Chart < Request
     def self.getTopArtists limit = nil, page = nil
       chart_request "getTopArtists", "artists", limit, page do |artists|
         LastFM::Validator.validate_mash artists, "image"

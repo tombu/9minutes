@@ -3,8 +3,6 @@ Nineminutes::Application.configure do
   
   # Reloads modules and files in lib directory
   config.autoload_paths += %W(#{config.root}/lib)
-  config.autoload_paths += Dir["#{config.root}/lib/**/"]
-  
   
   # In the development environment your application's code is reloaded on
   # every request.  This slows down response time but is perfect for development
