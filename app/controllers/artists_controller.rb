@@ -14,9 +14,12 @@ class ArtistsController < ApplicationController
 
     LastFM::LastFMRequest.run_queue!
     
-    respond_to do |format|
-      format.js
-    end
+    render :partial=>"show", :locals=>{
+      :artist=>@artist,
+      :tracks=>@tracks,
+      :albums=>@albums,
+      :related=>@related
+    }
   end
   
   def index
@@ -27,23 +30,17 @@ class ArtistsController < ApplicationController
   def more_tracks
     more params
     @tracks = LastFM::Artist.getTopTracks params[:artist], @@limit[:tracks], (params[:size] / @@limit[:tracks] + 1)
-    
     LastFM::LastFMRequest.run_queue!
-    
-    respond_to do |format|
-      format.js
-    end
+   
+    render :partial=>"more_tracks", :locals=>{:tracks=>@tracks}
   end
   
   def more_albums
     more params
     @albums = LastFM::Artist.getTopAlbums params[:artist], @@limit[:albums], (params[:size] / @@limit[:albums] + 1)
-    
     LastFM::LastFMRequest.run_queue!
 
-    respond_to do |format|
-      format.js
-    end
+    render :partial=>"more_albums", :locals=>{:albums=>@albums}
   end
   
   def more params

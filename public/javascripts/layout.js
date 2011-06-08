@@ -1,19 +1,5 @@
-﻿
-$(document).ready(function(){
-  x=0;
-  setInterval(function(){
-    x*=10;
-    $('#cnt').html(x);
-  }, 100);
-});
-
-$(window).load(function() {
-  init_artist();
-  $('#top_artist').nivoSlider({
-    controlNav: true,
-    controlNavThumbs:true,
-    pauseTime: 5000
-  });
+﻿$(document).ready(function() {
+  Path.listen();
 });
 
 
@@ -49,7 +35,6 @@ function init_artist(){
   new_albums();
   margin_fixes();
   remove_links_from_description();
-  Path.listen();
 }
 
 
@@ -138,5 +123,39 @@ function album_add_show_songs_button(){
   $('.albums li').each(function(){
     if(!$(this).has(".songsbtn").length)
       $(this).append('<a class="songsbtn" href="">Songs</a>');
+  });
+}
+
+
+function init_site(link){
+  Path.listen();
+  
+  switch(link) {
+    case artist_path:
+      init_tabs();
+      init_artist();
+      break;
+    case home_path:
+      $('#top_artist').nivoSlider({
+        controlNav: true,
+        pauseTime: 3000
+      });
+      set_active_navigation(home_path);
+      break;
+    case charts_path:
+      init_tabs();
+      add_more_button();
+      set_active_navigation(charts_path);
+      break;
+  }
+}
+
+
+function set_active_navigation(text){
+  text = text.replace("/","");
+  $('#navigation li.active').removeClass("active");
+  $('#navigation li').each(function(){
+    if($(this).children("a").html() == text)
+      $(this).addClass("active");
   });
 }

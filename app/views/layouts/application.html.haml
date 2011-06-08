@@ -3,26 +3,29 @@
   %head
     %title Nineminutes
     = stylesheet_link_tag "9minutes"
-    = javascript_include_tag "http://www.google.com/jsapi"
+    =# javascript_include_tag "http://www.google.com/jsapi"
     = javascript_include_tag :defaults
     
     = csrf_meta_tag
   %body
-    %pre{:id=>"cnt",:style=>"color:white;position:fixed;top:0;left:0;z-index:1000"} 0
+    %a#full{:style=>"position:absolute;z-index:999;color:white;"} FULL
     #loading Loading
+    #error Error
+    #block
     #bg_stripe
     #site
-      - if user_signed_in?
-        %span.bold= "YEAH! ICH BIN DRIN!"
-      - else
-        =link_to "Sign In", new_user_session_path
-        =link_to "Sign Up", new_user_registration_path
-      =link_to "Sign Out", destroy_user_session_path
+      #uuser{:style=>"display:none;"}
+        - if user_signed_in?
+          %span.bold= "YEAH! ICH BIN DRIN!"
+        - else
+          =link_to "Sign In", new_user_session_path
+          =link_to "Sign Up", new_user_registration_path
+        =link_to "Sign Out", destroy_user_session_path
       #head
-        %h1= link_to image_tag("nine-minutes.png"), "/"
+        %h1= link_to image_tag("nine-minutes.png"), "/#!/home"
       #navigation
-        %li.active= link_to "home", "#"
-        %li= link_to "charts", "#"
+        %li.active= link_to "home", "/#!/home"
+        %li= link_to "charts", "/#!/charts"
         %li= link_to "about", "#"
         %li= link_to "register", "#"
         %li.search
@@ -32,7 +35,6 @@
             = submit_tag '', :class=>"submit", :name => nil
       %br.clean
       #content
-        = yield
       %br.clean
       #foot
         - date = DateTime.now
@@ -41,3 +43,10 @@
           %li= link_to "About", "#"
           %li= link_to "Legal", "#"
           %li= link_to "Faq", "#"
+    #fullscreen_wrap
+    #fullscreen
+      %h2 Avril Lavigne
+      %h1 Alice (In Wonderland)
+      = image_tag "examples/video-big.jpg", :class=>"left video"
+      .sidebar
+        .player

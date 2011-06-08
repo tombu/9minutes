@@ -1,25 +1,25 @@
 ﻿function show_flash(error){
-  $load = $('#loading');
+  $load = (error) ? $('#error') : $('#loading');
   if($load.is(":visible")) return false;
-
-  if(error && !$load.hasClass("error")) $load.addClass("error");
-  else if (!error) $load.removeClass("error");
 
   $load.css({"top": "-40px", "opacity": "0"}).show();
   $load.animate({
     opacity: 1,
     top: 0
   }, 300);
+  if (!error) $('#block').show().fadeTo(400, 0.3);
 }
 
-function hide_flash(){
-  $load = $('#loading');
+function hide_flash(error){
+  $load = (error) ? $('#error') : $('#loading');
   if($load.is(":hidden")) return false;
 
   $load.animate({
     opacity: 0,
     top: -40
   }, 600, function(){$(this).hide()});
+  
+  if (!error) $('#block').fadeTo(300, 0, function(){ $(this).hide();});
 }
 
 

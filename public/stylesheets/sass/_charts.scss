@@ -1,0 +1,52 @@
+﻿/*********************************/
+/************ LAYOUT *************/
+/*********************************/
+
+#charts {
+  width: 530px;
+  float: left;
+  li {
+    $height: 50px;
+    overflow: hidden;
+    display: block;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f2f4;
+    margin-bottom: 10px;
+    h6 {
+      font-size: 28px;
+      font-weight: bold;
+      float: left;
+      height: $height;
+      color: $light-blue;
+      line-height: $height;
+      margin-left: 15px;
+      width: 50px;
+    }
+    .img {
+      width: 90px;
+      height: $height;
+      float: left;
+      overflow: hidden;
+      position: relative;
+      img {
+        max-width: 90px;
+      }
+    }
+    .text {
+      float: left;
+      margin-left: 15px;
+      h2 {
+        margin: -3px 0 5px 0;
+        a {
+          color: $blue;
+          font-size: 16px;
+          text-decoration: none;
+          &:hover { text-decoration: underline; }
+        }
+      }
+      p {
+        
+      }
+    }
+  }
+}

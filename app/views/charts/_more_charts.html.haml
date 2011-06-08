@@ -1,0 +1,9 @@
+- @charts.artist.each_with_index do |artist, id|
+  %li 
+    %h6= (params[:size].nil? ? 0 : params[:size]) + id + 1
+    - @link = "#!/artists/#{CGI.escape(artist.name)}"
+    .img= link_to image_tag(validate_img_url(artist.image, "artist", :large)), @link
+    .text
+      %h2= link_to artist.name, @link
+      %p
+        = artist.listeners+" Listeners"

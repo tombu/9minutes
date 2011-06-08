@@ -1,0 +1,11 @@
+.tabs.tabs_js.w03
+  %ul.nav
+    %li top artists
+    %li top songs
+  .content
+    %div
+      = render :partial=>"sidebar/index"
+      %ul#charts.list.andmore{:tile=>"more_charts"}
+        = render :partial=>"more_charts", :locals=>{:charts=>@charts}
+    %div
+      = "Waiting for update :P"

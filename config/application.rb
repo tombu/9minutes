@@ -38,13 +38,15 @@ module Nineminutes
       jquery
       plugins/rails
       config
+      plugins/path
+      ajax/requests
+      ajax/routes
       plugins/bing 
-      animations/coloranimations
+      plugins/coloranimations
       plugins/nivoslider 
       plugins/imageresize 
-      animations/animations 
-      plugins/path
-      ajax/routes
+      animations/animations
+      animations/fullscreen
       layout
       ajax/loadmore
     )

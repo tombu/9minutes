@@ -6,7 +6,7 @@ class CreateArtists < ActiveRecord::Migration
       t.timestamps
     end
     
-    create_table :artists_users do |t|
+    create_table :artists_users, :id => false do |t|
       t.references :user
       t.references :artist
     end

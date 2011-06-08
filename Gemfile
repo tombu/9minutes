@@ -15,6 +15,9 @@ gem "sass"
 gem 'typhoeus'
 # gem 'httparty'
 
+# for using 7digital api
+gem '7digital'
+
 # for converting json/xml to object
 gem 'json'
 gem 'hashie'

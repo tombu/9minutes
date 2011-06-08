@@ -1,0 +1,22 @@
+﻿/*********************************/
+/************ LAYOUT *************/
+/*********************************/
+
+#sidebar {
+  float: right;
+  width: 320px;
+  .advertisment {
+    width: 300px;
+    height: 270px;
+    padding: 10px;
+    border: 1px solid $ultra-light;
+    background: lighten($ultra-light, 2%);
+  }
+  img { float: left; }
+  sup {
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    float: left;
+  }
+}

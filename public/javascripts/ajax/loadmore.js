@@ -1,5 +1,8 @@
 ﻿$(document).ready(function(){
   $('.more').live("click", function(){
+    hide_flash(false);
+    hide_flash(true);
+    
     more_hover_out(this);
     loadmore(this);
   });
@@ -17,36 +20,29 @@ function loadmore(obj){
   
   disable_more_button(obj);
   
-  $.ajax({
-    type: "POST",
-    dataType: "script",
-    url: "/artists_more_"+tile,
-    data: "size="+size+"&artist="+artist,
-    error: function(){
-      alert("An error has occurred making the request: ");
-      show_flash(true);
-    },
-    success: function(){
-      $list = $(".list[wanting=true]");
-      $list.removeAttr("wanting");
-      hide_flash();
-      init_artist();
-      enable_more_button();
-    }
-  });
+  url = "/"+tile;
+  params = "size="+size+"&artist="+artist;
+  
+  load_more_request(url, params);
 }
 
 function append_to_list(ctnt){
   $list = $(".list[wanting=true]");
   var c=0;
   $(ctnt).hide().appendTo($list);
+  
   $list.children().each(function(){
     if($(this).is(":hidden"))
     {
       show_li(this, c);
-      c+=100;
+      c+=30;
     }
   });
+  
+  $list.removeAttr("wanting");
+  hide_flash();
+  init_artist();
+  enable_more_button();
 }
 
 function show_li(obj, c){

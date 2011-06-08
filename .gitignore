@@ -8,4 +8,7 @@ Icon*
 Thumbs.db
 
 /config/config.yml
+/config/sevendigital.yml
+
 /public/images_old/
+/public/.sass_cache/

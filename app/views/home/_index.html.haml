@@ -1,0 +1,3 @@
+%ul#top_artist
+  - @charts.artist.each do |a|
+    %li= image_tag validate_img_url(a.image, "artist", :mega)
