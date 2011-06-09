@@ -9,7 +9,7 @@ class SearchController < ApplicationController
     @tracks = LastFM::Track.search @q, @@limit[:tracks]
     @albums = LastFM::Album.search @q, @@limit[:albums]
 
-    LastFM::LastFMRequest.run_queue!
+    LastFM::Request.run_queue!
     
     render :partial=>"show", :locals=>{
       :artist=>@artist,
@@ -28,7 +28,7 @@ class SearchController < ApplicationController
   
   def more_artists
     @artists = LastFM::Artist.search params[:q].to_s.lstrip, @@limit[:artists], (params[:size].to_i / @@limit[:artists] + 1)
-    LastFM::LastFMRequest.run_queue!
+    LastFM::Request.run_queue!
 
     render :partial=>"more_artists", :locals=>{:artists=>@artists}
   end

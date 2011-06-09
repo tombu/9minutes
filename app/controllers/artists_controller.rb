@@ -28,7 +28,7 @@ class ArtistsController < ApplicationController
   
   
   def more_tracks
-    more params
+    prepare params
     @tracks = LastFM::Artist.getTopTracks params[:q], @@limit[:tracks], (params[:size] / @@limit[:tracks] + 1)
     LastFM::Request.run_queue!
    
@@ -36,7 +36,7 @@ class ArtistsController < ApplicationController
   end
   
   def more_albums
-    more params
+    prepare params
     @albums = LastFM::Artist.getTopAlbums params[:q], @@limit[:albums], (params[:size] / @@limit[:albums] + 1)
     LastFM::Request.run_queue!
 
@@ -45,7 +45,7 @@ class ArtistsController < ApplicationController
 
   def album_info
     @album = LastFM::Album.getInfo CGI.unescape(params[:album]), CGI.unescape(params[:artist])
-    LastFM::LastFMRequest.run_queue!
+    LastFM::Request.run_queue!
 
     render :partial=>"album_info", :locals=>{:album=>@album}
   end
