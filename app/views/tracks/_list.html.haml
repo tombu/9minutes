@@ -7,4 +7,4 @@
       = image_tag "ico/play.png", :class=>"play", :videoid=>id.videos.first.unique_id
       = image_tag "ico/add.png", :class=>"add"
       %span= track.name
-      = link_to trimString(track.artist, 50), artist_path(CGI.escape(track.artist))
+      = link_to trimString(track.artist, 50), "#!/artists/#{CGI.escape(track.artist)}"

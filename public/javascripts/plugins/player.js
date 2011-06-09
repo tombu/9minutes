@@ -121,7 +121,7 @@
       ytplayer.loadVideoById(videoID);
       active = videoID;
       $li = activeVid();
-      $('#playlist li').each(function(){
+      $('.play_list li').each(function(){
       $(this).removeClass("active");
       });
       $li.addClass("active");
@@ -137,8 +137,8 @@
     });
 
 	  // This function is automatically called by the player once it loads
-	  function onYouTubePlayerReady(playerId) {
-      ytplayer = document.getElementById("ytPlayer");
+	function onYouTubePlayerReady(playerid) {
+      ytplayer = document.getElementById("video");
       // This causes the updatePlayerInfo function to be called every 250ms to
       // get fresh data from the player
       startUpdate();
@@ -151,14 +151,14 @@
 	  }
 
 	  // The "main method" of this sample. Called when someone clicks "Run".
-	  function loadPlayer() {
+	function loadPlayer() {
       // Lets Flash from another domain call JavaScript
       var params = { allowScriptAccess: "always" };
       // The element id of the Flash embed
       var atts = { id: "ytPlayer" };
       // All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
       swfobject.embedSWF("http://www.youtube.com/apiplayer?version=3&enablejsapi=1", 
-                "videoDiv", "50", "28", "8", null, null, params, atts);
+                "videoDiv", "640", "360", "8", null, null, params, atts);
 	  }
 	  function _run() {
 		loadPlayer();
@@ -171,7 +171,7 @@
 		$next = $e.next('li');
 		if($next.html() != null) 
 			loadVideo($next.attr('videoid'));
-    else loadVideo($('#playlist li:first-child').attr('videoid'));
+    else loadVideo($('.play_list li:first-child').attr('videoid'));
 	}
 	function prevVideo()
 	{
@@ -179,22 +179,22 @@
 		$prev = $e.prev('li');
 		if($prev.html() != null) 
 			loadVideo($prev.attr('videoid'));
-    else loadVideo($('#playlist li:last-child').attr('videoid'));
+    else loadVideo($('.play_list li:last-child').attr('videoid'));
 		//$(this).parent().children().index(this);
 	}
 
 	function activeVid()
 	{
-		$x = $('#playlist [videoid='+active+']');
+		$x = $('.play_list [videoid='+active+']');
     //console.log($('#playlist').html());
     return ($x==null) ? '' : $x;
 	}
     
   $('document').ready(function(){
-    $('#player .forward').live('click', function(){
+    $('.forward').live('click', function(){
       nextVideo();
     });
-    $('#player .backward').live('click', function(){
+    $('.backward').live('click', function(){
       prevVideo();
     });
   });

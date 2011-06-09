@@ -4,12 +4,12 @@ gem 'rake' #, '0.8.7'
 
 gem 'rails', '3.0.5'
 gem 'jquery-rails', '>= 0.2.6'
-gem 'jrails'
 
 # templating / styling
 gem 'haml-rails'
 gem "sass"
 
+gem "youtube_it"
 
 # for using last.fm api
 gem 'typhoeus'

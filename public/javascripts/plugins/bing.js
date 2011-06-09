@@ -46,7 +46,7 @@ function DisplayResults(response)
     var resultStr = "";
     for (var i = 0; i < results.length; ++i)
     {
-        title = results[i].Title.substring(0,40) + "&hellip;";
+        title = (results[i].Title.length > 40) ? results[i].Title.substring(0,40) + "&hellip;" : results[i].Title;
         $appendData = "<li><a href=\""+results[i].Url+"\"><h3>"+title+"</h3>"+results[i].DisplayUrl+"</a></li>";
         $appendData = ReplaceHighlightingCharacters($appendData, "<span>", "</span>");
         $('#artist_links ul').append($appendData);

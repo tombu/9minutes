@@ -1,0 +1,20 @@
+﻿/*********************************/
+/************ LAYOUT *************/
+/*********************************/
+
+.player {
+  float: right;
+  height: 47px;
+  margin: 52px 17px 0 0;
+  line-height: 47px;
+  a { float: left; }
+  .play { margin: -8px 5px 0 5px; }
+  .forward, .backward {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+  }
+  .volume, .repeat, #full {
+    margin: -5px 0 0 20px;
+  }
+}

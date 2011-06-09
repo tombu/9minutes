@@ -41,3 +41,13 @@ function more_hover_out(obj){
     color: "#15191d"
   }, 100);
 }
+
+function init_playlist_scrollbar(){
+  $('#fullscreen .play_list').jScrollPane();
+  
+  $('#fullscreen .play_list').hover(function(){
+    $('#fullscreen .jspVerticalBar').stop().fadeTo(300, 1);
+  }, function(){
+    $('#fullscreen .jspVerticalBar').stop().fadeTo(200, 0.02);
+  });
+}

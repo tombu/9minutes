@@ -17,6 +17,7 @@ $ultra-light: #f4f6f9;
 $base-url: "/images";
 $bg-url: "#{$base-url}/backgrounds";
 $ico-url: "#{$base-url}/icons";
+$place-url: "#{$base-url}/placeholder";
 
 /* FUNCTIONS */
 @mixin center() {
@@ -29,6 +30,18 @@ $ico-url: "#{$base-url}/icons";
 @mixin stripe-dark-bg() {
   background: transparent url('#{$bg-url}/stripe-dark.png') repeat;
 }
+
+@mixin rounded($radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+@mixin shadow($value) {
+  -moz-box-shadow: $value;
+  -webkit-box-shadow: $value;
+  box-shadow: $value;
+}
+
 
 /* SHORTCUTS */
 .clean { clear: both; }
@@ -51,7 +64,7 @@ a { cursor: pointer; }
 
 /* OVERALL */
 body { 
-  background: #010203 url('#{$bg-url}/overall.png') no-repeat center top;
+  background: #05070a url('#{$bg-url}/overall.png') no-repeat center top;
   color: $content-black;
   font-size: 12px;
   @include medium-font()
@@ -172,7 +185,7 @@ body {
     > div { width: $w - 2*$p; }
     .more { 
       width: $w; 
-      margin: 0 0 - $p -48px 0 - $p;
+      margin: 7px 0 - $p -48px 0 - $p;
     }
   }
 }
@@ -184,7 +197,7 @@ body {
   $padding-width: 37px;
   .content {
     background: #fff;
-    > div { display: none; }
+    > div { display: none; position: relative; }
     padding: 48px $padding-width;
   }
   .more {
@@ -232,16 +245,6 @@ body {
 $padding: 22px;
 
 #content {
-  h1 {
-    color: #fff;
-    font-size: 30px;
-    $height: 74px;
-    height: $height;
-    line-height: $height - 4;
-    text-indent: $padding;
-    margin-bottom: 23px;
-    @include stripe-bg();
-  }
   .information {
     overflow: hidden;
     padding-bottom: 22px;
@@ -305,8 +308,14 @@ $padding: 22px;
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 8;
+  z-index: 22;
   background: #000;
   opacity: 0;
   display: none;
+}
+
+.box {
+  padding: 10px;
+  border: 1px solid desaturate(darken($ultra-light, 6%), 20%);
+  background: $ultra-light;
 }

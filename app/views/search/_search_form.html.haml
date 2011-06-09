@@ -1,0 +1,4 @@
+.box#search_bar
+  = form_tag '/search', :method => 'get', :id => "search_bar_form", :remote=>true do
+    = text_field_tag 'q', params[:q], :class => "text", :placeholder => "Search here ..."
+    = link_to image_tag("icons/search.png", :class=>"button"), "/#!/search"

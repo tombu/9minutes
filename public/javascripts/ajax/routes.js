@@ -17,4 +17,10 @@ $(document).ready(function(){
     show_flash(false);
     load_site_request(charts_path, "");
   });
+  
+  // Search Page
+  Path.map(hashbang+search_path+":q").to(function(){
+    show_flash(false);
+    load_site_request(search_path, this.params['q']);
+  });
 });

@@ -25,6 +25,7 @@
     .img {
       width: 90px;
       height: $height;
+      background: url('#{$place-url}/artist.png') no-repeat 0 0;
       float: left;
       overflow: hidden;
       position: relative;
@@ -43,9 +44,6 @@
           text-decoration: none;
           &:hover { text-decoration: underline; }
         }
-      }
-      p {
-        
       }
     }
   }

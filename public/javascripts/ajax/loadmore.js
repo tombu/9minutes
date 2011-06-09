@@ -17,11 +17,12 @@ function loadmore(obj){
   size = $(obj).parent().find('li').size();
   tile = $(obj).parent().children('.list').attr("tile");
   artist = $(obj).parent().parent(".content").attr("artist");
+  q = $(obj).parent().parent(".content").attr("q");
   
   disable_more_button(obj);
   
   url = "/"+tile;
-  params = "size="+size+"&artist="+artist;
+  params = "size="+size+"&artist="+artist+"&q="+q;
   
   load_more_request(url, params);
 }

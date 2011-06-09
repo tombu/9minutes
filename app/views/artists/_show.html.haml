@@ -12,7 +12,7 @@
     .content
       #artist_info
         %h2 About
-        =raw artist.bio.summary
+        =raw artist.bio.summary.empty? ? "No information available!" : artist.bio.summary
       #artist_links
         %ul
         = image_tag "bing.png", :class=>"bing"
@@ -26,7 +26,7 @@
     %li songs
     %li albums
     %li related
-  .content{:artist=>"#{CGI.escape(artist.name)}"}
+  .content{:q=>"#{CGI.escape(artist.name)}"}
     %div
       %ul.list.songs.andmore{:tile=>"more_tracks"}
         = render :partial=>"more_tracks", :locals=>{:tracks=>@tracks}
@@ -43,6 +43,7 @@
                 %span= "#{(artist.match.to_f*100).to_i}"
               .img
                 = image_tag validate_img_url(artist.image, "artist", :extralarge), :alt=>artist.name, :title=>artist.name
+      %div.clean
 
 :javascript
   $(document).ready(function(){

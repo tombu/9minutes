@@ -33,19 +33,49 @@
     color: #fff;
     margin-bottom: 20px;
   }
-  img.left {
+  #video {
     float: left;
     width: 640px;
+    height: 360px;
+    @include stripe-bg();
   }
   .sidebar {
     float: right;
     width: 310px;
     height: 360px;
     @include stripe-bg();
-    .player {
+    .top {
       width: 310px;
       height: 125px;
       @include stripe-bg();
+      text-align: center;
+      line-height: 125px;
+      .player {
+        float: left;
+        margin-top: 47px;
+        margin-left: 40px;
+      }
+    }
+    .play_list {
+      width: 310px;
+      height: 235px;
+      padding: 10px 0; 
+      overflow: auto; 
+      li {
+        padding: 6px 25px;
+        h3 {
+          font-size: 22px;
+          color: white;
+          line-height: 22px;
+          span {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: $blue;
+          }
+        }
+      }
+      .jspVerticalBar { left: 0!important; opacity: 0.02; }
     }
   }
 }

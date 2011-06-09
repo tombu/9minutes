@@ -54,8 +54,8 @@ function submit_redirect(obj){
 function add_controls(){
   $('.list.songs').each(function(){
     $(this).children("li").each(function(){
-      if(!$(this).has(".play").length)
-        $(this).prepend('<a class="play"/><a class="add" href="javascript:void(0);" onclick="open_playlists(this);"/>');
+      if(!$(this).has(".playsong").length)
+        $(this).prepend('<a class="playsong"/><a class="add" href="javascript:void(0);" onclick="open_playlists(this);"/>');
     });
   });
 }
@@ -112,7 +112,8 @@ function new_albums(){
 
 function album_hover(){
   $('.albums .img').hover(function(){
-    $(this).append('<div class="playall"><a href="javascript:void(0);"></a></div>');
+    if(!$(this).children(".playall").hasClass("playall"))
+      $(this).append('<div class="playall"><a href="javascript:void(0);"></a></div>');
     $(this).find('.playall').fadeIn(200);
   }, function(){
     $(this).find('.playall').stop().fadeOut(300, function(){ $(this).remove(); });
@@ -120,15 +121,16 @@ function album_hover(){
 }
 
 function album_add_show_songs_button(){
-  $('.albums li').each(function(){
+  $('.albums > li').each(function(){
     if(!$(this).has(".songsbtn").length)
-      $(this).append('<a class="songsbtn" href="">Songs</a>');
+      $(this).append('<a class="songsbtn" href="javascript:void(0);" onclick="load_songs_from_album(this);">Songs</a>');
   });
 }
 
 
 function init_site(link){
   Path.listen();
+  onYouTubePlayerReady();
   
   switch(link) {
     case artist_path:
@@ -143,10 +145,14 @@ function init_site(link){
       set_active_navigation(home_path);
       break;
     case charts_path:
+    case search_path:
       init_tabs();
       add_more_button();
+      add_controls();
+      init_autocomplete();
       set_active_navigation(charts_path);
       break;
+      
   }
 }
 

@@ -41,14 +41,21 @@ module Nineminutes
       plugins/path
       ajax/requests
       ajax/routes
+      store
       plugins/bing 
       plugins/coloranimations
       plugins/nivoslider 
       plugins/imageresize 
+      plugins/autocomplete
+      plugins/scrolling
+      plugins/player
       animations/animations
       animations/fullscreen
       layout
+      player
       ajax/loadmore
+      ajax/album
+      search
     )
 
     # Configure the default encoding used in templates for Ruby 1.9.

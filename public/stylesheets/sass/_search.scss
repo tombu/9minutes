@@ -1,0 +1,28 @@
+﻿/*********************************/
+/************ LAYOUT *************/
+/*********************************/
+
+#search_bar {
+  width: 500px;
+  float: left;
+  border: 0;
+  margin-bottom: 20px;
+  position: relative;
+  padding: 15px;
+  input {
+    width: 498px;
+    height: 35px;
+    text-indent: 10px;
+    font-size: 14px;
+    border: 1px solid desaturate(darken($ultra-light, 10%), 20%);
+    @include rounded(4px);
+    &:focus { border-color: $blue }
+  }
+  .button {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 26px;
+    top: 24px;
+  }
+}

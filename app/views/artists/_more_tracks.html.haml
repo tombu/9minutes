@@ -1,5 +1,6 @@
 - @tracks.track.each do |track|
-  %li
+  %li{:artist=>track.artist.name,:track=>track.name}
     = track.name
     %span by
-    = link_to trimString(track.artist.name, 50), "#!/artists/#{CGI.escape(track.artist.name)}"
+    - artist = track.artist.respond_to?(:name) ? track.artist.name : track.artist
+    = link_to trimString(artist, 50), "#!/artists/#{CGI.escape(artist)}"

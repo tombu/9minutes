@@ -1,7 +1,8 @@
-- albums.album.each do |album|
-  %li
+- @albums.album.each do |album|
+  - artist = album.artist.respond_to?(:name) ? album.artist.name : album.artist
+  %li{:album=>"#{CGI.escape(album.name)}",:artist=>"#{CGI.escape(artist)}"}
     .img= image_tag validate_img_url(album.image, "album", :medium), :class=>"cover"
     %p.name< 
       = trimString(album.name, 48)
       %br<>
-      %span.artist>= trimString(album.artist.name, 80)
+      %span.artist>= trimString(artist, 80)
