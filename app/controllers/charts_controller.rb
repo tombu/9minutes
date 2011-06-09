@@ -1,7 +1,7 @@
 class ChartsController < ApplicationController
   def index
     @charts = LastFM::Chart.getTopArtists 20
-    LastFM::LastFMRequest.run_queue!
+    LastFM::Request.run_queue!
 
     render :partial=>"index"
   end
@@ -11,7 +11,7 @@ class ChartsController < ApplicationController
     params[:size] = params[:size].to_i
     
     @charts = LastFM::Chart.getTopArtists 20, (params[:size] / 20 + 1)
-    LastFM::LastFMRequest.run_queue!
+    LastFM::Request.run_queue!
 
     render :partial=>"more_charts", :locals=>{:charts=>@charts}
   end
