@@ -19,6 +19,7 @@ gem 'typhoeus'
 
 # for object caching
 gem 'redis'
+gem 'redis-namespace'
 
 # for using 7digital api
 gem '7digital'

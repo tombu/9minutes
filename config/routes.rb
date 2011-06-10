@@ -1,16 +1,19 @@
 Nineminutes::Application.routes.draw do
 
-  get "sidebar/index"
-
   get "charts/index"
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, 
+    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations", :sessions => "sessions" }
   devise_scope :user do
-    get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
+    get "/users/auth/:provider" => "users/omniauth_callbacks#passthru"
+    get "/register" => "devise_auth/registrations#new",   :as => :new_user_registration
+    post "/users" => "devise_auth/registrations#create",  :as => :user_registration
+    get "/login" => "devise_auth/sessions#new",           :as => :new_user_session
+    post "/login" => "devise_auth/sessions#create",       :as => :user_session
+    get "/logout" => "devise_auth/sessions#destroy",      :as => :destroy_user_session
   end
 
   get "tracks/index"
-  get "artists/get_artists", :as => "get_artists"
   match "/artists/:artist", :to => "artists#show"
   match "/more_tracks", :to => "artists#more_tracks"
   match "/more_albums", :to => "artists#more_albums"
@@ -23,16 +26,11 @@ Nineminutes::Application.routes.draw do
   match "/search_video", :to => "tracks#search_video"
   
   #resources :artists, :constraints => { :id => /.*/ }
-  resources :users
-  resources :sidebar
   resources :search
+  resources :users, :only => [ :show ]
   
   get "home/", :to => "home#show"
-  
   get "charts/", :to => "charts#index"
   
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
   root :to => "home#index"
 end

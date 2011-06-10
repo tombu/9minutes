@@ -7,6 +7,10 @@ const home_path = "/home";
 const charts_path = "/charts";
 const search_path = "/search/";
 const search_autocomplete_path = "/autocomplete/";
+const user_path = "/users/";
+const register_path = "/register";
+const login_path = "/login";
+const logout_path = "/logout";
 
 $(document).ready(function(){
   Path.root(hashbang+home_path);

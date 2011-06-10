@@ -152,7 +152,8 @@ function init_site(link){
       init_autocomplete();
       set_active_navigation(charts_path);
       break;
-      
+    case user_path:
+      init_tabs();
   }
 }
 
