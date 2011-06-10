@@ -27,7 +27,7 @@
         %li.active= link_to "home", "/#!/home"
         %li= link_to "charts", "/#!/charts"
         %li= link_to "about", "#"
-        %li= link_to "register", "#"
+        %li= link_to "register", "/#!/register"
         %li.search
           = form_tag '/search', :method => 'get', :id => "search_form", :remote=>true do
             = text_field_tag 'q', params[:q], :class => "text", :placeholder => "Search here ..."

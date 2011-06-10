@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :artists
+  has_many :playlist
 
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :recoverable, :timeoutable
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me

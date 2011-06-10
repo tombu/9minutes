@@ -1,0 +1,17 @@
+#user_left
+  =image_tag validate_avatar_url(user.avatar.url), :class => "picture"
+  .information
+    %h1= user.username
+    %ul.nav
+      %li=image_tag "icons/artist-info.png"
+      %li=image_tag "icons/artist-links.png"
+    %ul.con
+      %li="#{user.playcount} Plays"
+      %li="#{user.playlist.count} Playlists"
+.tabs.tabs_js.w02
+  %ul.nav
+    %li profile
+    %li playlist
+  .content
+    %div SONGS
+    %div ALBUMS
