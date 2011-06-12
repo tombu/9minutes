@@ -1,0 +1,18 @@
+javascripts:
+  jquery:
+    - public/javascripts/jquery.js
+  plugins:
+    - public/javascripts/plugins/*.js
+  common:
+    - public/javascripts/config.js
+    - public/javascripts/player.js
+    - public/javascripts/search.js
+    - public/javascripts/store.js
+    - public/javascripts/caching.js
+    - public/javascripts/ajax/*.js
+    - public/javascripts/animations/*.js
+    - public/javascripts/helper/*.js
+    - public/javascripts/layout.js
+stylesheets:
+  common:
+    - public/stylesheets/9minutes.css

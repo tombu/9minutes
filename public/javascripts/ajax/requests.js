@@ -1,39 +1,65 @@
 ﻿function load_more_request(link, params){
-  $.ajax({
-    type: "GET",
-    dataType: "html",
-    url: link,
-    data: params,
-    error: function(){
-      hide_flash(false);
-      show_flash(true);
-      enable_more_button();
-    },
-    success: function(data){
-      append_to_list(data);
-    }
-  });
+  cacheResponse = cacheRequest(link+params);
+  if(!cacheResponse)
+  {
+    console.info("=> Request to server");
+    $.ajax({
+      type: "GET",
+      dataType: "html",
+      url: link,
+      data: params,
+      error: function(){
+        hide_flash(false);
+        show_flash(true);
+        enable_more_button();
+      },
+      success: function(data){
+        cacheRequest(link+params, data);
+        append_to_list(data);
+      }
+    });
+  }
+  else 
+  {
+    console.info("=> Request to jQuery Object");
+    append_to_list(cacheResponse);
+  }
 }
 
 function load_site_request(link, params){
+  cacheResponse = cacheRequest(link+params);
   hide_flash(true);
-  $.ajax({
-    type:"GET",
-    dataType:"html",
-    url: link + params,
-    error: function(){
-      hide_flash(false);
-      show_flash(true);
-      enable_more_button();
-    },
-    success: function(data){
-      $("#content").html(data);
-      $("#content").ready(function(){
+  if(!cacheResponse)
+  {
+    console.info("=> Request to server");
+    $.ajax({
+      type:"GET",
+      dataType:"html",
+      url: link + params,
+      error: function(){
         hide_flash(false);
-        init_site(link);
-      });
-    }
-  });
+        show_flash(true);
+        enable_more_button();
+      },
+      success: function(data){
+        cacheRequest(link+params, data);
+        $("#content").html(data);
+        $("#content").ready(function(){
+          hide_flash(false);
+          init_site(link);
+        });
+      }
+    });
+  }
+  else 
+  {
+    console.info("=> Request to jQuery Object");
+    $("#content").html(cacheResponse);
+    $("#content").ready(function(){
+      hide_flash(false);
+      init_site(link);
+    });
+  }
 }
 
 function album_request(link, params, obj){

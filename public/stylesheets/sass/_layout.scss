@@ -25,10 +25,10 @@ $place-url: "#{$base-url}/placeholder";
   margin: 0 auto;
 }
 @mixin stripe-bg() {
-  background: transparent url('#{$bg-url}/stripe.png') repeat;
+  background: transparent url('#{$bg-url}/dark.png') repeat;
 }
 @mixin stripe-dark-bg() {
-  background: transparent url('#{$bg-url}/stripe-dark.png') repeat;
+  background: transparent url('#{$bg-url}/darker.png') repeat;
 }
 
 @mixin rounded($radius) {
@@ -64,7 +64,7 @@ a { cursor: pointer; }
 
 /* OVERALL */
 body { 
-  background: #05070a url('#{$bg-url}/overall.png') no-repeat center top;
+  background: #05070a url('#{$bg-url}/overallcrush.png') no-repeat center top;
   color: $content-black;
   font-size: 12px;
   @include medium-font()
@@ -100,7 +100,7 @@ body {
 
   li {
     float: left;
-    &.active { background: url('#{$bg-url}/navi-hover.png') }
+    &.active { background: url('#{$bg-url}/fuse.png') 0 -127px }
     &.search {
       $top: 21px;
       width: 200px;

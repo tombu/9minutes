@@ -12,6 +12,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'haml-rails'
 gem "sass"
 
+# for searching youtube
 gem "youtube_it"
 
 # for using last.fm api
@@ -23,6 +24,11 @@ gem 'redis-namespace'
 
 # for using 7digital api
 gem '7digital'
+
+# for asset packaging
+gem 'jammit'
+gem 'win32-open3-19' # win32-open3 in order to use POpen4 on Win32 (dependency of jammit)
+
 
 # for converting json/xml to object
 gem 'json'

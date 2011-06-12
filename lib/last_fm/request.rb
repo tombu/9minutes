@@ -29,9 +29,9 @@ module LastFM
     end
 
     def self.run_queue!
-      puts "<< ----------- started request queue ---------"
+      puts "=> lastfm: Started request queue"
       @@hydra.run
-      puts "<< -------------- queue finished -------------"
+      puts "=> lastfm: Queue finished"
     end
 
     def self.artist_request method, node, q, limit = nil, page = nil, &block
@@ -57,7 +57,7 @@ module LastFM
     protected
 
     def self.update_results keys, hash
-      puts "updated"
+      puts "=> lastfm: Updated"
       @@results[("#{keys[0]}_#{keys[1]}".to_sym)].update hash
     end
 
@@ -70,15 +70,15 @@ module LastFM
     def self.create_and_queue_request method, node, block, request_params
       request = Typhoeus::Request.new(base_uri, :params => request_params) # :timeout => APP_CONFIG["request_timeout"],
       handle_response request, method, node, block
-      
-      puts ">> ---- '#{current_class_name}.#{method}' request is queued ----" if @@hydra.queue request
+
+      puts "=> lastfm: '#{current_class_name}.#{method}' request is queued" if @@hydra.queue request
       @@results["#{current_class_name}_#{method}".to_sym] = Hashie::Mash.new
     end
 
     def self.handle_response request, method, node, block
       request.on_complete do |response|
         if response.success?
-          puts "<< ---- '#{current_class_name}.#{method}' -- TIME: #{response.time} ----"
+          puts "=> lastfm: '#{current_class_name}.#{method}' (#{response.time}s)"
           
           hash = Hashie::Mash.new(JSON.parse(response.body))
           hash = method.to_s == "search" ? hash.results.send(node.to_sym) : hash.send(node.to_sym)
@@ -87,7 +87,7 @@ module LastFM
           block.call( hash ) unless block.nil?
           
         elsif response.timed_out?
-          puts ">> -- '#{current_class_name}.#{method}' -- TIMED OUT -- <<"
+          puts "=> lastfm: '#{current_class_name}.#{method}' timed out"
         end
       end
     end

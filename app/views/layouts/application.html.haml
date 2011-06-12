@@ -2,9 +2,9 @@
 %html
   %head
     %title Nineminutes
-    = stylesheet_link_tag "9minutes"
+    = include_stylesheets :common, :media=>'all'
     = javascript_include_tag "http://www.google.com/jsapi"
-    = javascript_include_tag :defaults
+    = include_javascripts :jquery, :plugins, :common
     
     = csrf_meta_tag
   %body
@@ -46,27 +46,27 @@
     #fullscreen
       %h2 Avril Lavigne
       %h1 Alice (In Wonderland)
-      #video Loading
+      #video= image_tag "examples/video-big.jpg"
       .sidebar
         .top
           = render :partial=>"layouts/player"
         %ul.play_list
           %li
             %h3
-              %div= "Firework"
-              %span= "Katie Perry"
+              %div= "Alice"
+              %span= "Avril Lavigne"
           %li
             %h3
               %div= "Firework"
               %span= "Katie Perry"
           %li
             %h3
-              %div= "Firework"
-              %span= "Katie Perry"
+              %div= "What the Hell"
+              %span= "Avril Lavigne"
           %li
             %h3
-              %div= "Firework"
-              %span= "Katie Perry"
+              %div= "Not Enough"
+              %span= "Avril Lavigne"
           %li
             %h3
               %div= "Firework"

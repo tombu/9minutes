@@ -1,4 +1,5 @@
 class ChartsController < ApplicationController
+  
   def index
     @charts = LastFM::Chart.getTopArtists 20
     LastFM::Request.run_queue!
