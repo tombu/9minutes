@@ -1,3 +1,7 @@
+﻿embed_assets: on
+javascript_compressor: closure
+
+
 javascripts:
   jquery:
     - public/javascripts/jquery.js
@@ -11,7 +15,6 @@ javascripts:
     - public/javascripts/caching.js
     - public/javascripts/ajax/*.js
     - public/javascripts/animations/*.js
-    - public/javascripts/helper/*.js
     - public/javascripts/layout.js
 stylesheets:
   common:
