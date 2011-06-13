@@ -13,7 +13,15 @@ var login_path = "/login";
 var logout_path = "/logout";
 
 $(document).ready(function(){
+  // home path
   Path.root(hashbang+home_path);
+  
+  // redirect non existent links
+  // to the 404 page
+  Path.rescue(function(){
+    // TODO: link to 404 page
+    alert("404: Route Not Found");
+  });
   
   // Setup default AJAX values
   // for future requests
