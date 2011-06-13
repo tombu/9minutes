@@ -1,11 +1,11 @@
-﻿// Place your application-specific JavaScript functions and classes here
+﻿/*// Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 	google.load("swfobject", "2.1");
 
 	var active = null;
 	  /*
 	   * Chromeless player has no controls.
-	   */
+	   
    var updateInterval = 0;
    var dragging = false;
 
@@ -35,7 +35,7 @@
 		  updateHTML("bytesTotal", ytplayer.getVideoBytesTotal());
 		  updateHTML("startBytes", ytplayer.getVideoStartBytes());
 		  updateHTML("bytesLoaded", ytplayer.getVideoBytesLoaded());*/
-      
+      /*
       if(ytplayer.getPlayerState() == 1) $('#player .play').addClass('pause');
       else $('#player .play').removeClass('pause');
       
@@ -197,4 +197,4 @@
     $('.backward').live('click', function(){
       prevVideo();
     });
-  });
+  });*/

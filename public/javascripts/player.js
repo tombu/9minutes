@@ -1,4 +1,4 @@
-﻿$(document).ready(function(){
+﻿/*$(document).ready(function(){
   loadPlayer();
   initPlaylist();
   makeTracksAddable(); // bind click-event to "add" button (for each track)
@@ -39,7 +39,7 @@ function initPlaylist() {
     size = storage.length;
     for(i = 0; i < size; i++) {
       $('.play_list').append('<li videoid="'+ storage[i].videoid + '"><h3><div>'+ storage[i].title + '</div><span>' + storage[i].artist + '</span></h3></li>');
-      $listElement = $('.play_list li:eq('+i+')');
+      $listElement = $('.play_list li:eq('+i+')');*/
       //$listElement.prepend('<img class="delete-handle" src="/images/ico/delete.png" />');
       //$listElement.append('<img class="drag-handle" src="/images/ico/drag.png" />');
     }
@@ -63,7 +63,7 @@ function initPlaylist() {
     $.store.clear();
   });*/
 }
-
+/*
 function savePlaylist() {
   var tracks = [];
   $('.play_list li').each(function(i) {
@@ -113,4 +113,4 @@ function onRemoveTrackFromPlaylist(event) {
       savePlaylist();
     });
   });
-}
+}*/

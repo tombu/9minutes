@@ -130,7 +130,7 @@ function album_add_show_songs_button(){
 
 function init_site(link){
   Path.listen();
-  onYouTubePlayerReady();
+  //onYouTubePlayerReady();
   
   switch(link) {
     case artist_path:

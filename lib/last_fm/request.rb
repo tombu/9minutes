@@ -57,7 +57,6 @@ module LastFM
     protected
 
     def self.update_results keys, hash
-      puts "=> lastfm: Updated"
       @@results[("#{keys[0]}_#{keys[1]}".to_sym)].update hash
     end
 
@@ -71,7 +70,7 @@ module LastFM
       request = Typhoeus::Request.new(base_uri, :params => request_params) # :timeout => APP_CONFIG["request_timeout"],
       handle_response request, method, node, block
 
-      puts "=> lastfm: '#{current_class_name}.#{method}' request is queued" if @@hydra.queue request
+      #puts "=> lastfm: '#{current_class_name}.#{method}' request is queued" if @@hydra.queue request
       @@results["#{current_class_name}_#{method}".to_sym] = Hashie::Mash.new
     end
 

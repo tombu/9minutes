@@ -10,9 +10,9 @@
   position: relative;
   padding: 15px;
   input {
-    width: 498px;
+    width: 488px;
     height: 35px;
-    text-indent: 10px;
+    padding-left: 10px;
     font-size: 14px;
     border: 1px solid desaturate(darken($ultra-light, 10%), 20%);
     @include rounded(4px);
