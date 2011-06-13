@@ -42,8 +42,8 @@ function initPlaylist() {
       $listElement = $('.play_list li:eq('+i+')');*/
       //$listElement.prepend('<img class="delete-handle" src="/images/ico/delete.png" />');
       //$listElement.append('<img class="drag-handle" src="/images/ico/drag.png" />');
-    }
-  }
+  //  }
+ // }
 /*
   $('ul#playlist').dragsort({
       dragSelector: '.drag-handle',
@@ -61,7 +61,7 @@ function initPlaylist() {
   $('#playlist-navigation .clear').live('click', function(){
     $('#playlist li').remove();
     $.store.clear();
-  });*/
+  });
 }
 /*
 function savePlaylist() {

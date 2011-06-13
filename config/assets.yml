@@ -11,6 +11,7 @@ javascripts:
     - public/javascripts/plugins/*.js
   common:
     - public/javascripts/config.js
+    - public/javascripts/pinify.js
     - public/javascripts/player.js
     - public/javascripts/search.js
     - public/javascripts/store.js
