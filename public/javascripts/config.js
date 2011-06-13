@@ -1,16 +1,16 @@
 ﻿
 // Default paths for application
 // DON'T CHANGE!!!
-const hashbang = "#!";
-const artist_path = "/artists/";
-const home_path = "/home";
-const charts_path = "/charts";
-const search_path = "/search/";
-const search_autocomplete_path = "/autocomplete/";
-const user_path = "/users/";
-const register_path = "/register";
-const login_path = "/login";
-const logout_path = "/logout";
+var hashbang = "#!";
+var artist_path = "/artists/";
+var home_path = "/home";
+var charts_path = "/charts";
+var search_path = "/search/";
+var search_autocomplete_path = "/autocomplete/";
+var user_path = "/users/";
+var register_path = "/register";
+var login_path = "/login";
+var logout_path = "/logout";
 
 $(document).ready(function(){
   Path.root(hashbang+home_path);

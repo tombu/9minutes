@@ -5,6 +5,8 @@ javascript_compressor: closure
 javascripts:
   jquery:
     - public/javascripts/jquery.js
+  helper:
+    - public/javascripts/helper/*.js
   plugins:
     - public/javascripts/plugins/*.js
   common:
