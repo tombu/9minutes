@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: LastFM::Request</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../lib/last_fm/request_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/last_fm/request.rb">lib/last_fm/request.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Object</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-album_request">::album_request</a></li>
+					
+					<li><a href="#method-c-api_key%3D">::api_key=</a></li>
+					
+					<li><a href="#method-c-artist_request">::artist_request</a></li>
+					
+					<li><a href="#method-c-base_uri">::base_uri</a></li>
+					
+					<li><a href="#method-c-chart_request">::chart_request</a></li>
+					
+					<li><a href="#method-c-create_and_queue_request">::create_and_queue_request</a></li>
+					
+					<li><a href="#method-c-current_class_name">::current_class_name</a></li>
+					
+					<li><a href="#method-c-default_params">::default_params</a></li>
+					
+					<li><a href="#method-c-handle_response">::handle_response</a></li>
+					
+					<li><a href="#method-c-results">::results</a></li>
+					
+					<li><a href="#method-c-run_queue%21">::run_queue!</a></li>
+					
+					<li><a href="#method-c-track_request">::track_request</a></li>
+					
+					<li><a href="#method-c-update_results">::update_results</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../doc/README_FOR_APP.html">README_FOR_APP</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../LastFM.html">LastFM</a></li>
+				
+					<li><a href="../LastFM/Album.html">LastFM::Album</a></li>
+				
+					<li><a href="../LastFM/Artist.html">LastFM::Artist</a></li>
+				
+					<li><a href="../LastFM/Chart.html">LastFM::Chart</a></li>
+				
+					<li><a href="../LastFM/Request.html">LastFM::Request</a></li>
+				
+					<li><a href="../LastFM/Track.html">LastFM::Track</a></li>
+				
+					<li><a href="../LastFM/Validator.html">LastFM::Validator</a></li>
+				
+					<li><a href="../DeviseAuth.html">DeviseAuth</a></li>
+				
+					<li><a href="../DeviseAuth/RegistrationsController.html">DeviseAuth::RegistrationsController</a></li>
+				
+					<li><a href="../DeviseAuth/SessionsController.html">DeviseAuth::SessionsController</a></li>
+				
+					<li><a href="../Users.html">Users</a></li>
+				
+					<li><a href="../Users/OmniauthCallbacksController.html">Users::OmniauthCallbacksController</a></li>
+				
+					<li><a href="../ApplicationController.html">ApplicationController</a></li>
+				
+					<li><a href="../ApplicationHelper.html">ApplicationHelper</a></li>
+				
+					<li><a href="../Artist.html">Artist</a></li>
+				
+					<li><a href="../ArtistsController.html">ArtistsController</a></li>
+				
+					<li><a href="../ChartsController.html">ChartsController</a></li>
+				
+					<li><a href="../HomeController.html">HomeController</a></li>
+				
+					<li><a href="../Playlist.html">Playlist</a></li>
+				
+					<li><a href="../PlaylistsTracks.html">PlaylistsTracks</a></li>
+				
+					<li><a href="../RedisQueryable.html">RedisQueryable</a></li>
+				
+					<li><a href="../SearchController.html">SearchController</a></li>
+				
+					<li><a href="../Track.html">Track</a></li>
+				
+					<li><a href="../TracksController.html">TracksController</a></li>
+				
+					<li><a href="../User.html">User</a></li>
+				
+					<li><a href="../UsersController.html">UsersController</a></li>
+				
+					<li><a href="../UsersHelper.html">UsersHelper</a></li>
+				
+					<li><a href="../YoutubeVideoRating.html">YoutubeVideoRating</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">LastFM::Request</h1>
+
+		<div id="description">
+			
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="album-request-method" class="method-detail ">
+				<a name="method-c-album_request"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">album_request</span><span
+						class="method-args">(method, node, q, artist = nil, limit = nil, page = nil, &block)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="album-request-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 42</span>
+42:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">album_request</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">q</span>, <span class="ruby-identifier">artist</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">limit</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">page</span> = <span class="ruby-keyword kw">nil</span>, &amp;<span class="ruby-identifier">block</span>
+43:       <span class="ruby-identifier">request_params</span> = <span class="ruby-identifier">default_params</span>.<span class="ruby-identifier">merge</span>( <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{current_class_name}.#{method}&quot;</span>, <span class="ruby-value">:album</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">q</span>, <span class="ruby-value">:artist</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">artist</span>, <span class="ruby-value">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">limit</span>, <span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page</span> )
+44:       <span class="ruby-identifier">create_and_queue_request</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">block</span>, <span class="ruby-identifier">request_params</span>
+45:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="api-key--method" class="method-detail ">
+				<a name="method-c-api_key%3D"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">api_key=</span><span
+						class="method-args">(key)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="api-key--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 13</span>
+13:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">api_key=</span>(<span class="ruby-identifier">key</span>)
+14:       <span class="ruby-identifier">@@api_key</span> = <span class="ruby-identifier">key</span>
+15:       <span class="ruby-identifier">@@default_params</span>[<span class="ruby-value">:api_key</span>] = <span class="ruby-identifier">key</span>
+16:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="artist-request-method" class="method-detail ">
+				<a name="method-c-artist_request"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">artist_request</span><span
+						class="method-args">(method, node, q, limit = nil, page = nil, &block)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="artist-request-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 37</span>
+37:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">artist_request</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">q</span>, <span class="ruby-identifier">limit</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">page</span> = <span class="ruby-keyword kw">nil</span>, &amp;<span class="ruby-identifier">block</span>
+38:       <span class="ruby-identifier">request_params</span> = <span class="ruby-identifier">default_params</span>.<span class="ruby-identifier">merge</span>( <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{current_class_name}.#{method}&quot;</span>, <span class="ruby-value">:artist</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">q</span>, <span class="ruby-value">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">limit</span>, <span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page</span> )
+39:       <span class="ruby-identifier">create_and_queue_request</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">block</span>, <span class="ruby-identifier">request_params</span>
+40:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="base-uri-method" class="method-detail ">
+				<a name="method-c-base_uri"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">base_uri</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="base-uri-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 18</span>
+18:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">base_uri</span>
+19:       <span class="ruby-identifier">@@base_uri</span>
+20:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="chart-request-method" class="method-detail ">
+				<a name="method-c-chart_request"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">chart_request</span><span
+						class="method-args">(method, node, limit = nil, page = nil, &block)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="chart-request-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 52</span>
+52:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">chart_request</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">limit</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">page</span> = <span class="ruby-keyword kw">nil</span>, &amp;<span class="ruby-identifier">block</span>
+53:       <span class="ruby-identifier">request_params</span> = <span class="ruby-identifier">default_params</span>.<span class="ruby-identifier">merge</span>( <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{current_class_name}.#{method}&quot;</span>, <span class="ruby-value">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">limit</span>, <span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page</span> )
+54:       <span class="ruby-identifier">create_and_queue_request</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">block</span>, <span class="ruby-identifier">request_params</span>
+55:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="default-params-method" class="method-detail ">
+				<a name="method-c-default_params"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">default_params</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="default-params-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 22</span>
+22:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">default_params</span>
+23:       <span class="ruby-identifier">@@default_params</span>
+24:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="results-method" class="method-detail ">
+				<a name="method-c-results"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">results</span><span
+						class="method-args">(keys = nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="results-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 26</span>
+26:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">results</span> <span class="ruby-identifier">keys</span> = <span class="ruby-keyword kw">nil</span>
+27:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">@@results</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">nil?</span>
+28:       <span class="ruby-identifier">@@results</span>[(<span class="ruby-node">&quot;#{keys[0]}_#{keys[1]}&quot;</span>.<span class="ruby-identifier">to_sym</span>)]
+29:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="run-queue--method" class="method-detail ">
+				<a name="method-c-run_queue%21"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">run_queue!</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="run-queue--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 31</span>
+31:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">run_queue!</span>
+32:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;=&gt; lastfm: Started request queue&quot;</span>
+33:       <span class="ruby-identifier">@@hydra</span>.<span class="ruby-identifier">run</span>
+34:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;=&gt; lastfm: Queue finished&quot;</span>
+35:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="track-request-method" class="method-detail ">
+				<a name="method-c-track_request"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">track_request</span><span
+						class="method-args">(method, node, q, artist = nil, limit = nil, page = nil, &block)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="track-request-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 47</span>
+47:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">track_request</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">q</span>, <span class="ruby-identifier">artist</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">limit</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">page</span> = <span class="ruby-keyword kw">nil</span>, &amp;<span class="ruby-identifier">block</span>
+48:       <span class="ruby-identifier">request_params</span> = <span class="ruby-identifier">default_params</span>.<span class="ruby-identifier">merge</span>( <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{current_class_name}.#{method}&quot;</span>, <span class="ruby-value">:track</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">q</span>, <span class="ruby-value">:artist</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">artist</span>, <span class="ruby-value">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">limit</span>, <span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page</span> )
+49:       <span class="ruby-identifier">create_and_queue_request</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">block</span>, <span class="ruby-identifier">request_params</span>
+50:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="protected-class-method-details" class="method-section section">
+			<h3 class="section-header">Protected Class Methods</h3>
+
+		
+			<div id="current-class-name-method" class="method-detail ">
+				<a name="method-c-current_class_name"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">current_class_name</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="current-class-name-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 63</span>
+63:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">current_class_name</span>
+64:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'::'</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">downcase!</span>
+65:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="update-results-method" class="method-detail ">
+				<a name="method-c-update_results"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">update_results</span><span
+						class="method-args">(keys, hash)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="update-results-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 59</span>
+59:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">update_results</span> <span class="ruby-identifier">keys</span>, <span class="ruby-identifier">hash</span>
+60:       <span class="ruby-identifier">@@results</span>[(<span class="ruby-node">&quot;#{keys[0]}_#{keys[1]}&quot;</span>.<span class="ruby-identifier">to_sym</span>)].<span class="ruby-identifier">update</span> <span class="ruby-identifier">hash</span>
+61:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-class-method-details" class="method-section section">
+			<h3 class="section-header">Private Class Methods</h3>
+
+		
+			<div id="create-and-queue-request-method" class="method-detail ">
+				<a name="method-c-create_and_queue_request"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">create_and_queue_request</span><span
+						class="method-args">(method, node, block, request_params)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="create-and-queue-request-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 69</span>
+69:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">create_and_queue_request</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">block</span>, <span class="ruby-identifier">request_params</span>
+70:       <span class="ruby-identifier">request</span> = <span class="ruby-constant">Typhoeus</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">base_uri</span>, <span class="ruby-value">:params</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request_params</span>) <span class="ruby-comment cmt"># :timeout =&gt; APP_CONFIG[&quot;request_timeout&quot;],</span>
+71:       <span class="ruby-identifier">handle_response</span> <span class="ruby-identifier">request</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">block</span>
+72: 
+73:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;=&gt; lastfm: '#{current_class_name}.#{method}' request is queued&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">@@hydra</span>.<span class="ruby-identifier">queue</span> <span class="ruby-identifier">request</span>
+74:       <span class="ruby-identifier">@@results</span>[<span class="ruby-node">&quot;#{current_class_name}_#{method}&quot;</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-constant">Hashie</span><span class="ruby-operator">::</span><span class="ruby-constant">Mash</span>.<span class="ruby-identifier">new</span>
+75:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="handle-response-method" class="method-detail ">
+				<a name="method-c-handle_response"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">handle_response</span><span
+						class="method-args">(request, method, node, block)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="handle-response-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/last_fm/request.rb, line 77</span>
+77:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">handle_response</span> <span class="ruby-identifier">request</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">block</span>
+78:       <span class="ruby-identifier">request</span>.<span class="ruby-identifier">on_complete</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">response</span><span class="ruby-operator">|</span>
+79:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">success?</span>
+80:           <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;=&gt; lastfm: '#{current_class_name}.#{method}' (#{response.time}s)&quot;</span>
+81:           
+82:           <span class="ruby-identifier">hash</span> = <span class="ruby-constant">Hashie</span><span class="ruby-operator">::</span><span class="ruby-constant">Mash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>))
+83:           <span class="ruby-identifier">hash</span> = <span class="ruby-identifier">method</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;search&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">results</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">node</span>.<span class="ruby-identifier">to_sym</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">node</span>.<span class="ruby-identifier">to_sym</span>)
+84:           
+85:           <span class="ruby-identifier">update_results</span> [<span class="ruby-identifier">current_class_name</span>, <span class="ruby-identifier">method</span>], <span class="ruby-identifier">hash</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">present?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">nil?</span>
+86:           <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>( <span class="ruby-identifier">hash</span> ) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">nil?</span>
+87:           
+88:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">timed_out?</span>
+89:           <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;=&gt; lastfm: '#{current_class_name}.#{method}' timed out&quot;</span>
+90:         <span class="ruby-keyword kw">end</span>
+91:       <span class="ruby-keyword kw">end</span>
+92:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+
