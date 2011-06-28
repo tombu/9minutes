@@ -1,5 +1,5 @@
 ﻿$(document).ready(function() {
-  $('#full').live("click",function(){
+  $('.full').live("click",function(){
     if($(this).hasClass("open")) {
       $("#fullscreen").animate({
         marginTop: -300,
@@ -12,7 +12,7 @@
         }, 500);
         $("#fullscreen_wrap").fadeTo(500, 0, function(){$(this).hide();});
       });
-      $(this).removeClass("open");
+      $('.full').removeClass("open");
     }
     else {
       $("#site, #bg_stripe").animate({
@@ -27,7 +27,7 @@
         init_playlist_scrollbar();
         $("#fullscreen_wrap").fadeTo(1000, 0.5);
       });
-      $(this).addClass("open");
+      $('.full').addClass("open");
     }
   });
 });
