@@ -18,6 +18,8 @@ $base-url: "/images";
 $bg-url: "#{$base-url}/backgrounds";
 $ico-url: "#{$base-url}/icons";
 $place-url: "#{$base-url}/placeholder";
+$home-url: "#{$base-url}/startsite";
+
 
 /* FUNCTIONS */
 @mixin center() {
@@ -150,7 +152,7 @@ body {
   float: right;
 
   h6 {
-    color: #243037;
+    color: #aab7c4;
     font-size: $font-size;
     float: left;
     height: $height;
@@ -209,8 +211,12 @@ body {
     line-height: 40px;
     font-weight: bold;
     &.disabled {
-      opacity: 0.3;
       cursor: default;
+      background: #0086cc!important;
+    }
+    .loadingimg {
+      display: inline-block;
+      margin-top: 10px;
     }
   }
   &.w01 { @include set-width-for-tabs(564px, $padding-width) }
@@ -290,6 +296,9 @@ $padding: 22px;
   text-transform: uppercase;
   display: none;
   z-index: 999;
+  .loadingimg {
+    margin-top: 5px;
+  }
 }
 #error {
   background: $red;

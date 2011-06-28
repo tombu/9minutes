@@ -19,14 +19,13 @@ Nineminutes::Application.routes.draw do
   match "/more_albums", :to => "artists#more_albums"
   match "/more_artists", :to => "search#more_artists"
   match "/more_charts", :to => "charts#more"
-  get "artists/", :to => "artists#index"
 
   match "/autocomplete", :to => "search#autocomplete"
   match "/album_info", :to => "artists#album_info"
   match "/search_video", :to => "tracks#search_video"
   
   #resources :artists, :constraints => { :id => /.*/ }
-  resources :search
+  resources :search, :constraints => { :id => /.*/ }
   resources :users, :only => [ :show ]
   
   get "home/", :to => "home#show"

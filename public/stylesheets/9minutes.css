@@ -166,7 +166,7 @@ body {
   padding: 25px 0;
   float: right; }
   #foot h6 {
-    color: #243037;
+    color: #aab7c4;
     font-size: 11px;
     float: left;
     height: 20px;
@@ -210,8 +210,11 @@ body {
     line-height: 40px;
     font-weight: bold; }
     .tabs .more.disabled {
-      opacity: 0.3;
-      cursor: default; }
+      cursor: default;
+      background: #0086cc!important; }
+    .tabs .more .loadingimg {
+      display: inline-block;
+      margin-top: 10px; }
   .tabs.w01 .nav {
     width: 564px; }
   .tabs.w01 .content {
@@ -291,6 +294,8 @@ body {
   text-transform: uppercase;
   display: none;
   z-index: 999; }
+  #loading .loadingimg, #error .loadingimg {
+    margin-top: 5px; }
 
 #error {
   background: #ee0000; }
@@ -391,7 +396,8 @@ body {
   width: 500px;
   height: 270px;
   background: url("/images/icons/loading.gif") no-repeat 50% 50%;
-  overflow: hidden; }
+  overflow: hidden;
+  float: left; }
   #top_artist img {
     position: absolute;
     top: 0;
@@ -409,6 +415,22 @@ body {
     /* Unhide the thumbnails */
     position: relative;
     margin-right: 10px; }
+
+#top_artist_nav {
+  float: right; }
+  #top_artist_nav li, #top_artist_nav a, #top_artist_nav img {
+    width: 150px;
+    height: 199px;
+    display: inline-block;
+    float: left; }
+  #top_artist_nav a, #top_artist_nav img {
+    position: absolute; }
+  #top_artist_nav .ll img, #top_artist_nav .rr img {
+    opacity: 0.4; }
+  #top_artist_nav .ll {
+    background: url("/images/icons/home-left.png"); }
+  #top_artist_nav .rr {
+    background: url("/images/icons/home-right.png"); }
 
 /*********************************/
 /************ LAYOUT *************/

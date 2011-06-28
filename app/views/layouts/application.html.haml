@@ -9,7 +9,7 @@
     = favicon_link_tag "9minutes-logo.png", :rel=>"icon", :type=>"image/png"
     = csrf_meta_tag
   %body
-    #loading Loading
+    #loading= image_tag "icons/loading_dark.gif", :class=>"loadingimg"
     #error Error
     #block
     #bg_stripe
@@ -27,7 +27,6 @@
       #navigation
         %li.active= link_to "home", "/#!/home"
         %li= link_to "charts", "/#!/charts"
-        %li= link_to "about", "#"
         %li= link_to "register", "/#!/register"
         %li.search
           = form_tag '/search', :method => 'get', :id => "search_form", :remote=>true do
