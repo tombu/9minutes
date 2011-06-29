@@ -27,13 +27,13 @@
     #block
     #bg_stripe
     #site
-      #uuser{:style=>"display:none;"}
+      #uuser{:style=>"display:block; color:#ddd;"}
         - if user_signed_in?
-          %span.bold= "YEAH! ICH BIN DRIN!"
+          =link_to "Profile", "/#!/users/#{current_user.id}"
+          =link_to "Logout", "/#!/logout"
         - else
-          =link_to "Sign In", new_user_session_path
-          =link_to "Sign Up", new_user_registration_path
-        =link_to "Sign Out", destroy_user_session_path
+          =link_to "Login", "/#!/login"
+          =link_to "Register", "/#!/register"
       #head
         %h1= link_to image_tag("nine-minutes.png"), "/#!/home"
         = render :partial=>"layouts/player"

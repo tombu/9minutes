@@ -9,6 +9,7 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
+
 ActiveRecord::Schema.define(:version => 20110606000240) do
 
   create_table "artists", :force => true do |t|

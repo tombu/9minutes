@@ -1,2 +1,12 @@
-%h1 Users#edit
-%p Find me in app/views/users/edit.html.haml
+#user_left
+  =image_tag validate_avatar_url(user.avatar.url), :class => "picture"
+  .information
+    %p{:style=>"display:block; color:#ddd;"}
+      %h1{:style=>"color:#ddd;"}= current_user.username || current_user.email
+    %br
+
+.tabs.tabs_js.w02
+  %ul.nav
+    %li profile settings
+  .content
+    %div EDIT - bla bla bla

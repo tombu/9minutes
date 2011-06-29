@@ -47,4 +47,10 @@ $(document).ready(function(){
     show_flash(false);
     load_site_request(user_path, this.params['user']);
   });
+  
+  // User Edit Page
+  Path.map(hashbang+user_path+":user/edit").to(function(){
+    show_flash(false);
+    load_site_request(user_path, this.params['user'] + "/edit");
+  });
 });

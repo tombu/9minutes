@@ -2,6 +2,9 @@
   =image_tag validate_avatar_url(user.avatar.url), :class => "picture"
   .information
     %h1= user.username
+    %p{:style=>"display:block; color:#ddd;"}
+      =link_to "Profil editieren", "/#!/users/#{current_user.id}/edit"
+    %br
     %ul.nav
       %li=image_tag "icons/artist-info.png"
       %li=image_tag "icons/artist-links.png"
