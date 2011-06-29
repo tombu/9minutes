@@ -1,9 +1,7 @@
 class HomeController < ApplicationController
 
-  def show
-    @charts = LastFM::Chart.getTopArtists 10
-    LastFM::Request.run_queue!
-
+  def show    
+    @files = Dir.glob("public/images/startsite/*.jpg")
     render :partial=>"index"
   end
 

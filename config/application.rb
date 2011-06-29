@@ -9,8 +9,7 @@ module Nineminutes
     
     # enable caching in development mode
     config.action_controller.perform_caching = true
-    
-    config.action_controller.page_cache_directory = RAILS_ROOT+"/public/cache/"
+    config.action_controller.page_cache_directory = Rails.root.to_s+"/public/cache/"
 
     # asset packaging
     config.gem "jammit"

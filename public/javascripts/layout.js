@@ -73,19 +73,6 @@ function add_more_button(){
   more_hover();
 }
 
-function disable_more_button(obj){
-  $(obj).die("click");
-  $(obj).unbind('mouseenter mouseleave');
-  $(obj).addClass("disabled");
-}
-
-function enable_more_button(){
-  more_hover();
-  $('.more').each(function(){
-    $(this).removeClass("disabled");
-  });
-}
-
 
 function margin_fixes(){
   $('.list.related li:nth-child(3n)').css("marginRight", 0);
@@ -138,10 +125,7 @@ function init_site(link){
       init_artist();
       break;
     case home_path:
-      $('#top_artist').nivoSlider({
-        controlNav: true,
-        pauseTime: 3000
-      });
+      init_home();
       set_active_navigation(home_path);
       break;
     case charts_path:

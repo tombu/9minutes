@@ -8,6 +8,7 @@
   height: 270px;
   background: url('#{$ico-url}/loading.gif') no-repeat 50% 50%;
   overflow: hidden;
+  float: left;
 
   img {
     position: absolute;
@@ -26,4 +27,17 @@
     position:relative;
     margin-right:10px;
   }
+}
+#top_artist_nav {
+  float: right;
+  li, a, img {
+    width: 150px;
+    height: 199px;
+    display: inline-block;
+    float: left;
+  }
+  a, img { position: absolute; }
+  .ll img, .rr img { opacity: 0.4 }
+  .ll { background: url('#{$ico-url}/home-left.png') }
+  .rr { background: url('#{$ico-url}/home-right.png') }
 }

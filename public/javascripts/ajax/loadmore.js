@@ -10,8 +10,6 @@
 
 
 function loadmore(obj){
-  show_flash(false);
-  
   $(obj).parent().children('.list').attr("wanting","true");
   
   size = $(obj).parent().find('li').size();
@@ -50,4 +48,20 @@ function show_li(obj, c){
   setTimeout(function(){
     $(obj).show();
   }, 200+c);
+}
+
+
+function disable_more_button(obj){
+  $(obj).die("click");
+  $(obj).unbind('mouseenter mouseleave');
+  $(obj).addClass("disabled");
+  $(obj).html('<img src="images/icons/loading_dark.gif" class="loadingimg" />');
+}
+
+function enable_more_button(){
+  more_hover();
+  $('.more').each(function(){
+    $(this).removeClass("disabled");
+    $(this).html('SHOW MORE');
+  });
 }

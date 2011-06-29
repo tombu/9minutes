@@ -3,23 +3,16 @@
 function bing_search(search_term)
 {
   var requestStr = "http://api.bing.net/json.aspx?"
-      // Common request fields (required)
       + "AppId=" + app_id
       + "&Query=" + search_term
       + "&Sources=Web"
-      
-      // Common request fields (optional)
       + "&Version=2.0"
       + "&Market=en-us"
       + "&Adult=Moderate"
       + "&Options=EnableHighlighting"
-
-      // Web-specific request fields (optional)
-      + "&Web.Count=5"
+      + "&Web.Count=4"
       + "&Web.Offset=0"
       + "&Web.Options=DisableHostCollapsing+DisableQueryAlterations"
-
-      // JSON-specific request fields (optional)
       + "&JsonType=callback"
       + "&JsonCallback=SearchCompleted";
   
@@ -47,8 +40,11 @@ function DisplayResults(response)
     for (var i = 0; i < results.length; ++i)
     {
         title = (results[i].Title.length > 40) ? results[i].Title.substring(0,40) + "&hellip;" : results[i].Title;
-        $appendData = "<li><a href=\""+results[i].Url+"\"><h3>"+title+"</h3>"+results[i].DisplayUrl+"</a></li>";
+        url = (results[i].DisplayUrl.length > 55) ? results[i].DisplayUrl.substring(0,55) + "&hellip;" : results[i].DisplayUrl;
+        
+        $appendData = "<li><a href=\""+results[i].Url+"\"><h3>"+title+"</h3>"+url+"</a></li>";
         $appendData = ReplaceHighlightingCharacters($appendData, "<span>", "</span>");
+        
         $('#artist_links ul').append($appendData);
     }
 }
