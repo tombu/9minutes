@@ -4,7 +4,8 @@
   .tabs_js.information
     %h1 
       = artist.name
-      %span.heart
+      - if signed_in?
+        %span.heart
     %ul.nav
       %li= image_tag "icons/artist-info.png"
       %li= image_tag "icons/artist-links.png"

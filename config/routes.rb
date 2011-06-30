@@ -1,7 +1,7 @@
 Nineminutes::Application.routes.draw do
 
   devise_for :users, 
-    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations", :sessions => "sessions" }
+    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "devise_auth/registrations", :sessions => "devise_auth/sessions" }
   devise_scope :user do
     get "/users/auth/:provider" => "users/omniauth_callbacks#passthru"
     get "/register" => "devise_auth/registrations#new",   :as => :new_user_registration
@@ -11,7 +11,6 @@ Nineminutes::Application.routes.draw do
     get "/logout" => "devise_auth/sessions#destroy",      :as => :destroy_user_session
   end
 
-  get "tracks/index"
   match "/search_video", :to => "tracks#search_video"
 
   resources :artists, :only => [ :show ], :constraints => { :id => /.*/ }

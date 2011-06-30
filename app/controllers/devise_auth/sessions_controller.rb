@@ -7,10 +7,11 @@ class DeviseAuth::SessionsController < Devise::SessionsController
   end
   
   def create
-    resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#new")
+    resource = warden.authenticate!(:scope => resource_name)
+    async_redirect_to new_user_session_path unless resource
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
-    aysnc_redirect_to new_user_registration_path
+    async_redirect_to user_path(resource)
   end
   
   def destroy
