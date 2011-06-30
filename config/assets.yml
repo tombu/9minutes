@@ -12,6 +12,8 @@ javascripts:
   common:
     - public/javascripts/config.js
     - public/javascripts/pinify.js
+    - public/javascripts/play.js
+    - public/javascripts/playlist.js
     - public/javascripts/home.js
     - public/javascripts/player.js
     - public/javascripts/search.js

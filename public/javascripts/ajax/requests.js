@@ -96,19 +96,22 @@ function album_request(link, params, obj){
   });
 }
 
-function video_request(link, params, obj){
+function video_request(link, artist, track, play){
+  var params = "artist="+artist+"&track="+track;
+  var dat;
   $.ajax({
     type: "GET",
     dataType: "html",
-    url: link,
+    url: jQuery.trim(link),
     data: params,
     error: function(){
       hide_flash(false);
       show_flash(true);
       //enable_more_button();
+      return null;
     },
     success: function(data){
-      playTrack(data, obj);
+      videoRequestResponse(jQuery.trim(data), artist, track, play);
     }
   });
 }

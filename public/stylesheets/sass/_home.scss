@@ -41,3 +41,22 @@
   .ll { background: url('#{$ico-url}/home-left.png') }
   .rr { background: url('#{$ico-url}/home-right.png') }
 }
+#search_home {
+  width: 428px;
+  height: 43px;
+  background: #fff;
+  float: right;
+  padding: 14px 11px;
+}
+#home_foot {
+  display: block;
+  width: 950px;
+  height: 200px;
+  @include stripe-bg();
+  .right {
+    width: 300px;
+    height: 200px;
+    @include stripe-bg();
+    float: right;
+  }
+}

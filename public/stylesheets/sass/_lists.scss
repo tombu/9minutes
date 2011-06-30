@@ -22,7 +22,7 @@
       }
       @include std-font();
       &:last-child { margin-bottom: 0; }
-      .playsong, .add {
+      .playsong, .addsong {
         width: 20px;
         height: 20px;
         display: inline-block;
@@ -30,7 +30,7 @@
         background: url('#{$ico-url}/list-controls.png') no-repeat 0 0;
         vertical-align: middle;
       }
-      .add {
+      .addsong {
         margin-right: 16px;
         background-position: 0 -20px;
       }

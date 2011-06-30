@@ -1,5 +1,6 @@
 ﻿$(document).ready(function() {
   Path.listen();
+  initPlaylist();
 });
 
 
@@ -29,6 +30,19 @@ function init_tabs(){
   });
 }
 
+
+// add controls to songs
+function add_controls(){
+  $('.list.songs').each(function(){
+    $(this).children("li").each(function(){
+      if(!$(this).has(".playsong").length)
+        $(this).prepend('<a class="playsong"/><a class="addsong" href="javascript:void(0);" />');
+    });
+  });
+}
+
+
+
 function init_artist(){
   add_controls();
   add_more_button();
@@ -47,21 +61,6 @@ function get_index(obj){
 // redirect to submit
 function submit_redirect(obj){
   $(obj).next("input[type=submit]").click();
-}
-
-
-// add controls to songs
-function add_controls(){
-  $('.list.songs').each(function(){
-    $(this).children("li").each(function(){
-      if(!$(this).has(".playsong").length)
-        $(this).prepend('<a class="playsong"/><a class="add" href="javascript:void(0);" onclick="open_playlists(this);"/>');
-    });
-  });
-}
-
-// TODO: add a playlist dropdown for selection
-function open_playlists(obj){
 }
 
 

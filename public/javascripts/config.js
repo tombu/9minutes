@@ -12,6 +12,7 @@ var register_path = "/register";
 var login_path = "/login";
 var logout_path = "/logout";
 var favourite_path = "/favourize";
+var search_video_path = "/search_video";
 
 $(document).ready(function(){
   // home path

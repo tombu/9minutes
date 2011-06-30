@@ -5,6 +5,9 @@
     = include_stylesheets :common, :media=>'all'
     = javascript_include_tag "http://www.google.com/jsapi"
     = include_javascripts :jquery, :helper, :plugins, :common
+    :javascript
+      google.load("swfobject", "2.1");
+      google.setOnLoadCallback(_run);
     = favicon_link_tag
     = favicon_link_tag "9minutes-logo.png", :rel=>"icon", :type=>"image/png"
     = csrf_meta_tag
@@ -42,35 +45,14 @@
           %li= link_to "Legal", "#"
           %li= link_to "Faq", "#"
     #fullscreen_wrap
+    #fullscreen_close
     #fullscreen
-      %h2 Avril Lavigne
-      %h1 Alice (In Wonderland)
+      #headline
+        %h2 Avril Lavigne
+        %h1 Alice (In Wonderland)
       #video= image_tag "examples/video-big.jpg"
       .sidebar
         .top
           = render :partial=>"layouts/player"
-        %ul.play_list
-          %li
-            %h3
-              %div= "Alice"
-              %span= "Avril Lavigne"
-          %li
-            %h3
-              %div= "Firework"
-              %span= "Katie Perry"
-          %li
-            %h3
-              %div= "What the Hell"
-              %span= "Avril Lavigne"
-          %li
-            %h3
-              %div= "Not Enough"
-              %span= "Avril Lavigne"
-          %li
-            %h3
-              %div= "Firework"
-              %span= "Katie Perry"
-          %li
-            %h3
-              %div= "Firework"
-              %span= "Katie Perry"
+        %input#scrubbar{:type => "range", :name => "range1", :min => "0", :max => "100", :step => "1", :value => "0"}
+        %ul#playlist

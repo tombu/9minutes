@@ -43,9 +43,9 @@ function more_hover_out(obj){
 }
 
 function init_playlist_scrollbar(){
-  $('#fullscreen .play_list').jScrollPane();
+  $('#fullscreen #playlist').jScrollPane();
   
-  $('#fullscreen .play_list').hover(function(){
+  $('#fullscreen #playlist').hover(function(){
     $('#fullscreen .jspVerticalBar').stop().fadeTo(300, 1);
   }, function(){
     $('#fullscreen .jspVerticalBar').stop().fadeTo(200, 0.02);

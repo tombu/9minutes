@@ -13,6 +13,18 @@
   display: none;
 }
 
+#fullscreen_close {
+  width: 78px;
+  height: 78px;
+  position: fixed;
+  left: -10px;
+  top: -20px;
+  background: url('#{$ico-url}/fullscreen-close.png');
+  opacity: 0;
+  z-index: 71;
+  cursor: pointer;  
+}
+
 #fullscreen {
   width: 950px;
   position: absolute;
@@ -20,7 +32,6 @@
   z-index: 70;
   opacity: 0;
   top: 0; left: 50%;
-  display: none;
   h2 {
     font-size: 18px;
     color: #fff;
@@ -39,10 +50,47 @@
     height: 360px;
     @include stripe-bg();
   }
+  
+  
   .sidebar {
+    $width: 310px;
+    $height: 3px;
+    
     float: right;
-    width: 310px;
+    width: $width;
     height: 360px;
+    
+    /* slider root element */
+    .slider
+    { 
+      background: transparent;
+      position: relative; 
+      cursor: pointer;
+      width: $width; height: $height; 
+      float: left; 
+      clear: right;
+    }
+  
+    /* progress bar (enabled with progress: true) */
+    .progress {
+      height: $height; width: $width; 
+      background: $blue; 
+      position: absolute;
+    }
+  
+    /* drag handle */
+    .handle { 
+      background: lighten($blue, 5%);
+      width: 0; height: $height;
+      position:absolute; 
+      display:block; 
+      cursor: pointer;
+    }
+  
+    /* the input field */
+    .range { display: none; }
+    
+    
     @include stripe-bg();
     .top {
       width: 310px;
@@ -56,12 +104,13 @@
         margin-left: 40px;
       }
     }
-    .play_list {
+    #playlist {
       width: 310px;
-      height: 235px;
+      height: 230px;
       padding: 10px 0; 
       overflow: auto; 
-      li {
+        .el {
+        cursor: pointer;
         padding: 6px 25px;
         h3 {
           font-size: 22px;
@@ -72,6 +121,13 @@
             font-size: 12px;
             text-transform: uppercase;
             color: $blue;
+          }
+        }
+        &.active {
+          margin-left: -20px;
+          h3 {
+            background: url('#{$ico-url}/playing.png') no-repeat 0 7px;
+            text-indent: 18px;
           }
         }
       }

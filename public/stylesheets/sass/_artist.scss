@@ -84,6 +84,10 @@ $padding: 28px;
     height: 19px;
     display: inline-block;
     margin: 28px 20px 0 0;
+    cursor: pointer;
     background: url('#{$ico-url}/heart.png') no-repeat 0 0;
+    &.loved {
+      background-position: 0 -19px;
+    }
   }
 }
