@@ -478,7 +478,11 @@ body {
   #user_left h1 {
     font-size: 18px;
     line-height: 44px;
-    height: 44px; }
+    height: 44px;
+    color: #fff;
+    background: transparent url("/images/backgrounds/dark.png") repeat;
+    margin-bottom: 20px;
+    text-indent: 22px; }
   #user_left .nav li {
     background: url("/images/icons/artist-information-active-arrow.png") no-repeat right 10px;
     cursor: default; }

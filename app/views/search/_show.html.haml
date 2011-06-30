@@ -3,7 +3,6 @@
     %li artists
     %li songs
     %li albums
-    %li youtube
   .content{:q=>"#{@q}"}
     %div
       = render :partial=>"sidebar/index"
@@ -20,6 +19,3 @@
       = render :partial=>"search_form"
       %ul.list.albums.andmore{:tile=>"more_albums"}
         = render :partial=>"artists/more_albums"
-    %div
-      = render :partial=>"sidebar/index"
-      = render :partial=>"search_form"

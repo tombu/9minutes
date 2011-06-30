@@ -1,7 +1,7 @@
 #user_left
   =image_tag validate_avatar(user), :class => "picture"
   .information
-    %h1= user.username || current_user.email
+    %h1= (user.username || current_user.email)
     %ul.nav
       %li=image_tag "icons/artist-info.png"
       %li=image_tag "icons/artist-links.png"
@@ -15,9 +15,13 @@
       %li settings
   .content
     %div
-      - user.artists.each do |artist|
-        %p
-          =artist.name
-          =image_tag artist.img_url
+      %ul.list.related
+        - user.artists.each do |artist|
+          %li<
+            = link_to "#!/artists/#{CGI.escape(artist.name)}" do
+              %h5= trimString(artist.name, 20)
+              .img
+                = image_tag artist.img_url
+      %br.clean
     - if user == current_user
       %div=render :partial => "edit", :locals => { :user => current_user }

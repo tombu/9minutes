@@ -18,8 +18,6 @@
     #bg_stripe
     #site
       #uuser{:style=>"display:block; color:#ddd;"}
-        - if user_signed_in?
-          =async_link_to "Logout", destroy_user_session_path
       #head
         %h1= link_to image_tag("nine-minutes.png"), "/#!/home"
         = render :partial=>"layouts/player"
@@ -34,7 +32,9 @@
           = form_tag '/search', :method => 'get', :id => "search_form", :remote=>true do
             = text_field_tag 'q', params[:q], :class => "text", :placeholder => "Search here ..."
             = link_to image_tag("icons/search-navi.png", :class=>"button"), "/#!/search"
-        - if !signed_in?
+        - if user_signed_in?
+          %li.login= async_link_to image_tag("icons/logout.png"), destroy_user_session_path
+        - else
           %li.login= async_link_to image_tag("icons/login.png"), new_user_session_path
       %br.clean
       #content

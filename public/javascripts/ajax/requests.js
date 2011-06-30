@@ -43,7 +43,10 @@ function favourite_request(link, params){
 }
 
 function load_site_request(link, params){
-  cacheResponse = cacheRequest(link+params);
+  if(link != user_path)
+    cacheResponse = cacheRequest(link+params);
+  else cacheResponse = false;
+  
   hide_flash(true);
   if(!cacheResponse)
   {
