@@ -116,7 +116,6 @@ function album_add_show_songs_button(){
 
 function init_site(link){
   Path.listen();
-  //onYouTubePlayerReady();
   
   switch(link) {
     case artist_path:
@@ -136,7 +135,13 @@ function init_site(link){
       set_active_navigation(charts_path);
       break;
     case user_path:
+    case register_path:
       init_tabs();
+      set_active_navigation(register_path);
+      break;
+    case login_path:
+      init_tabs();
+      set_active_navigation(home_path);
   }
 }
 

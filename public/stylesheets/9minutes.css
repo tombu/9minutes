@@ -128,7 +128,7 @@ body {
     #navigation li.active {
       background: url("/images/backgrounds/fuse.png") 0 -127px; }
     #navigation li.search {
-      width: 200px;
+      width: 260px;
       font-size: 16px;
       color: #ffffff;
       line-height: 58px;
@@ -136,13 +136,12 @@ body {
       background: transparent url("/images/backgrounds/dark.png") repeat;
       margin-top: 21px;
       height: 58px;
-      padding-left: 20px;
-      margin-left: 20px; }
+      padding-left: 20px; }
       #navigation li.search img {
         vertical-align: middle;
         margin-left: 10px; }
       #navigation li.search .text {
-        width: 150px;
+        width: 210px;
         height: 45px;
         border: 0;
         background: 0;
@@ -159,6 +158,11 @@ body {
       display: inline-block;
       text-decoration: none;
       text-align: center; }
+    #navigation li.login a {
+      width: auto;
+      margin: 0 15px 0 10px;
+      margin-top: 7px;
+      height: 72px; }
 
 /* FOOT */
 #foot {
@@ -489,6 +493,19 @@ body {
       line-height: 25px; }
       #user_left .con li:last-child {
         margin-bottom: 0; }
+
+.signuptab input[type=text], .signuptab input[type=email], .signuptab input[type=password] {
+  width: 300px;
+  height: 28px;
+  margin-bottom: 10px;
+  padding-left: 10px; }
+.signuptab input[type=submit] {
+  width: 70px;
+  height: 25px;
+  margin-bottom: 20px; }
+.signuptab a {
+  color: #0086cc !important;
+  margin-right: 20px; }
 
 /*********************************/
 /************ LAYOUT *************/

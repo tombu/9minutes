@@ -34,6 +34,8 @@
           = form_tag '/search', :method => 'get', :id => "search_form", :remote=>true do
             = text_field_tag 'q', params[:q], :class => "text", :placeholder => "Search here ..."
             = link_to image_tag("icons/search-navi.png", :class=>"button"), "/#!/search"
+        - if !signed_in?
+          %li.login= async_link_to image_tag("icons/login.png"), new_user_session_path
       %br.clean
       #content
       %br.clean
