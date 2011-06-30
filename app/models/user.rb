@@ -8,8 +8,14 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
-  has_attached_file :avatar, :styles => { :original => "200x200>", :thumb => "60x60>" }
-  
+  has_attached_file :avatar, 
+      :styles => { 
+        :original => "200x200#",
+        :thumb => "60x60#"
+      },
+      :url => "/media/avatars/:style/:id_:filename",
+      :path => ":rails_root/public/media/avatars/:style/:id_:filename"
+ 
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["user_hash"]

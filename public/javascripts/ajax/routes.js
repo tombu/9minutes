@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
   // Artist Show Page
-  Path.map(hashbang+artist_path+":artist").to(function(){
+  Path.map(hashbang+artist_path+":id").to(function(){
     show_flash(false);
-    load_site_request(artist_path, this.params['artist']);
+    load_site_request(artist_path, this.params['id']);
   });
   
   // Home Page
@@ -43,14 +43,9 @@ $(document).ready(function(){
   });
   
   // User Show Page
-  Path.map(hashbang+user_path+":user").to(function(){
+  Path.map(hashbang+user_path+":id").to(function(){
     show_flash(false);
-    load_site_request(user_path, this.params['user']);
+    load_site_request(user_path, this.params['id']);
   });
   
-  // User Edit Page
-  Path.map(hashbang+user_path+":user/edit").to(function(){
-    show_flash(false);
-    load_site_request(user_path, this.params['user'] + "/edit");
-  });
 });

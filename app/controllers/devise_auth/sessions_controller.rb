@@ -10,6 +10,13 @@ class DeviseAuth::SessionsController < Devise::SessionsController
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#new")
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
-    redirect_to "/#!/home", :partial => "devise/registrations/new"
+    aysnc_redirect_to new_user_registration_path
+  end
+  
+  def destroy
+    signed_in = signed_in?(resource_name)
+    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    
+    async_redirect_to charts_path
   end
 end

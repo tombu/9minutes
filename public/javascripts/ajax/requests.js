@@ -26,6 +26,22 @@
   }
 }
 
+function favourite_request(link, params){
+  $.ajax({
+    type: "GET",
+    dataType: "html",
+    url: link,
+    data: params,
+    error: function(){
+      hide_flash(false);
+      show_flash(true);
+    },
+    success: function(data){
+      $('#content .heart').addClass('loved');
+    }
+  });
+}
+
 function load_site_request(link, params){
   cacheResponse = cacheRequest(link+params);
   hide_flash(true);

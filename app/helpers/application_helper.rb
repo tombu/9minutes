@@ -24,8 +24,12 @@ module ApplicationHelper
   end
   
   def camelCaseString phrase
-  phrase.gsub!(/^[a-z]|\s+[a-z]/) { |a| a.upcase }
-  return phrase
-end
+    phrase.gsub!(/^[a-z]|\s+[a-z]/) { |a| a.upcase }
+    return phrase
+  end
+  
+  def async_link_to body, path, html_options = {}
+    link_to body, "/#!" + path, html_options
+  end
   
 end

@@ -16,18 +16,17 @@
     #site
       #uuser{:style=>"display:block; color:#ddd;"}
         - if user_signed_in?
-          =link_to "Profile", "/#!/users/#{current_user.id}"
-          =link_to "Logout", "/#!/logout"
-        - else
-          =link_to "Login", "/#!/login"
-          =link_to "Register", "/#!/register"
+          =async_link_to "Logout", destroy_user_session_path
       #head
         %h1= link_to image_tag("nine-minutes.png"), "/#!/home"
         = render :partial=>"layouts/player"
       #navigation
         %li.active= link_to "home", "/#!/home"
         %li= link_to "charts", "/#!/charts"
-        %li= link_to "register", "/#!/register"
+        - if signed_in?
+          %li= async_link_to "profile", user_path(current_user)
+        - else
+          %li= async_link_to "register", new_user_registration_path
         %li.search
           = form_tag '/search', :method => 'get', :id => "search_form", :remote=>true do
             = text_field_tag 'q', params[:q], :class => "text", :placeholder => "Search here ..."

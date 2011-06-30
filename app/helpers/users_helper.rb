@@ -1,7 +1,7 @@
 module UsersHelper
-  
-  def validate_avatar_url url
-    return url if url.present? and FileTest.exists? url
+   
+  def validate_avatar user, size = :original
+    return user.avatar.url(size) if user.avatar?
     "examples/user-big.jpg"
   end
   

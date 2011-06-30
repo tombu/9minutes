@@ -1,7 +1,5 @@
 Nineminutes::Application.routes.draw do
 
-  get "charts/index"
-
   devise_for :users, 
     :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations", :sessions => "sessions" }
   devise_scope :user do
@@ -14,27 +12,24 @@ Nineminutes::Application.routes.draw do
   end
 
   get "tracks/index"
-  match "/artists/:artist", :to => "artists#show"
+  match "/search_video", :to => "tracks#search_video"
+
+  resources :artists, :only => [ :show ], :constraints => { :id => /.*/ }
   match "/more_tracks", :to => "artists#more_tracks"
   match "/more_albums", :to => "artists#more_albums"
-  match "/more_artists", :to => "search#more_artists"
-  match "/more_charts", :to => "charts#more"
-
-  #get "artists/", :to => "artists#index"
-  match "/users/:user", :to => "users#show"
-  match "/users/:user/edit", :to => "users#edit"
-
-
-  match "/autocomplete", :to => "search#autocomplete"
   match "/album_info", :to => "artists#album_info"
-  match "/search_video", :to => "tracks#search_video"
-  
-  #resources :artists, :constraints => { :id => /.*/ }
-  resources :search, :constraints => { :id => /.*/ }
-  #resources :users, :only => [ :show ]
-  
-  get "home/", :to => "home#show"
-  get "charts/", :to => "charts#index"
+  match "/favourize", :to => "artists#favourize"
+
+  resources :search, :only => [ :show ], :constraints => { :id => /.*/ }
+  match "/more_artists", :to => "search#more_artists"
+  match "/autocomplete", :to => "search#autocomplete"
+
+  match "/more_charts", :to => "charts#more"
+  match "/charts", :to => "charts#index"
+
+  resources :users, :only => [ :show, :update, :edit, :create ]
+   
+  get "/home", :to => "home#show"
   
   root :to => "home#index"
 end

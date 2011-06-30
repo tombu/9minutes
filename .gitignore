@@ -5,10 +5,13 @@ tmp/
 
 Icon*
 .DS_Store
+dump.rdb
 Thumbs.db
 
 /config/config.yml
-/config/sevendigital.yml
 
 /public/images_old/
 /public/.sass-cache/
+/public/media/
+/public/assets/
+/public/cache/

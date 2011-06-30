@@ -5,7 +5,7 @@ class ArtistsController < ApplicationController
   @@limit = { tracks: 10, albums: 4, similar: 6 }
 
   def show
-    artist = CGI.unescape params[:artist]
+    artist = CGI.unescape params[:id]
     
     @artist = LastFM::Artist.getInfo artist
     @tracks = LastFM::Artist.getTopTracks artist, @@limit[:tracks]
@@ -44,11 +44,25 @@ class ArtistsController < ApplicationController
   end
 
   def album_info
-    @album = LastFM::Album.getInfo CGI.unescape(params[:album]), CGI.unescape(params[:artist])
+    @album = LastFM::Album.getInfo CGI.unescape(params[:album]), CGI.unescape(params[:id])
     LastFM::Request.run_queue!
 
     render :partial=>"album_info", :locals=>{:album=>@album}
   end
+  
+  def favourize
+    puts params.inspect
+    artist = CGI.unescape params[:id]
+    @artist = LastFM::Artist.getInfo artist
+    LastFM::Request.run_queue!
+    @artist = Artist.new(:name => @artist.name, :img_url => validate_img_url(@artist.image, "artist", :extralarge))
+    unless current_user.artists.include? @artist
+      current_user.artists << @artist if @artist.save
+    end
+    render :nothing => true
+  end
+  
+  private
   
   def prepare params
     params[:q] = CGI.unescape params[:q]

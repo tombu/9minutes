@@ -11,6 +11,7 @@ var user_path = "/users/";
 var register_path = "/register";
 var login_path = "/login";
 var logout_path = "/logout";
+var favourite_path = "/favourize";
 
 $(document).ready(function(){
   // home path
