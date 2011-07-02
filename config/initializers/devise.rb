@@ -184,14 +184,13 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   
   # Facebook-Setting for Heroku
-  # config.omniauth :facebook, 'APP_ID', 'APP_SECRET',
-  #      {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
-  
-  if Rails.env =~ /development/
-    config.omniauth :facebook, APP_CONFIG['facebook']['app_id'], APP_CONFIG['facebook']['secret']
+  if Rails.env =~ /production/
+    config.omniauth :facebook, ENV['facebook']['app_id'], ENV['facebook']['secret']
+      {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
   else
-    config.omniauth :facebook, 'APP_ID', 'APP_SECRET'
+    config.omniauth :facebook, ENV['facebook']['app_id'], ENV['facebook']['secret']
   end
+  
   config.omniauth :open_id, OpenID::Store::Filesystem.new('/tmp')
   # config.omniauth :google_apps, OpenID::Store::Filesystem.new('/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
   # config.omniauth :twitter, 'CONSUMER_KEY', 'CONSUMER_SECRET'

@@ -8,6 +8,7 @@ var charts_path = "/charts";
 var search_path = "/search/";
 var search_autocomplete_path = "/autocomplete/";
 var user_path = "/users/";
+var profile_path = "/profile";
 var register_path = "/register";
 var login_path = "/login";
 var logout_path = "/logout";
