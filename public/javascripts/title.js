@@ -7,12 +7,19 @@
 
   titleLink = titleLink.replaceAll("/","");
   
-  if(titleLink == "artists")
+  switch(titleLink)
   {
-    titleLink = special;
-    special = null;
+    case "artists":
+      titleLink = special;
+      special = null;
+      break;
+    case "home":
+      document.title = documentTitle;
+      return;
+      break;
   }
   
-  document.title = documentTitle + " » " + titleLink.urifyAll();
+  document.title = titleLink.urifyAll();
   if (special) document.title += " » " + special.urifyAll();
+  document.title += " on " + documentTitle;
 }
