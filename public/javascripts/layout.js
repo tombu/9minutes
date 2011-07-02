@@ -134,6 +134,9 @@ function init_site(link){
       set_active_navigation(charts_path);
       break;
     case user_path:
+      init_tabs();
+      set_active_navigation(profile_path);
+      break;
     case register_path:
       init_tabs();
       set_active_navigation(register_path);
@@ -141,6 +144,7 @@ function init_site(link){
     case login_path:
       init_tabs();
       set_active_navigation(home_path);
+      break;
   }
 }
 

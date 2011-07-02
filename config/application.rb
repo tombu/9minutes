@@ -5,7 +5,6 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Nineminutes
   class Application < Rails::Application
-    config.autoload_paths += %W(#{config.root}/lib)
     
     # enable caching in development mode
     config.action_controller.perform_caching = true
