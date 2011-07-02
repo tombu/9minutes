@@ -41,13 +41,25 @@ module ApplicationHelper
   
 
   # STRING HELPER
-  def trimString str, length
-    truncate str, :length => length.to_i, :omission => "…"
-  end
-  
   def camelCaseString phrase
     phrase.gsub!(/^[a-z]|\s+[a-z]/) { |a| a.upcase }
     return phrase
+  end
+  
+  def trimString str, length
+    truncate str, :length => length.to_i, :omission => "…"
+  end
+
+  def trimTrack track, artist
+    returnValue = track
+    desiredLength = 60
+    actualLength = track.length + artist.length
+    overflow = actualLength - desiredLength
+    
+    if actualLength > desiredLength
+      returnValue = trimString track, track.length - overflow 
+    end
+    return returnValue
   end
   
 end

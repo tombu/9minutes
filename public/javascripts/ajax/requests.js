@@ -44,7 +44,6 @@ function favourite_request(link, params){
 
 function load_site_request(link, params){
   params = (typeof params == "undefined" || typeof params == "boolean") ? "" : params;
-  
   show_flash(false);
   
   if(link != user_path)

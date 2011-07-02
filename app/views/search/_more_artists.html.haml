@@ -3,6 +3,6 @@
     - @link = "#!/artists/#{CGI.escape(artist.name)}"
     .img= link_to image_tag(validate_img_url(artist.image, "artist", :large)), @link
     .text
-      %h2= link_to artist.name, @link
+      %h2= link_to trimString(artist.name, 55), @link
       %p
         = artist.listeners+" Listeners"

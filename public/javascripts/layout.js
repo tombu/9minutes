@@ -91,7 +91,7 @@ function remove_links_from_description(){
 
 function new_albums(){
   album_hover();
-  album_add_show_songs_button();
+  //album_add_show_songs_button();
 }
 
 
