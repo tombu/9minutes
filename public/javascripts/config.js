@@ -14,6 +14,9 @@ var logout_path = "/logout";
 var favourite_path = "/favourize";
 var search_video_path = "/search_video";
 
+// root title
+var documentTitle = "9minutes";
+
 $(document).ready(function(){
   // home site
   Path.root("#!/home");

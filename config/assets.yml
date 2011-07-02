@@ -19,6 +19,7 @@ javascripts:
     - public/javascripts/search.js
     - public/javascripts/store.js
     - public/javascripts/caching.js
+    - public/javascripts/title.js
     - public/javascripts/ajax/*.js
     - public/javascripts/animations/*.js
     - public/javascripts/layout.js

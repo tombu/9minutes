@@ -43,14 +43,18 @@ function favourite_request(link, params){
 }
 
 function load_site_request(link, params){
+  changeDocumentTitle(link, params);
+
+  // proof given params
   params = (typeof params == "undefined" || typeof params == "boolean") ? "" : params;
   show_flash(false);
   
+  // request to object cache
   if(link != user_path)
     cacheResponse = cacheRequest(link+params);
   else cacheResponse = false;
   
-  hide_flash(true);
+  hide_flash(true); // remove error messages if shown
   if(!cacheResponse)
   {
     console.info("=> Request to server");
