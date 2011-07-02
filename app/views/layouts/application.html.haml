@@ -38,6 +38,7 @@
           %li.login= async_link_to image_tag("icons/login.png"), new_user_session_path
       %br.clean
       #content
+        = yield
       %br.clean
       #foot
         - date = DateTime.now

@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
-
-  def show
+  def index
     @files = Dir.glob("public/images/startsite/*.jpg")
-    render :partial=>"index", :locals => {:files => @files}
+    
+    render_remote :index
   end
 
 end

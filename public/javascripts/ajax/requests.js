@@ -43,6 +43,10 @@ function favourite_request(link, params){
 }
 
 function load_site_request(link, params){
+  params = (typeof params == "undefined" || typeof params == "boolean") ? "" : params;
+  
+  show_flash(false);
+  
   if(link != user_path)
     cacheResponse = cacheRequest(link+params);
   else cacheResponse = false;
@@ -55,6 +59,7 @@ function load_site_request(link, params){
       type:"GET",
       dataType:"html",
       url: link + params,
+      data:"remote=true",
       error: function(){
         hide_flash(false);
         show_flash(true);

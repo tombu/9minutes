@@ -28,7 +28,7 @@ Nineminutes::Application.routes.draw do
 
   resources :users, :only => [ :show, :update, :edit, :create ]
    
-  get "/home", :to => "home#show"
+  get "/home", :to => "home#index"
   
   root :to => "home#index"
 end

@@ -15,9 +15,12 @@ var favourite_path = "/favourize";
 var search_video_path = "/search_video";
 
 $(document).ready(function(){
-  // home path
-  Path.root(hashbang+home_path);
+  // home site
+  Path.root("#!/home");
   
+  // initialize path listener
+  Path.listen();
+
   // redirect non existent links
   // to the 404 page
   Path.rescue(function(){

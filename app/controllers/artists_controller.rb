@@ -22,10 +22,6 @@ class ArtistsController < ApplicationController
     }
   end
   
-  def index
-    redirect_to :root
-  end
-  
   
   def more_tracks
     prepare params
