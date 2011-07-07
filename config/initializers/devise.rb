@@ -185,10 +185,10 @@ Devise.setup do |config|
   
   # Facebook-Setting for Heroku
   if Rails.env =~ /production/
-    config.omniauth :facebook, ENV['facebook']['app_id'], ENV['facebook']['secret']
+    config.omniauth :facebook, ENV['facebook_app_id'], ENV['facebook_secret']
       {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
   else
-    config.omniauth :facebook, ENV['facebook']['app_id'], ENV['facebook']['secret']
+    config.omniauth :facebook, ENV['facebook_app_id'], ENV['facebook_secret']
   end
   
   config.omniauth :open_id, OpenID::Store::Filesystem.new('/tmp')
