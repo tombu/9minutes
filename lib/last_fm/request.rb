@@ -67,7 +67,7 @@ module LastFM
     private
 
     def self.create_and_queue_request method, node, block, request_params
-      request = Typhoeus::Request.new(base_uri, :params => request_params) # :timeout => ENV["request_timeout"],
+      request = Typhoeus::Request.new(base_uri, :params => request_params)
       handle_response request, method, node, block
 
       puts "=> lastfm: '#{current_class_name}.#{method}' request is queued" if @@hydra.queue request

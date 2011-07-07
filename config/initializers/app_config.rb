@@ -3,10 +3,10 @@ if Rails.env !=~ /production/
   APP_CONFIG.each do |key, value|
     if value.is_a?(Hash)
       value.each do |k,v|
-        ENV["#{key}_#{k}"] = v
+        ENV["#{key}_#{k}".upcase] = v
       end
     else
-      ENV[key] = value
+      ENV[(key.upcase)] = value
     end
   end
 end

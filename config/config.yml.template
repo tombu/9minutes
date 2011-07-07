@@ -3,4 +3,6 @@ lastfm_api_key: ""
 facebook:
   app_id: ""
   secret: ""
-request_timeout: ""
+redis:
+  development: ""
+  production: ""
