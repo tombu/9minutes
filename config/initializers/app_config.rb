@@ -1,4 +1,4 @@
-if Rails.env !=~ /production/
+if Rails.env.development? || Rails.env.test?
   APP_CONFIG = HashWithIndifferentAccess.new(YAML.load(File.open(File.join(Rails.root, 'config', 'config.yml'))))
   APP_CONFIG.each do |key, value|
     if value.is_a?(Hash)

@@ -7,7 +7,7 @@ require 'rake'
 
 module ::Nineminutes
   class Application
-    include Rake::DSL
+    include Rake::DSL if Rails.env.development? or Rails.env.test?
     # Jammit.package!
   end
 end
