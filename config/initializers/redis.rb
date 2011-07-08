@@ -1,4 +1,10 @@
-uri = Rails.env ==~ /production/ ? URI.parse(ENV['REDIS_PRODUCTION']) : URI.parse(ENV['REDIS_DEVELOPMENT'])
+if Rails.env.development? or Rails.env.test? 
+  uri_string = ENV['REDIS_DEVELOPMENT'].to_s
+else
+  uri_string = ENV['REDIS_PRODUCTION'].to_s
+end
+
+uri = URI.parse(URI.encode(uri_string))
 $redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
 
 begin
