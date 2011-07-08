@@ -5,5 +5,5 @@ begin
   $redis.ping
   puts "=> Established connection to redis server on '#{uri.host}' (port #{uri.port})!"
 rescue
-  puts "=> CAUTION: cound not establish connection to redis server on '#{uri.host}' (port #{uri.port})! Check settings in initializer!"
+  puts "=> CAUTION: could not establish connection to redis server on '#{uri.host}' (port #{uri.port})! Check settings in initializer!"
 end
