@@ -27,7 +27,7 @@ gem '7digital'
 
 # for asset packaging
 gem 'closure'
-gem 'jammit'
+gem 'jammit', :git => "git://github.com/documentcloud/jammit.git"
 gem 'win32-open3-19' # win32-open3 in order to use POpen4 on Win32 (dependency of jammit)
 
 
