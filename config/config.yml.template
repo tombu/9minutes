@@ -1,8 +1,9 @@
-secret_token: ""
-lastfm_api_key: ""
+secret_token:
+lastfm_api_key:
+bing_api_key:
 facebook:
-  app_id: ""
-  secret: ""
+  app_id:
+  secret:
 redis:
-  development: ""
-  production: ""
+  development:
+  production:

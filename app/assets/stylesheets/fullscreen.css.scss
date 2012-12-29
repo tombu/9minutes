@@ -1,0 +1,137 @@
+﻿/*********************************/
+/************ LAYOUT *************/
+/*********************************/
+
+
+#fullscreen_wrap {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 70;
+  background: #000;
+  top: 0; left: 0;
+  display: none;
+}
+
+#fullscreen_close {
+  width: 78px;
+  height: 78px;
+  position: fixed;
+  left: -10px;
+  top: -20px;
+  background: url('#{$ico-url}/fullscreen-close.png');
+  opacity: 0;
+  z-index: 71;
+  cursor: pointer;  
+}
+
+#fullscreen {
+  width: 950px;
+  position: absolute;
+  margin-left: -475px;
+  z-index: 70;
+  opacity: 0;
+  top: 0; left: 50%;
+  h2 {
+    font-size: 18px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 14px;
+  }
+  h1 {
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  #video {
+    float: left;
+    width: 640px;
+    height: 360px;
+    @include stripe-bg();
+  }
+  
+  
+  .sidebar {
+    $width: 310px;
+    $height: 3px;
+    
+    float: right;
+    width: $width;
+    height: 360px;
+    
+    /* slider root element */
+    .slider
+    { 
+      background: transparent;
+      position: relative; 
+      cursor: pointer;
+      width: $width; height: $height; 
+      float: left; 
+      clear: right;
+    }
+  
+    /* progress bar (enabled with progress: true) */
+    .progress {
+      height: $height; width: $width; 
+      background: $blue; 
+      position: absolute;
+    }
+  
+    /* drag handle */
+    .handle { 
+      background: lighten($blue, 5%);
+      width: 0; height: $height;
+      position:absolute; 
+      display:block; 
+      cursor: pointer;
+    }
+  
+    /* the input field */
+    .range { display: none; }
+    
+    
+    @include stripe-bg();
+    .top {
+      width: 310px;
+      height: 125px;
+      @include stripe-bg();
+      text-align: center;
+      line-height: 125px;
+      .player {
+        float: left;
+        margin-top: 47px;
+        margin-left: 40px;
+      }
+    }
+    #playlist {
+      width: 310px;
+      height: 230px;
+      padding: 10px 0; 
+      overflow: auto; 
+        .el {
+        cursor: pointer;
+        padding: 6px 25px;
+        h3 {
+          font-size: 22px;
+          color: white;
+          line-height: 22px;
+          span {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: $blue;
+          }
+        }
+        &.active {
+          margin-left: -20px;
+          h3 {
+            background: url('#{$ico-url}/playing.png') no-repeat 0 7px;
+            text-indent: 18px;
+          }
+        }
+      }
+      .jspVerticalBar { left: 0!important; opacity: 0.02; }
+    }
+  }
+}

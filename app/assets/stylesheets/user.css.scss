@@ -1,0 +1,67 @@
+﻿/*********************************/
+/************ LAYOUT *************/
+/*********************************/
+
+@mixin set-width-for-user-left($w){
+  width: $w;
+  h1 { width: $w }
+  .information { width: $w }
+}
+
+#user_left {
+  $padding: 28px;
+  float: left;
+  @include set-width-for-user-left(200px);
+  .picture {
+    float: left;
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+  h1 {
+    font-size: 18px;
+    $height: 44px;
+    line-height: $height;
+    height: $height;
+    color: #fff;
+    @include stripe-bg();
+    margin-bottom: 20px;
+    text-indent: 22px;
+  }
+  .nav li {
+    background: url('#{$ico-url}/artist-information-active-arrow.png') no-repeat right 10px;
+    cursor: default;
+    &:last-child { margin-bottom: 0 }
+  }
+  .con { 
+    margin-left: 80px;
+    li {
+      $height: 25px;
+      height: $height;
+      margin-bottom: 13px;
+      color: White;
+      line-height: $height;
+      &:last-child { margin-bottom: 0 }
+    }
+  }
+}
+
+
+
+.signuptab {
+  input[type=text], input[type=email], input[type=password] {
+    width: 300px;
+    height: 28px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+  }
+  input[type=submit] {
+    width: 70px;
+    height: 25px;
+    margin-bottom: 20px;
+  }
+  a {
+    color: $blue!important;
+    margin-right: 20px;
+  }
+}

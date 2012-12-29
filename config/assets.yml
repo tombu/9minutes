@@ -1,6 +1,6 @@
-﻿embed_assets: on
+﻿embed_assets: off
 javascript_compressor: closure
-
+package_path: jammit
 
 javascripts:
   jquery:

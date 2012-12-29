@@ -5,7 +5,8 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Nineminutes
   class Application < Rails::Application
-    
+    config.autoload_once_paths += %W(#{config.root}/lib)
+
     # enable caching in development mode
     config.action_controller.perform_caching = true
     config.action_controller.page_cache_directory = Rails.root.to_s+"/public/cache/"
@@ -17,5 +18,11 @@ module Nineminutes
     config.encoding = "utf-8"
 
     config.filter_parameters += [:password]
+
+    config.assets.enabled = true
+    config.assets.version = '1.0'
+
+    # Defaults to '/assets'
+    # config.assets.prefix = '/asset-files'
   end
 end

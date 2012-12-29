@@ -1,7 +1,11 @@
 Nineminutes::Application.routes.draw do
 
-  devise_for :users, 
-    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "devise_auth/registrations", :sessions => "devise_auth/sessions" }
+  devise_for :users, :controllers => {
+    :omniauth_callbacks => "users/omniauth_callbacks",
+    :registrations => "devise_auth/registrations",
+    :sessions => "devise_auth/sessions"
+  }
+
   devise_scope :user do
     get "/users/auth/:provider" => "users/omniauth_callbacks#passthru"
     get "/register" => "devise_auth/registrations#new",   :as => :new_user_registration
@@ -27,8 +31,8 @@ Nineminutes::Application.routes.draw do
   match "/charts", :to => "charts#index"
 
   resources :users, :only => [ :show, :update, :edit, :create ]
-   
+
   get "/home", :to => "home#index"
-  
+
   root :to => "home#index"
 end

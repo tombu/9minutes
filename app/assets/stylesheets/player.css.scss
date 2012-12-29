@@ -1,0 +1,51 @@
+﻿/*********************************/
+/************ LAYOUT *************/
+/*********************************/
+
+.player {
+  float: right;
+  height: 47px;
+  margin: 52px 17px 0 0;
+  line-height: 47px;
+  a { float: left; }
+  .play, .pause { 
+    margin: -8px 5px 0 5px;
+    width: 47px;
+    height: 47px; 
+    display: inline-block;
+    background: url("#{$ico-url}/player/play.png");
+  }
+  .pause {
+    background: url("#{$ico-url}/player/pause.png");
+  }
+  .forward, .backward {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url("#{$ico-url}/player/forward.png");
+  }
+  .backward {
+    background: url("#{$ico-url}/player/backward.png");
+  }
+  
+  .volume, .novolume, .repeat, .full {
+    margin: 8px 0 0 20px;
+  }
+  .volume, .novolume {
+    width: 16px;
+    height: 16px; 
+    display: inline-block;
+    background: url("#{$ico-url}/player/volume.png");
+  }
+  .novolume {
+    background: url("#{$ico-url}/player/novolume.png");
+  }
+  
+  .full {
+    width: 16px;
+    height: 12px;
+    margin-top: 9px;
+    display: inline-block;
+    background: url("#{$ico-url}/player/fullscreen.png");
+  }
+}

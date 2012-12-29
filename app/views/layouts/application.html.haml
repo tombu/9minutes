@@ -2,9 +2,11 @@
 %html
   %head
     %title 9minutes
-    = include_stylesheets :common, :media=>'all'
     = javascript_include_tag "http://www.google.com/jsapi"
-    = include_javascripts :jquery, :helper, :plugins, :common
+    = stylesheet_link_tag "application", :media=>'all'
+    = javascript_include_tag "application"
+    -# = include_stylesheets :common, :media=>'all'
+    -# = include_javascripts :jquery, :helper, :plugins, :common
     :javascript
       google.load("swfobject", "2.1");
       google.setOnLoadCallback(_run);
