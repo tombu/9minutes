@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rake'
 
-gem 'rails', '3.1.3'
+gem 'rails', '3.2.8'
 gem 'jquery-rails', '1.0.12'
 
 # templating
@@ -30,14 +30,11 @@ gem 'oa-openid', :require => 'omniauth/openid'
 
 # for file upload ( -> avatar )
 gem 'paperclip',  '~> 2.3'
-gem 'jammit', '~> 0.6.5' #, :git => 'git://github.com/documentcloud/jammit.git'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.1.5'
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier',     '>= 1.0.3'
-  gem 'closure'
-  gem 'win32-open3-19' # win32-open3 in order to use POpen4 on Win32 (dependency of jammit)
 end
 
 group :development, :test do
