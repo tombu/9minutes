@@ -25,8 +25,9 @@ gem 'hashie'
 
 # authentication
 gem 'devise'
-gem 'oa-oauth', :require => 'omniauth/oauth'
-gem 'oa-openid', :require => 'omniauth/openid'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-openid'
 
 # for file upload ( -> avatar )
 gem 'paperclip',  '~> 2.3'
