@@ -3,10 +3,10 @@ db/*.sqlite3
 log/*.log
 tmp/
 
-Icon*
 .DS_Store
 dump.rdb
 Thumbs.db
+.sass-cache/
 
 /config/config.yml
 
