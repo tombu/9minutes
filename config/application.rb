@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+Bundler.require(:default, :assets, Rails.env) if defined?(Bundler)
 
 module Nineminutes
   class Application < Rails::Application
@@ -18,7 +18,10 @@ module Nineminutes
 
     config.filter_parameters += [:password]
 
+    # Enable the asset pipeline
     config.assets.enabled = true
+
+    # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
