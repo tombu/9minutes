@@ -4,7 +4,7 @@
   - tracks.track.each_with_index do |track, i|
     - id = @youtube_client.videos_by(:query => "#{track.name} #{track.artist} official", :page => 1, :per_page => 1, :order_by => "relevance")
     %li
-      = image_tag "ico/play.png", :class=>"play", :videoid=>id.videos.first.unique_id
-      = image_tag "ico/add.png", :class=>"add"
+      = image_tag image_path("ico/play.png"), :class=>"play", :videoid=>id.videos.first.unique_id
+      = image_tag image_path("ico/add.png"), :class=>"add"
       %span= track.name
       = link_to trimString(track.artist, 50), "#!/artists/#{CGI.escape(track.artist)}"

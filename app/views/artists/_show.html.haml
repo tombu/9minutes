@@ -2,21 +2,21 @@
   #slider
     = image_tag validate_img_url(artist.image, "artist", :mega)
   .tabs_js.information
-    %h1 
+    %h1
       = artist.name
       - if signed_in?
         %span.heart
     %ul.nav
-      %li= image_tag "icons/artist-info.png"
-      %li= image_tag "icons/artist-links.png"
-      %li= image_tag "icons/artist-tags.png"
+      %li= image_tag image_path("icons/artist-info.png")
+      %li= image_tag image_path("icons/artist-links.png")
+      %li= image_tag image_path("icons/artist-tags.png")
     .content
       #artist_info
         %h2 About
         =raw artist.bio.summary.empty? ? "No information available!" : artist.bio.summary
       #artist_links
         %ul
-        = image_tag "bing.png", :class=>"bing"
+        = image_tag image_path("bing.png"), :class=>"bing"
       #artist_tags
         %h2 Tags
         %ul

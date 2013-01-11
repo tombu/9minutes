@@ -64,11 +64,11 @@
           %sub
     %br.clean
     = link_to "NACHLADEN", :class => "more" do
-      = image_tag "ico/more.png"
+      = image_tag image_path("ico/more.png")
   #search_tracks
     = render :partial => "tracks/list", :locals => { :tracks => @tracks, :additional_class => "tab", :count => 26 }
     %br.clean
     %br
     = link_to "NACHLADEN", :class => "more" do
-      = image_tag "ico/more.png"
-    
+      = image_tag image_path("ico/more.png")
+
