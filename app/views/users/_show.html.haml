@@ -3,8 +3,8 @@
   .information
     %h1= (user.username || current_user.email)
     %ul.nav
-      %li=image_tag image_path("icons/artist-info.png")
-      %li=image_tag image_path("icons/artist-links.png")
+      %li=image_tag "icons/artist-info.png"
+      %li=image_tag "icons/artist-links.png"
     %ul.con
       %li="#{user.playcount} Plays"
       %li="#{user.playlist.count} Playlists"

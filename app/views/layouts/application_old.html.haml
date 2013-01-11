@@ -7,7 +7,7 @@
     = stylesheet_link_tag :all
     = javascript_include_tag "http://www.google.com/jsapi"
     = javascript_include_tag :all
-
+    
     = csrf_meta_tag
   %body
     #site
@@ -19,7 +19,7 @@
       =link_to "Sign Out", destroy_user_session_path
       #head
         %h1
-          = link_to image_tag(image_path("9minutes.png")), "/"
+          = link_to image_tag("9minutes.png"), "/"
         = form_tag '/search', :method => 'get', :id => "search_form", :class => "right" do
           .wrap
             = text_field_tag 'q', params[:q], :class => "input", :placeholder => "Search for"
@@ -64,8 +64,8 @@
       #volume
         =raw '<input type="range" class="vol" id="progress" name="range2" min="0" max="100" step="1" value="50" />'
       #icons
-        = link_to image_tag(image_path("ico/player-volume.png")), "javascript:void(0);", :class=>"volume"
-        = link_to image_tag(image_path("ico/player-repeat.png")), "javascript:void(0);", :class=>"repeat"
-        = link_to image_tag(image_path("ico/player-playlist.png")), "javascript:void(0);", :class=>"playlist"
+        = link_to image_tag("ico/player-volume.png"), "javascript:void(0);", :class=>"volume"
+        = link_to image_tag("ico/player-repeat.png"), "javascript:void(0);", :class=>"repeat"
+        = link_to image_tag("ico/player-playlist.png"), "javascript:void(0);", :class=>"playlist"
 
-
+      
