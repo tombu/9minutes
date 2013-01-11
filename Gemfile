@@ -32,6 +32,8 @@ gem 'omniauth-openid'
 # for file upload ( -> avatar )
 gem 'paperclip',  '~> 2.3'
 
+gem 'pg', group: :production
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
