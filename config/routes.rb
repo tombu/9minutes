@@ -15,20 +15,20 @@ Nineminutes::Application.routes.draw do
     get "/logout" => "devise_auth/sessions#destroy",      :as => :destroy_user_session
   end
 
-  match "/search_video", :to => "tracks#search_video"
+  get "/search_video", :to => "tracks#search_video"
 
   resources :artists, :only => [ :show ], :constraints => { :id => /.*/ }
-  match "/more_tracks", :to => "artists#more_tracks"
-  match "/more_albums", :to => "artists#more_albums"
-  match "/album_info", :to => "artists#album_info"
-  match "/favourize", :to => "artists#favourize"
+  get "/more_tracks", :to => "artists#more_tracks"
+  get "/more_albums", :to => "artists#more_albums"
+  get "/album_info", :to => "artists#album_info"
+  get "/favourize", :to => "artists#favourize"
 
   resources :search, :only => [ :show ], :constraints => { :id => /.*/ }
-  match "/more_artists", :to => "search#more_artists"
-  match "/autocomplete", :to => "search#autocomplete"
+  get "/more_artists", :to => "search#more_artists"
+  get "/autocomplete", :to => "search#autocomplete"
 
-  match "/more_charts", :to => "charts#more"
-  match "/charts", :to => "charts#index"
+  get "/more_charts", :to => "charts#more"
+  get "/charts", :to => "charts#index"
 
   resources :users, :only => [ :show, :update, :edit, :create ]
 
