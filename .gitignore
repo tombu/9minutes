@@ -6,7 +6,6 @@ tmp/
 .DS_Store
 dump.rdb
 Thumbs.db
-.sass-cache/
 
 /config/config.yml
 
