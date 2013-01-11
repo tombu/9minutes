@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rake'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 gem 'jquery-rails', '1.0.12'
 
 # templating
